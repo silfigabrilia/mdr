@@ -31,6 +31,19 @@
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
+                            <label for="nama_barang" class="form-label">Nama Barang</label>
+                            <select class="form-control" name="nama_barang" id="nama_barang">
+                                <option value="">Pilih Barang</option>
+                                <?php foreach ($barang as $data) { ?>
+                                    <option value="<?= $data['id_barang'] ?>"><?= $data['nama_barang'] . ' [Sisa stok : ' . $data['stok'] . ']' ?></option>
+                                <?php } ?>
+                                <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="mb-3">
                             <label for="tgl_pinjam" class="form-label">Tgl Pinjam</label>
                             <input type="date" class="form-control" name="tgl_pinjam" id="tgl_pinjam" placeholder="Masukkan Tgl Pinjam...">
                         </div>

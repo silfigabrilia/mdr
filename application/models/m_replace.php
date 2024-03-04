@@ -9,6 +9,18 @@ function tampil_replace(){
  function tampil_datareplace(){
    return $this->db->get('ganti');
 }
+public function getid()
+{
+    $query = $this->db->query("SELECT id_barang, nama_barang, COALESCE(stok, 0) AS stok FROM barang WHERE stok <> 0");
+
+    if ($query->num_rows() == 0) {
+        $query = [];
+    } else {
+        $query = $query->result_array();
+    }
+
+    return $query;
+}
 
 function tambah_data_replace($data){
     return $this->db->insert($this->_table->$data);

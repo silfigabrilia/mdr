@@ -13,11 +13,28 @@ class Detail_barang extends CI_Controller
         $this->load->helper('url');
     }
 
-    public function index($id)
+    public function index()
     {
         $data['title'] = 'Detail_Barang';
-        // $data['Detail_Barang'] = $this->m_detail_barang->tampil_detail()->result();
-        $render  = $this->Mmain->qRead("detail_barang det 
+        $data['Detail_Barang'] = $this->m_detail_barang->tampil_detail()->result();
+       // $render  = $this->Mmain->qRead("detail_barang det 
+        //INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang  = '$id' ",
+        //"det.id_detail_barang, b.nama_barang, det.serial_code, det.lokasi, det.qtty");
+
+        // $a=$this->Mmain->qRead("detail_barang db right OUTER JOIN barang b ON b.id_barang = b.id_barang = b.id_barang","db.id_barang, db.serial_code, db.lokasi, db.qtty");
+        $data['Detail_Barang'] = $render->result();
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('detail_barang/detail_barang', $data);
+        $this->load->view('templates/footer');
+    }
+	
+	    public function init($id)
+    {
+        $data['title'] = 'Detail_Barang';
+        //$data['Detail_Barang'] = $this->m_detail_barang->tampil_detail()->result();
+		$render  = $this->Mmain->qRead("detail_barang det 
         INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang  = '$id' ",
         "det.id_detail_barang, b.nama_barang, det.serial_code, det.lokasi, det.qtty");
 
@@ -29,6 +46,7 @@ class Detail_barang extends CI_Controller
         $this->load->view('detail_barang/detail_barang', $data);
         $this->load->view('templates/footer');
     }
+	
 
     // private function _validasi()
     // {
@@ -75,7 +93,7 @@ class Detail_barang extends CI_Controller
         ));
 
         $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Ditambahkan!');
-        redirect('detail_barang');
+        redirect('Barang');
 
     }
 

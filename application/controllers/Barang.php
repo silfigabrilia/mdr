@@ -54,15 +54,15 @@ class Barang extends CI_Controller
 
         $nama = $this->input->post('nama');
         $stok = $this->input->post('stok');
-        // $satuan = $this->input->post('satuan');
-        // $jenis = $this->input->post('jenis');
+        $satuan = $this->input->post('satuan');
+        $jenis = $this->input->post('jenis');
         
         $this->Mmain->qIns("barang", array(
             $id,
             $nama,
             $stok,
-            // $satuan,
-            // $jenis
+            $satuan,
+            $jenis
 
         ));
 
@@ -93,8 +93,8 @@ class Barang extends CI_Controller
             'id_barang' => $this->input->post('id_barang'),
             'nama_barang' => $this->input->post('nama_barang'),
             'stok' => $this->input->post('stok'),
-            // 'satuan_id' => $this->input->post('satuan_id'),
-            // 'jenis_id' => $this->input->post('jenis_id'),
+            'satuan_id' => $this->input->post('satuan_id'),
+            'jenis_id' => $this->input->post('jenis_id'),
 
         ];
 
@@ -111,14 +111,14 @@ class Barang extends CI_Controller
         $id_barang = $this->input->post('id_barang');
         $nama_barang = $this->input->post('nama_barang');
         $stok = $this->input->post('stok');
-        // $satuan_id = $this->input->post('satuan_id');
-        // $jenis_id = $this->input->post('jenis_id');
+        $satuan_id = $this->input->post('satuan_id');
+        $jenis_id = $this->input->post('jenis_id');
         
         $data = array(
         'nama_barang' => $nama_barang,
         'stok' => $stok,
-        // 'satuan_id' => $satuan_id,
-        // 'jenis_id' => $jenis_id,
+        'satuan_id' => $satuan_id,
+        'jenis_id' => $jenis_id,
         );
         
         $where = array(

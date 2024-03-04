@@ -27,6 +27,8 @@ class Pinjam extends CI_Controller
     {
         $data['title'] = 'TambahPinjam';
         $data['Pinjam'] = $this->m_pinjam->tambah_pinjam()->result();
+        $data['barang'] = $this->m_pinjam->getBarang();
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -40,11 +42,15 @@ class Pinjam extends CI_Controller
             redirect('dashboard');
         }
 
+        $id = $this->Mmain->autoId("pinjam", "id_pinjam", "PJ", "PJ" . "001", "001");
+
+
         $data = [
             'id_pinjam' => $this->input->post('id_pinjam'),
             'nama_peminjam' => $this->input->post('nama_peminjam'),
             'nama_penerima' => $this->input->post('nama_penerima'),
             'nama_pemberi' => $this->input->post('nama_pemberi'),
+            'nama_barang' => $this->input->post('nama_barang'),
             'tgl_pinjam' => $this->input->post('tgl_pinjam'),
             'tgl_kembali' => $this->input->post('tgl_kembali'),
             'jam_pinjam' => $this->input->post('jam_pinjam'),
@@ -56,6 +62,7 @@ class Pinjam extends CI_Controller
         $nama_peminjam = $this->input->post('nama_peminjam');
         $nama_penerima = $this->input->post('nama_penerima');
         $nama_pemberi = $this->input->post('nama_pemberi');
+        $nama_barang = $this->input->post('nama_barang');
         $tgl_pinjam = $this->input->post('tgl_pinjam');
         $tgl_kembali = $this->input->post('tgl_kembali');
         $jam_pinjam = $this->input->post('jam_pinjam');
@@ -66,10 +73,11 @@ class Pinjam extends CI_Controller
         // die;
         $this->Mmain->qIns("pinjam", array(
 
-            0,
+            $id,
             $nama_peminjam,
             $nama_penerima,
             $nama_pemberi,
+            $nama_barang,
             $tgl_pinjam,
             $tgl_kembali,
             $jam_pinjam,
@@ -105,6 +113,7 @@ class Pinjam extends CI_Controller
             'nama_peminjam' => $this->input->post('nama_peminjam'),
             'nama_penerima' => $this->input->post('nama_penerima'),
             'nama_pemberi' => $this->input->post('nama_pemberi'),
+            'nama_barang' => $this->input->post('nama_barang'),
             'tgl_pinjam' => $this->input->post('tgl_pinjam'),
             'tgl_kembali' => $this->input->post('tgl_kembali'),
             'jam_pinjam' => $this->input->post('jam_pinjam'),
@@ -135,3 +144,4 @@ class Pinjam extends CI_Controller
         }
     }
 }
+

@@ -1,6 +1,7 @@
 <div class="page-heading">
     <h1 class="page-title"><?= $title ?></h1>
 </div>
+<div class="row justify-content-center">
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
@@ -29,12 +30,21 @@
                             <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Masukkan keterangan...">
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="id_barang" class="form-label">Id Barang</label>
-                            <input type="number" class="form-control" name="id_barang" id="id_barang" min="1">
+                    
+					<div class="row form-group">
+                    <label class="col-md-5 text-md-right" for="id_barang">ID Barang</label>
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <select class="form-control" name="id_barang" id="id_barang">
+                                <option value="" >Pilih Barang</option>
+                                <?php foreach ($barang as $data) { ?>
+                                    <option value="<?= $data['id_barang'] ?>"><?= $data['nama_barang'] ?></option>
+                                <?php } ?>
+                            </select>
+							<?= form_error('id_barang', '<small class="text-danger">', '</small>'); ?>
                         </div>
                     </div>
+                </div>
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="serial_number" class="form-label">Serial Number</label>

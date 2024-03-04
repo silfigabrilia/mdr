@@ -32,7 +32,7 @@
                         <!-- <td><?php echo $b->satuan_id ?></td>
                         <td><?php echo $b->jenis_id ?></td> -->
                         <td>
-                        <a onclick=return href="<?= base_url('detail_barang/Index/') . $b->id_barang ?>" class="btn btn-warning" title="Detail"><i class="fa fa-edit"></i></a>
+                        <a onclick=return href="<?= base_url('detail_barang/init/') . $b->id_barang ?>" class="btn btn-warning" title="Detail"><i class="fa fa-edit"></i></a>
                         <a onclick=return href="<?= base_url('barang/edit/') . $b->id_barang ?>" class="btn btn-warning" title="Edit"><i class="ti ti-pencil"></i></a>
                         <a onclick="return confirm('Yakin ingin hapus?')" href="<?= base_url('barang/hapus_data/') . $b->id_barang ?>"class="btn btn-danger" id="deletebarang" title="Hapus" style="cursor: pointer;"><i class="ti ti-trash"></i></button>
                 </td>

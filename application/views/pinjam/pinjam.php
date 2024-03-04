@@ -1,5 +1,5 @@
 <div class="page-heading">
-    <h1 class="page-title">Master Barang</h1>
+    <h1 class="page-title">Master Pinjam</h1>
 </div>
 <div class="page-content fade-in-up">
     <div class="ibox">
@@ -13,15 +13,16 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>ID Pinjam</th>
-                        <th>Nama Peminjam</th>
-                        <th>Nama Penerima</th>
-                        <th>Nama Pemberi</th>
-                        <th>Tanggal Pinjam</th>
-                        <th>Tanggal Kembali</th>
-                        <th>Jam Pinjam</th>
-                        <th>Jam Kembali</th>
-                        <th>Keterangan</th>
+                        <th>id_pinjam</th>
+                        <th>nama_peminjam</th>
+                        <th>nama_penerima</th>
+                        <th>nama_pemberi</th>
+                        <th>nama barang</th>
+                        <th>tgl_pinjam</th>
+                        <th>tgl_kembali</th>
+                        <th>jam_pinjam</th>
+                        <th>jam_kembali</th>
+                        <th>keterangan</th>
                         <th>Aksi</th>
                     </tr>
                     <?php
@@ -34,14 +35,16 @@
                             <td><?php echo $P->nama_peminjam ?></td>
                             <td><?php echo $P->nama_penerima ?></td>
                             <td><?php echo $P->nama_pemberi ?></td>
+                            <td><?php echo $P->nama_barang ?></td>
                             <td><?php echo $P->tgl_pinjam ?></td>
                             <td><?php echo $P->tgl_kembali ?></td>
                             <td><?php echo $P->jam_pinjam ?></td>
                             <td><?php echo $P->jam_kembali ?></td>
                             <td><?php echo $P->keterangan ?></td>
                             <td>
+                                <a href="<?= base_url('detail_pinjam/init/') . $P->id_pinjam ?>" class="btn btn-warning" title="Detail Pinjam"><i class="fa fa-edit"></i></a>
                                 <a href="<?= base_url('pinjam/edit_data/') . $P->id_pinjam ?>" class="btn btn-warning" title="Edit pinjam"><i class="ti ti-pencil"></i></a>
-                                <a href="<?= base_url('pinjam/hapus_data/') . $P->id_pinjam ?>" class="btn btn-danger" onclick="alert('Apakah anda yakin ingin menghapus?')" id="deletesatuan" title="Hapus satuan" style="cursor: pointer;"><i class="ti ti-trash"></i></button>
+                                <a href="<?= base_url('/pinjam/hapus_data/') . $P->id_pinjam ?>" class="btn btn-danger" onclick="alert('Apakah anda yakin ingin menghapus?')" id="deletesatuan" title="Hapus satuan" style="cursor: pointer;"><i class="ti ti-trash"></i></button>
                             </td>
                         </tr>
                         </tr>

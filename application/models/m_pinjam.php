@@ -6,14 +6,31 @@ class m_pinjam extends CI_Model
     {
         return $this->db->get('pinjam');
     }
+
+    public function getBarang()
+    {
+        $query = $this->db->query("SELECT id_barang, nama_barang, COALESCE(stok, 0) AS stok FROM barang WHERE stok <> 0");
+
+        if ($query->num_rows() == 0) {
+            $query = [];
+        } else {
+            $query = $query->result_array();
+        }
+
+
+        return $query;
+    }
+
     function tambah_pinjam()
     {
         return $this->db->get('pinjam');
     }
+
     public function proses_tambah($data)
     {
         return $this->db->insert($this->_table, $data);
     }
+
     function edit_data($id)
     {
         $query = $this->db->query("SELECT * FROM pinjam WHERE id_pinjam = '$id'");
@@ -41,6 +58,7 @@ class m_pinjam extends CI_Model
 
         return $this->db->update('pinjam');
     }
+
     public function hapus($id)
     {
         $this->db->where('id_pinjam', $id);

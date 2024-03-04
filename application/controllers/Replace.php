@@ -8,6 +8,7 @@ class Replace extends CI_Controller
     {
         parent::__construct();
         $this->load->model('m_replace');
+		$this->load->model('m_detail_barang');
         $this->load->model('Mmain');
         $this->load->helper('url');
     }
@@ -27,6 +28,7 @@ class Replace extends CI_Controller
     {
         $data['title'] = 'Replace';
         $data['Replace'] = $this->m_replace->tampil_datareplace()->result();
+        $data['barang'] = $this->m_replace->getBarang();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -39,27 +41,21 @@ class Replace extends CI_Controller
             $this->session->set_flashdata('error', 'Tambah data hanya untuk admin!');
             redirect('dashboard');
         }
-
-        $data = [
-            'id_replace' => $this->input->post('id_replace'),
-            'nama' => $this->input->post('nama'),
-            'date' => $this->input->post('tgl_replace'),
-            'id_barang' => $this->input->post('id_barang'),
-            'jumlah' => $this->input->post('jumlah'),
-            'keterangan' => $this->input->post('keterangan'),
-
-        ];
+        $id = $this->Mmain->autoId("ganti","id_replace","DRT","DRT"."001","001");
         $nama = $this->input->post('nama');
         $date = $this->input->post('tgl_replace');
+        $id_barang = $this->input->post('id_barang');
         $jumlah = $this->input->post('jumlah');
+        $qty = $this->input->post('qty');
         $keterangan = $this->input->post('keterangan');
 
         $this->Mmain->qIns("ganti", array(
-            0,
+            $id,
             $nama,
             $date,
-            0,
+            $id_barang,
             $jumlah,
+            $qty,
             $keterangan
         ));
         $this->session->set_flashdata('success', 'Data Replace <strong>Berhasil</strong> Ditambahkan!');
@@ -71,7 +67,6 @@ class Replace extends CI_Controller
     {
         $data['title'] = 'Replace';
         $data['Replace'] = $this->m_replace->edit_replace($id);
-
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -92,11 +87,12 @@ class Replace extends CI_Controller
             'tgl_replace' => $this->input->post('tgl_replace'),
             'id_barang' => $this->input->post('id_barang'),
             'jumlah' => $this->input->post('jumlah'),
+            'qty' => $this->input->post('qty'),
             'keterangan' => $this->input->post('keterangan'),
 
         ];
 
-        if ($this->m_replace->edit($data)) {
+        if ($this->m_data->edit($data)) {
             $this->session->set_flashdata('success', 'Jenis Barang <strong>Berhasil</strong> Diubah!');
             redirect('replace');
         } else {
