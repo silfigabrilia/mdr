@@ -20,7 +20,7 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="id_pinjam" class="form-label">ID Pinjam</label>
-                            <input type="number" class="form-control" name="id_pinjam" id="id_pinjam">
+                            <input type="text" class="form-control" name="id_pinjam" id="id_pinjam">
                         </div>
                     </div>
                     <div class="col-md-6">

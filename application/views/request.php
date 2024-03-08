@@ -35,7 +35,7 @@
                         <td><?php echo $r->keterangan ?></td>
                         <td>
 						
-                        <a onclick=return href="<?= base_url('Detail_request/index/'). $r->id_request ?>" class="btn btn-warning" title="Detail"><i class="fa fa-edit"></i></a>
+                        <a onclick=return href="<?= base_url('Detail_request/init/'). $r->id_request ?>" class="btn btn-warning" title="Detail"><i class="fa fa-edit"></i></a>
                         <a onclick=return href="<?= base_url('request/edit/') . $r->id_request ?>" class="btn btn-warning" title="Edit"><i class="ti ti-pencil"></i></a>
                         <a onclick="return confirm('Yakin ingin hapus?')" href="<?= base_url('request/hapus_data/') . $r->id_request ?>"class="btn btn-danger" id="deleterequest" title="Hapus" style="cursor: pointer;"><i class="ti ti-trash"></i></button>
                 </td>

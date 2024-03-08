@@ -2,18 +2,16 @@
  
 class M_detail_req extends CI_Model{
 
-    function tampil_request()
+    /* function tampil_request()
     {
         return $this->db->get('detail_request');
-    }
+    } */
 
-	/* function tampil_detail()
+	function tampil_request()
     {
        //return $this->db->get('detail_barang');
-        $query = $this->db->query("SELECT det.id_detail_barang, b.nama_barang, det.serial_code, det.lokasi, det.qtty 
-        FROM detail_barang det 
-        INNER JOIN barang b ON det.id_barang = b.id_barang 
-         "); //WHERE det.id_barang = '$id'
+        $query = $this->db->query("SELECT det.id_detail_request, det.nama_barang_request, det.jumlah_request, det.keterangan, det.id_barang, det.serial_code, det.jumlah, det.tanggal_waktu, det.status 
+        FROM detail_request det INNER JOIN barang b ON det.id_barang = b.id_barang"); //WHERE det.id_barang = '$id'
         
         if ($query->num_rows() == 0) {
             $query = [];
@@ -22,12 +20,25 @@ class M_detail_req extends CI_Model{
         }
 
         return $query;
-    } */
-	
-	
-    function tampil_datarequest(){
-        return $this->db->get('detail_request');
     }
+	
+	function tampil_datarequest(){
+       return $this->db->get('detail_request');
+       $query = $this->db->query("SELECT det.id_detail_request, det.nama_barang_request, det.jumlah_request, det.keterangan, det.id_barang, det.serial_code, det.jumlah, det.tanggal_waktu, det.status 
+        FROM detail_request det INNER JOIN barang b ON det.id_barang = b.id_barang");
+        
+        if ($query->num_rows() == 0) {
+            $query = [];
+        } else {
+            $query = $query->result_array();
+        }
+
+        return $query;
+    }
+	
+    /* function tampil_datarequest(){
+        return $this->db->get('detail_request');
+    } */
 
 	public function getseri()
 	{
@@ -52,7 +63,7 @@ class M_detail_req extends CI_Model{
 		return $this->db->get()->result();
 	} */
 	
-	public function get_detail()
+	/* public function get_detail()
 {
     $this->db->select('
       detail_request.*, barang.id AS id_barang, barang.nama_barang, tbl_role.
@@ -60,7 +71,7 @@ class M_detail_req extends CI_Model{
     $this->db->join('tbl_role', 'tbl_user.id_role = tbl_role.id');
     $this->db->from('tbl_user');
     $query = $this->db->get();
-    return $query->result();
+    return $query->result(); */
 }
 	
     function edit_request($id)

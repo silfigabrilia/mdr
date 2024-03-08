@@ -16,10 +16,26 @@ class Detail_request extends CI_Controller
     public function index()
     {
         $data['title'] = 'Detail_Request';
-        $data['Detail_Request'] = $this->m_detail_req->ambil()->result();
+        $data['Detail_Request'] = $this->m_detail_req->tampil_datarequest()->result();
 		//$render  = $this->Mmain->qRead("detail_request det 
-        //RIGHT OUTER JOIN barang b ON det.id_barang, det.nama_barang = b.id_barang,det.nama_barang WHERE det.id_barang  = '$id' ",
-        //"det.id_detail_request, b.nama_barang, det.serial_code, det.lokasi, det.qtty");
+        //INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang  = '$id' ",
+        //"det.id_detail_barang, det.nama_barang_request, det.jumlah_request, det.keterangan, det.id_barang, det.serial_code, det.jumlah, det.tanggal_waktu, det.status");
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('detail_request/detail_request', $data);
+        $this->load->view('templates/footer');
+    }
+	
+	public function init($id)
+    {
+        $data['title'] = 'Detail_Request';
+        //$data['Detail_Barang'] = $this->m_detail_barang->tampil_detail()->result();
+		$render  = $this->Mmain->qRead("detail_request det 
+        INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang  = '$id' ",
+        "det.id_detail_request, det.nama_barang_request, det.jumlah_request, det.keterangan, det.id_barang, det.serial_code, det.jumlah, det.tanggal_waktu, det.status");
+
+        $data['Detail_Request'] = $render->result();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);

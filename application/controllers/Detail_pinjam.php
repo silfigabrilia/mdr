@@ -21,19 +21,24 @@ class Detail_pinjam extends CI_Controller
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('detail_pinjam/detail_pinjam', $data);
-        $this->load->view('templates/footer');
-    }
+        $this->load->view('templates/footer'); 
+    } 
 	
 	
 	    public function init($id)
     {
         $data['title'] = 'Detail_pinjam';
         //$data['Detail_pinjam'] = $this->M_detail_pinjam->tampil_detail()->result();
-        $data['Detail_pinjam'] = $this->Mmain->qRead("pinjam where id_pinjam ='$id' ","")->result();
+        //$data['Detail_pinjam'] = $this->Mmain->qRead("pinjam where id_pinjam ='$id' ","")->result();
 		//$render  = $this->Mmain->qRead("detail_pinjam det 
         //INNER JOIN barang p ON det.id_detail_barang = p.pinjam WHERE det.id_detail_barang  = '$id' ",
         //"det.id_detail_pinjam, p.id_pinjam, det.id_pinjam, det.id_detail_barang, det.keterangan");
-		//$data['Detail_pinjam'] = $render->result();
+		$render = $this->Mmain->qRead("detail_pinjam dpm INNER JOIN pinjam p ON dpm.id_pinjam = p.id_pinjam WHERE dpm.id_pinjam = '$id' ",
+		"dpm.id_detail_pinjam, dpm.id_pinjam, dpm.id_detail_barang,
+		dpm.keterangan");
+		//SELECT dpm.id_detail_pinjam, dpm.id_pinjam, dpm.id_detail_barang,
+		//dpm.keterangan FROM detail_pinjam dpm INNER JOIN pinjam p ON dpm.id_pinjam = p.id_pinjam" )
+		$data['Detail_pinjam'] = $render->result();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);

@@ -1,3 +1,4 @@
+<?php include 'koneksi.php' ?>
 <div class="page-heading">
     <h1 class="page-title"><?= $title ?></h1>
 </div>
@@ -39,10 +40,10 @@
                         <div class="mb-3">
                             <label for="nomor_seri" class="form-label">Nomor Seri</label>
                             <select class="form-control" name="nomor_seri" id="momor_seri" required>
-                                <option value="">Pilih Nomor Seri</option>
-                                <?php foreach ($detail_barang as $data) { ?>
+                              <!-- <option value="">Pilih Nomor Seri</option>
+                              <?php foreach ($detail_barang as $data) { ?>
                                     <option value="<?= $data['serial_code'] ?>"><?= $data['serial_code'] ?></option>
-                                <?php } ?>
+                                <?php } ?> -->
                             </select>
                         </div>
                     </div>
@@ -91,3 +92,18 @@
 
 </div>
 </div>
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+ $('#barang').change(function() { 
+ var barang = $(this).val(); 
+ $.ajax({
+ type: 'POST', 
+ url: 'ajax_detail_barang.php', 
+ data: 'id_barang=' + barang, 
+ success: function(response) { 
+ $('#detail_barang').html(response); 
+ }
+ });
+ });
+ 
+</script>
