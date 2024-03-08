@@ -23,12 +23,21 @@
                             <input type="date" class="form-control" name="tgl_request" id="tgl_request" min="1">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                  
+					<div class="col-md-6">
                         <div class="mb-3">
                             <label for="id_barang" class="form-label">ID Barang</label>
-                            <input type="text" class="form-control" name="barang" id="id_barang" min="1">
+                        <div class="input-group">
+                            <select class="form-control" name="id_barang" id="id_barang">
+                                <option value="" >Pilih Barang</option>
+                                <?php foreach ($barang as $data) { ?>
+                                    <option value="<?= $data['id_barang'] ?>"><?= $data['nama_barang'] ?></option>
+                                <?php } ?>
+                            </select>
                         </div>
                     </div>
+                </div>
+				
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="jumlah" class="form-label">Jumlah</label>

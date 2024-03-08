@@ -28,7 +28,7 @@ class Replace extends CI_Controller
     {
         $data['title'] = 'Replace';
         $data['Replace'] = $this->m_replace->tampil_datareplace()->result();
-        $data['barang'] = $this->m_replace->getBarang();
+        $data['barang'] = $this->m_replace->getid();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -92,7 +92,7 @@ class Replace extends CI_Controller
 
         ];
 
-        if ($this->m_data->edit($data)) {
+        if ($this->m_replace->edit($data)) {
             $this->session->set_flashdata('success', 'Jenis Barang <strong>Berhasil</strong> Diubah!');
             redirect('replace');
         } else {

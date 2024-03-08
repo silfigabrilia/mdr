@@ -11,7 +11,8 @@ function tampil_replace(){
 }
 public function getid()
 {
-    $query = $this->db->query("SELECT id_barang, nama_barang, COALESCE(stok, 0) AS stok FROM barang WHERE stok <> 0");
+    $query = $this->db->query("SELECT * FROM barang ORDER BY nama_barang ASC");
+	//$query = $this->db->query("SELECT id_barang, nama_barang, COALESCE(stok, 0) AS stok FROM barang WHERE stok <> 0");
 
     if ($query->num_rows() == 0) {
         $query = [];

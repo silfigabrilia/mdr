@@ -14,8 +14,12 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="id_barang" class="form-label">ID Barang</label>
-                            <input type="text" class="form-control" name="id_barang" id="id_barang" placeholder="Masukkan nama barang..." value="<?= $Detail_Barang['id_barang'] ?>"> 
-                            <input type="hidden" name="id_detail_barang" id="id_detail_barang" value="<?= $Detail_Barang['id_detail_barang'] ?>">
+                            <select class="form-control" name="id_barang" id="id_barang">
+                                <option value="">Pilih ID</option>
+                                <?php foreach ($barang as $data) { ?>
+                                    <option value="<?= $data['id_barang'] ?>"><?= $data['nama_barang'] ?></option>
+                                <?php } ?>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -39,7 +43,7 @@
                             <div class="row float-right">
                                 <div class="col-md-12">
                                     <a href="<?= base_url('detail_barang') ?>" class="btn btn-danger" id="barang" style="cursor: pointer;"><i class="ti ti-reload"></i> Kembali</a>
-                                    <button type="submit" formaction="<?= base_url('Detail_Barang/proses_ubah') ?>" class="btn btn-success" id="btn-save-mtact" style="cursor: pointer;"><i class="ti ti-save"></i> Simpan</button>
+                                    <button type="submit" formaction="<?= base_url('Detail_Barang/proses_ubah/'.$Detail_Barang['id_detail_barang']) ?>" class="btn btn-success" id="btn-save-mtact" style="cursor: pointer;"><i class="ti ti-save"></i> Simpan</button>
                                 </div>
                             </div>
                         </div>

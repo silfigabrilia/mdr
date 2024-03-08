@@ -13,7 +13,7 @@ class Detail_pinjam extends CI_Controller
         $this->load->helper('url');
     }
 
-    public function index($id)
+    public function index()
     {
         $data['title'] = 'Detail_pinjam';
         $data['Detail_pinjam'] = $this->M_detail_pinjam->tampil_detail()->result();
@@ -30,6 +30,10 @@ class Detail_pinjam extends CI_Controller
         $data['title'] = 'Detail_pinjam';
         //$data['Detail_pinjam'] = $this->M_detail_pinjam->tampil_detail()->result();
         $data['Detail_pinjam'] = $this->Mmain->qRead("pinjam where id_pinjam ='$id' ","")->result();
+		//$render  = $this->Mmain->qRead("detail_pinjam det 
+        //INNER JOIN barang p ON det.id_detail_barang = p.pinjam WHERE det.id_detail_barang  = '$id' ",
+        //"det.id_detail_pinjam, p.id_pinjam, det.id_pinjam, det.id_detail_barang, det.keterangan");
+		//$data['Detail_pinjam'] = $render->result();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -57,15 +61,17 @@ class Detail_pinjam extends CI_Controller
         $id = $this->Mmain->autoId("detail_pinjam", "id_detail_pinjam", "DP", "DP" . "001", "001");
 
         $id_pinjam = $this->input->post('id_pinjam');
-        $id_detail_barang = $this->input->post('id_detail_barang');
+        $id_detail_pinjam = $this->input->post('id_detail_pinjam');
+		$id_detail_barang = $this->input->post('id_detail_barang');
         $keterangan = $this->input->post('keterangan');
 
         $this->Mmain->qIns("detail_pinjam", array(
 
             $id,
             $id_pinjam,
-            $id_detail_barang,
-            $keterangan,
+            $id_detail_pinjam,
+			$id_detail_barang,
+            $keterangan
 
         ));
         // $data = [

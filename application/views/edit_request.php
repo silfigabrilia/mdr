@@ -27,7 +27,13 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="id_barang" class="form-label">ID Barang</label>
-                            <input type="number" class="form-control" name="id_barang" id="id_barang" min="1" value="<?= $Request['id_barang'] ?>">
+                            <select class="form-control" name="id_barang" id="id_barang">
+                                <option value="">Pilih ID</option>
+                                <?php foreach ($barang as $data) { ?>
+                                    <option value="<?= $data['id_barang'] ?>"><?= $data['id_barang'] ?></option>
+                                <?php } ?>
+                                <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-6">

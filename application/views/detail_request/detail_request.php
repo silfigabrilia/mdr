@@ -18,7 +18,7 @@
                     <th>Jumlah Request</th>
                     <th>Keterangan</th>
                     <th>ID Barang</th>
-                    <th>Serial Number</th>
+                    <th>Serial Code</th>
                     <th>Jumlah</th>
                     <th>Tanggal Waktu</th>
                     <th>Status</th>
@@ -35,7 +35,7 @@
                         <td><?php echo $dr->jumlah_request ?></td>
                         <td><?php echo $dr->keterangan?></td>
                         <td><?php echo $dr->id_barang ?></td>
-                        <td><?php echo $dr->serial_number ?></td>
+                        <td><?php echo $dr->serial_code ?></td>
                         <td><?php echo $dr->jumlah ?></td>
                         <td><?php echo $dr->tanggal_waktu ?></td>
                         <td><?php echo $dr->status ?></td>

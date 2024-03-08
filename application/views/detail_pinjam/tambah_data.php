@@ -19,19 +19,19 @@
                     </div> -->
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="nomer_seri" class="form-label">ID Pinjam</label>
+                            <label for="id_pinjam" class="form-label">ID Pinjam</label>
                             <input type="number" class="form-control" name="id_pinjam" id="id_pinjam">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="nama_satuan" class="form-label">ID Detail Barang</label>
+                            <label for="id_detail_barang" class="form-label">ID Detail Barang</label>
                             <input type="text" class="form-control" name="id_detail_barang" id="id_detail_barang " placeholder="Masukkan nama barang...">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="nama_satuan" class="form-label">Keterangan</label>
+                            <label for="Keterangan" class="form-label">Keterangan</label>
                             <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Masukkan nama barang...">
                         </div>
                     </div>

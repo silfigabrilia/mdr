@@ -9,6 +9,7 @@ class Request extends CI_Controller
         parent::__construct();
         $this->load->model('m_data');
         $this->load->model('Mmain');
+		$this->load->model('m_detail_barang');
         $this->load->helper('url');
     }
 
@@ -16,17 +17,35 @@ class Request extends CI_Controller
     {
         $data['title'] = 'Request';
         $data['Request'] = $this->m_data->tampil_request()->result();
+		//$data['Request'] = $render->result();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('request', $data);
         $this->load->view('templates/footer');
     }
+	
+	/* public function init($id)
+    {
+        $data['title'] = 'Request';
+        //$data['Detail_Barang'] = $this->m_detail_barang->tampil_detail()->result();
+		$render  = $this->Mmain->qRead("request r 
+        INNER JOIN barang b ON r.id_barang = b.id_barang WHERE r.id_barang  = '$id' ",
+        "r.id_request, b.nama_barang, r.nama, r.tgl_request, r.jumlah", r.keterangan);
+
+        // $a=$this->Mmain->qRead("detail_barang db right OUTER JOIN barang b ON b.id_barang = b.id_barang = b.id_barang","db.id_barang, db.serial_code, db.lokasi, db.qtty");
+        $data['Request'] = $render->result();
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('request', $data);
+        $this->load->view('templates/footer'); */
 
     public function tambah()
     {
         $data['title'] = 'Request';
         $data['Request'] = $this->m_data->tampil_datarequest()->result();
+		$data['barang'] = $this->m_detail_barang->getBarang();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -54,7 +73,7 @@ class Request extends CI_Controller
 
         $nama = $this->input->post('nama');
         $tgl_request = $this->input->post('tgl_request');
-        $barang = $this->input->post('barang');
+        $id_barang = $this->input->post('id_barang');
         $jumlah = $this->input->post('jumlah');
         $keterangan = $this->input->post('keterangan');
         
@@ -62,7 +81,7 @@ class Request extends CI_Controller
             $id,
             $nama,
             $tgl_request,
-            $barang,
+            $id_barang,
             $jumlah,
             $keterangan
 
@@ -76,6 +95,7 @@ class Request extends CI_Controller
     public function edit($id){
         $data['title'] = 'Request';
         $data['Request'] = $this->m_data->edit_request($id);
+		$data['barang'] = $this->m_detail_barang->getBarang();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);

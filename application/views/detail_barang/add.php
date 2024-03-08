@@ -12,20 +12,6 @@
         </div>
         <div class="ibox-body">
             <form action="<?= base_url('Detail_barang/proses_tambah') ?>" method="POST">
-                <!-- <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="id_barang" class="form-label">ID Barang</label>
-                            <select class="form-control" name="id_barang" id="id_barang">
-                                <option value="">Pilih Barang</option>
-                                <option value="barang1">Barang 1</option>
-                                <option value="barang2">Barang 2</option>
-                                <option value="barang3">Barang 3</option> -->
-                                <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
-                            <!-- </select>
-                        </div>
-                    </div>
-                    </div> -->
                     <div class="row form-group">
                     <label class="col-md-2 text-md-right" for="id_barang">ID Barang</label>
                     <div class="col-md-3">

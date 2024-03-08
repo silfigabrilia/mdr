@@ -7,10 +7,62 @@ class M_detail_req extends CI_Model{
         return $this->db->get('detail_request');
     }
 
+	/* function tampil_detail()
+    {
+       //return $this->db->get('detail_barang');
+        $query = $this->db->query("SELECT det.id_detail_barang, b.nama_barang, det.serial_code, det.lokasi, det.qtty 
+        FROM detail_barang det 
+        INNER JOIN barang b ON det.id_barang = b.id_barang 
+         "); //WHERE det.id_barang = '$id'
+        
+        if ($query->num_rows() == 0) {
+            $query = [];
+        } else {
+            $query = $query->result_array();
+        }
+
+        return $query;
+    } */
+	
+	
     function tampil_datarequest(){
         return $this->db->get('detail_request');
     }
 
+	public function getseri()
+	{
+    $query = $this->db->query("SELECT * FROM detail_barang ORDER BY serial_code ASC");
+	//$query = $this->db->query("SELECT id_barang, nama_barang, COALESCE(stok, 0) AS stok FROM barang WHERE stok <> 0");
+
+    if ($query->num_rows() == 0) {
+        $query = [];
+    } else {
+        $query = $query->result_array();
+    }
+
+    return $query;
+	}
+	
+	//mengambil data satu baris
+	/* public function ambil() {
+		$this->db->select('*');
+		$this->db->from('detail_request');
+		$this->db->join('barang', 'barang.id_barang = detail_request.id_barang');
+		$this->db->where('barang.id_barang');
+		return $this->db->get()->result();
+	} */
+	
+	public function get_detail()
+{
+    $this->db->select('
+      detail_request.*, barang.id AS id_barang, barang.nama_barang, tbl_role.
+    ');
+    $this->db->join('tbl_role', 'tbl_user.id_role = tbl_role.id');
+    $this->db->from('tbl_user');
+    $query = $this->db->get();
+    return $query->result();
+}
+	
     function edit_request($id)
     { 
         $query = $this->db->query("SELECT * FROM detail_request WHERE id_detail_request = '$id'");
@@ -30,7 +82,7 @@ class M_detail_req extends CI_Model{
         $this->db->set('jumlah_request', $data['jumlah_request']);
         $this->db->set('keterangan', $data['keterangan']);
         $this->db->set('id_barang', $data['id_barang']);
-        $this->db->set('serial_number', $data['serial_number']);
+        $this->db->set('serial_code', $data['serial_code']);
         $this->db->set('jumlah', $data['jumlah']);
         $this->db->set('tanggal_waktu', $data['tanggal_waktu']);
         $this->db->set('status', $data['status']);
@@ -49,9 +101,4 @@ class M_detail_req extends CI_Model{
         $this->db->where('id_detail_request', $id);
         return $this->db->delete('detail_request');
     }
-    
-    // public function count($table)
-    // {
-    //     return $this->db->count_all($table);
-    // }
 }

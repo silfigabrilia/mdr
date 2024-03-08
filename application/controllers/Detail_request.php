@@ -16,10 +16,10 @@ class Detail_request extends CI_Controller
     public function index()
     {
         $data['title'] = 'Detail_Request';
-        //$data['Detail_Request'] = $this->m_detail_req->tampil_request()->result();
-		$render  = $this->Mmain->qRead("detail_request det 
-        RIGHT OUTER JOIN barang b ON det.id_barang, det.nama_barang = b.id_barang,det.nama_barang WHERE det.id_barang  = '$id' ",
-        "det.id_detail_request, b.nama_barang, det.serial_code, det.lokasi, det.qtty");
+        $data['Detail_Request'] = $this->m_detail_req->ambil()->result();
+		//$render  = $this->Mmain->qRead("detail_request det 
+        //RIGHT OUTER JOIN barang b ON det.id_barang, det.nama_barang = b.id_barang,det.nama_barang WHERE det.id_barang  = '$id' ",
+        //"det.id_detail_request, b.nama_barang, det.serial_code, det.lokasi, det.qtty");
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -32,6 +32,7 @@ class Detail_request extends CI_Controller
         $data['title'] = 'Detail_Request';
         $data['Detail_Request'] = $this->m_detail_req->tampil_datarequest()->result();
 		$data['barang'] = $this->m_detail_barang->getBarang();
+		$data['detail_barang'] = $this->m_detail_req->getseri();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -61,7 +62,7 @@ class Detail_request extends CI_Controller
         $jumlah_request = $this->input->post('jumlah_request');
         $keterangan = $this->input->post('keterangan');
         $id_barang = $this->input->post('id_barang');
-        $serial_number = $this->input->post('serial_number');
+        $serial_code = $this->input->post('serial_code');
         $jumlah = $this->input->post('jumlah');
         $tanggal_waktu = $this->input->post('tanggal_waktu');
         $status = $this->input->post('status');
@@ -72,7 +73,7 @@ class Detail_request extends CI_Controller
             $jumlah_request,
             $keterangan,
             $id_barang,
-            $serial_number,
+            $serial_code,
             $jumlah,
             $tanggal_waktu,
             $status,
@@ -87,6 +88,8 @@ class Detail_request extends CI_Controller
     public function edit($id){
         $data['title'] = 'Detail_Request';
         $data['Detail_Request'] = $this->m_detail_req->edit_request($id);
+		$data['barang'] = $this->m_detail_barang->getBarang();
+		$data['detail_barang'] = $this->m_detail_req->getseri();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -108,7 +111,7 @@ class Detail_request extends CI_Controller
             'jumlah_request' => $this->input->post('jumlah_request'),
             'keterangan' => $this->input->post('keterangan'),
             'id_barang' => $this->input->post('id_barang'),
-            'serial_number' => $this->input->post('serial_number'),
+            'serial_code' => $this->input->post('serial_code'),
             'jumlah' => $this->input->post('jumlah'),
             'tanggal_waktu' => $this->input->post('tanggal_waktu'),
             'status' => $this->input->post('status'),
@@ -136,7 +139,7 @@ class Detail_request extends CI_Controller
         $jumlah_request = $this->input->post('jumlah_request');
         $keterangan = $this->input->post('keterangan');
         $id_barang = $this->input->post('id_barang');
-        $serial_number = $this->input->post('serial_number');
+        $serial_code = $this->input->post('serial_code');
         $jumlah = $this->input->post('jumlah');
         $tanggal_waktu = $this->input->post('tanggal_waktu');
         $status = $this->input->post('status');
@@ -146,7 +149,7 @@ class Detail_request extends CI_Controller
         'jumlah_request' => $jumlah_request,
         'keterangan' =>$keterangan,
         'id_barang' => $id_barang,
-        'serial_number' => $serial_number,
+        'serial_code' => $serial_code,
         'jumlah' => $jumlah,
         'tanggal_waktu' => $tanggal_waktu,
         'status' => $status,

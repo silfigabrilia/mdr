@@ -30,16 +30,28 @@
                             <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Masukkan keterangan..." value="<?= $Detail_Request['keterangan'] ?>">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    					<div class="col-md-6">
                         <div class="mb-3">
-                            <label for="id_barang" class="form-label">Id Barang</label>
-                            <input type="number" class="form-control" name="id_barang" id="id_barang" min="1" value="<?= $Detail_Request['id_barang'] ?>">
+                            <label for="id_barang" class="form-label">ID Barang</label>
+                        <div class="input-group">
+                            <select class="form-control" name="id_barang" id="id_barang">
+                                <option value="" >Pilih Barang</option>
+                                <?php foreach ($barang as $data) { ?>
+                                    <option value="<?= $data['id_barang'] ?>"><?= $data['nama_barang'] ?></option>
+                                <?php } ?>
+                            </select>
                         </div>
                     </div>
+                </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="serial_number" class="form-label">Serial Number</label>
-                            <input type="text" class="form-control" name="serial_number" id="serial_number" min="1" value="<?= $Detail_Request['serial_number'] ?>">
+                            <label for="serial_code" class="form-label">Serial Number</label>
+                            <select class="form-control" name="serial_code" id="serial_code">
+                                <option value="">Pilih Nomor Seri</option>
+                                <?php foreach ($detail_barang as $data) { ?>
+                                    <option value="<?= $data['serial_code'] ?>"><?= $data['serial_code'] ?></option>
+                                <?php } ?>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -56,9 +68,16 @@
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="status" class="form-label">status</label>
-                            <input type="text" class="form-control" name="status" id="status" value="<?= $Detail_Request['status'] ?>">
+                            <label for="status" class="form-label">Status</label>
+                            <select class="form-control" name="status" id="status" placeholder="Pilih Status...">
+                                <option value="">Pilih Status</option>
+                                <option value="Requested">Requested</option>
+                                <option value="Finished">Finished</option>
+                                <option value="Rejected">Rejected</option>
+                                <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
+                            </select>
                         </div>
+                    </div>
                         <!-- <div class="row"> -->
                             <div class="row float-right">
                                 <div class="col-md-12">

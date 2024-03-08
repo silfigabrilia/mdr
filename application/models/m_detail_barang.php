@@ -4,7 +4,6 @@ class M_detail_barang extends CI_Model{
 
     function tampil_detail()
     {
-        
        //return $this->db->get('detail_barang');
         $query = $this->db->query("SELECT det.id_detail_barang, b.nama_barang, det.serial_code, det.lokasi, det.qtty 
         FROM detail_barang det 
@@ -76,14 +75,16 @@ class M_detail_barang extends CI_Model{
         $this->db->update($table,$data);
     } 
 
-    public function hapus_detail($id)
+   public function hapus_detail($id)
     {
         $this->db->where('id_detail_barang', $id);
         return $this->db->delete('detail_barang');
-    }
+    }  
+	
+	/* function hapus_detail($id){
+    $this->db->where($id_detail_barang, $id);
+    $this->db->delete('detail_barang');
+	return true;
+  }  */
     
-    // public function count($table)
-    // {
-    //     return $this->db->count_all($table);
-    // }
 }

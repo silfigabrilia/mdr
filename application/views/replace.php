@@ -41,7 +41,7 @@
                         <td><?php echo $r->qty ?></td>
                         <td><?php echo $r->keterangan ?></td>
                         <td>
-                        <a href="<?= base_url('Detail_Replace') ?>" class="btn btn-warning btn-circle btn-sm"><i class="fa fa-edit"></i></a>
+                        <a href="<?= base_url('Detail_Replace/') ?>" class="btn btn-warning btn-circle btn-sm"><i class="fa fa-edit"></i></a>
                         <a href="<?= base_url('Replace/edit_replace/') . $r->id_replace ?>" class="btn btn-warning btn-circle btn-sm"><i class="fa fa-pencil"></i></a>
                         <a onclick="return confirm('Yakin ingin hapus?')" href="<?= base_url('Replace/hapus_replace/') . $r->id_replace ?>" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-trash"></i></a>
                 </td>

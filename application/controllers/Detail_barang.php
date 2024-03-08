@@ -17,12 +17,13 @@ class Detail_barang extends CI_Controller
     {
         $data['title'] = 'Detail_Barang';
         $data['Detail_Barang'] = $this->m_detail_barang->tampil_detail()->result();
+		
        // $render  = $this->Mmain->qRead("detail_barang det 
         //INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang  = '$id' ",
         //"det.id_detail_barang, b.nama_barang, det.serial_code, det.lokasi, det.qtty");
 
         // $a=$this->Mmain->qRead("detail_barang db right OUTER JOIN barang b ON b.id_barang = b.id_barang = b.id_barang","db.id_barang, db.serial_code, db.lokasi, db.qtty");
-        $data['Detail_Barang'] = $render->result();
+        //$data['Detail_Barang'] = $render->result();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -46,12 +47,6 @@ class Detail_barang extends CI_Controller
         $this->load->view('detail_barang/detail_barang', $data);
         $this->load->view('templates/footer');
     }
-	
-
-    // private function _validasi()
-    // {
-    //     $this->form_validation->set_rules('id_barang', 'Barang', 'required');
-    // }
 
     public function tambah()
     {
@@ -89,17 +84,16 @@ class Detail_barang extends CI_Controller
             $serial_code,
             $lokasi,
             $qtty,
-
         ));
 
         $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Ditambahkan!');
         redirect('Barang');
-
     }
 
     public function edit($id){
         $data['title'] = 'Detail_Barang';
         $data['Detail_Barang'] = $this->m_detail_barang->edit_detail($id);
+		$data['barang'] = $this->m_detail_barang->getBarang();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -107,7 +101,7 @@ class Detail_barang extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function proses_ubah()
+    public function proses_ubah($id)
     {
         if ($this->session->login['role'] == 'admin') {
             $this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
@@ -116,17 +110,17 @@ class Detail_barang extends CI_Controller
         // $id = $this->Mmain->autoId("detail_request","id_detail_request","DRQ","DRQ"."001","001");
 
         $data = [
-            'id_detail_barang' => $this->input->post('id_detail_barang'),
+            'id_detail_barang' => $id,
             'id_barang' => $this->input->post('id_barang'),
             'serial_code' => $this->input->post('serial_code'),
             'lokasi' => $this->input->post('lokasi'),
             'qtty' => $this->input->post('qtty'),
-
         ];
 
         if ($this->m_detail_barang->ubah_detail($data)) {
             $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Diubah!');
-            redirect('detail_barang');
+			//echo $data;
+           redirect("detail_barang/init/".$data['id_barang']);
         } else {
             $this->session->set_flashdata('error', 'Data <strong>Gagal</strong> Diubah!');
             redirect('detail_barang');
@@ -134,13 +128,7 @@ class Detail_barang extends CI_Controller
     }
 
     public function update(){
-        // $id_request = $this->input->post('id_request');
-        // $nama = $this->input->post('nama');
-        // $tgl_request = $this->input->post('tgl_request');
-        // $id_barang = $this->input->post('barang');
-        // $jumlah = $this->input->post('jumlah');
-        // $keterangan = $this->input->post('keterangan');
-
+		$id_detail_barang = $this->input->post('id_detail_barang');
         $id_barang = $this->input->post('id_barang');
         $serial_code = $this->input->post('serial_code');
         $lokasi = $this->input->post('lokasi');
@@ -154,10 +142,10 @@ class Detail_barang extends CI_Controller
         );
         
         $where = array(
-        'id_detail_barang' => $id_detail_request
+        'id_detail_barang' => $id_detail_barang
         );
         
-        $this->m_detail_barang->update_data_detail($where,$data,'detail_request');
+        $this->m_detail_barang->update_data_detail($where,$data,'detail_barang');
         redirect('detail_barang');
        }
 
@@ -167,10 +155,23 @@ class Detail_barang extends CI_Controller
    
            if ($result) {
                $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Dihapus!');
+               redirect('detail_barang/init/'.$data['id_detail_barang']);
+           } else {
+               $this->session->set_flashdata('error', 'Data <strong>Gagal</strong> Dihapus!');
+               redirect('detail_barang');
+           }
+       } 
+	   
+	   /* public function hapus_data($id)
+       {
+           $result = $this->Mmain->qdel($id);
+   
+           if ($result) {
+               $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Dihapus!');
                redirect('detail_barang');
            } else {
                $this->session->set_flashdata('error', 'Data <strong>Gagal</strong> Dihapus!');
                redirect('detail_barang');
            }
-       }
+       } */
 }
