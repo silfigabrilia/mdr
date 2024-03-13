@@ -141,5 +141,21 @@ class Barang extends CI_Controller
                redirect('barang');
            }
        }
+	   
+	   public function getdetailbarang(){
+		   $id_barang = $this->input->post('id_barang');
+		   $render = $this->Mmain->qRead("detail_barang where id_barang = '".$id_barang."'","");
+		   $data = null;
+		   if($render->num_rows() > 0){			   
+			   for($i=0; $i<$render->num_rows(); $i++){
+				  $data = "<option value=".$render->row()->serial_code."> ".$render->row()->serial_code."" ;
+			   }
+			   $retval = $data;
+		   }else{
+			   $retval = '<option selected>- Item Detail Tidak Ditemukan, Pilih Yang Lain - </option>';
+		   }
+		  
+		   echo $retval;
+	   }
 
 }

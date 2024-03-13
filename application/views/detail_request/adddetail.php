@@ -1,4 +1,4 @@
-<?php include 'koneksi_ajax.php' ?>
+<?php include 'Koneksi.php' ?>
 <div class="page-heading">
     <h1 class="page-title"><?= $title ?></h1>
 </div>
@@ -35,16 +35,16 @@
                     
 					<div class="col-md-6">
                         <div class="mb-3">
-                            <label for="id_barang" class="form-label">ID Barang</label>
+                            <label  class="form-label">ID Barang</label>
                         <div class="input-group">
-                            <select class="form-control" name="id_barang" id="id_barang">
+                            <select class="form-control" name="id_barang" id="getIdBarang" required>
                                 <option value="" >Pilih Barang</option>
                                 <?php 
-								//foreach ($koneksi, $barang as $data) { 
-								$barang = mysqli_query($koneksi,"select * from barang");
-								while($f = mysqli_fetch_array($barang)){
+								//foreach ($barang as $data) { 
+								$itembarang = mysqli_query($koneksi,"select * from barang");
+								while($b = mysqli_fetch_array($itembarang)){
 								?>
-                                    <option value="<?= $data['id_barang'] ?>"><?= $data['nama_barang'] ?></option>
+                                    <option value="<?= $b['id_barang'] ?>"><?= $b['nama_barang'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -52,13 +52,10 @@
                 </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="serial_code" class="form-label">Serial Number</label>
-                            <select class="form-control" name="serial_code" id="serial_code">
+                            <label class="form-label">Serial Number</label>
+                            <select class="form-control" name="serial_code" id="showSerialCode">
                                 <option value="">Pilih Nomor Seri</option>
-                                <?php foreach ($detail_barang as $data) { ?>
-                                    <option value="<?= $data['serial_code'] ?>"><?= $data['serial_code'] ?></option>
-                                <?php } ?>
-                                <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
+								
                             </select>
                         </div>
                     </div>
@@ -101,21 +98,4 @@
 </div>
 </div>
 
- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
  
- 
- 
- <script type="text/javascript">
- $('#fakultas').change(function() { 
- var fakultas = $(this).val(); 
- $.ajax({
- type: 'POST', 
- url: 'ajax_jurusan.php', 
- data: 'fakultas_id=' + fakultas, 
- success: function(response) { 
- $('#jurusan').html(response); 
- }
- });
- });
- 
- </script>

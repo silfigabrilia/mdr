@@ -48,7 +48,7 @@ class Detail_request extends CI_Controller
         $data['title'] = 'Detail_Request';
         $data['Detail_Request'] = $this->m_detail_req->tampil_datarequest()->result();
 		$data['barang'] = $this->m_detail_barang->getBarang();
-		$data['detail_barang'] = $this->m_detail_req->getseri();
+		#$data['detail_barang'] = $this->m_detail_req->getseri();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
