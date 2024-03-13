@@ -2,6 +2,20 @@
 
 class M_detail_pinjam extends CI_Model
 {
+	
+	  public function getBarang()
+    {
+        $query = $this->db->query("SELECT * FROM detail_barang ORDER BY id_detail_barang ASC");
+
+        if ($query->num_rows() == 0) {
+            $query = [];
+        } else {
+            $query = $query->result_array();
+        }
+
+        return $query;
+    }
+
     function tampil_detail()
     {
         //return $this->db->get('detail_pinjam');

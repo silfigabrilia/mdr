@@ -53,27 +53,7 @@ class M_detail_req extends CI_Model{
 
     return $query;
 	}
-	
-	//mengambil data satu baris
-	/* public function ambil() {
-		$this->db->select('*');
-		$this->db->from('detail_request');
-		$this->db->join('barang', 'barang.id_barang = detail_request.id_barang');
-		$this->db->where('barang.id_barang');
-		return $this->db->get()->result();
-	} */
-	
-	/* public function get_detail()
-{
-    $this->db->select('
-      detail_request.*, barang.id AS id_barang, barang.nama_barang, tbl_role.
-    ');
-    $this->db->join('tbl_role', 'tbl_user.id_role = tbl_role.id');
-    $this->db->from('tbl_user');
-    $query = $this->db->get();
-    return $query->result(); */
-}
-	
+
     function edit_request($id)
     { 
         $query = $this->db->query("SELECT * FROM detail_request WHERE id_detail_request = '$id'");

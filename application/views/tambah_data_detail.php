@@ -26,31 +26,39 @@
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="id_barang" class="form-label">ID Barang</label>
-                            <select class="form-control" name="id_barang" id="id_barang">
+                            <label for="barang" class="form-label">ID Barang</label>
+                            <select class="form-control" name="barang" id="barang" required>
                                 <option value="">Pilih ID</option>
-                                <?php foreach ($barang as $data) { ?>
+								 <?php
+								$barang = mysqli_query($koneksi,"select * from barang");
+								while($b = mysqli_fetch_array($barang)){
+								?>
+								<option value="<?php echo $b['id_barang'] ?>"><?php echo $b['nama_barang']; ?></option>
+								<?php
+								}
+								?>
+                                <!--<?php foreach ($barang as $data) { ?>
                                     <option value="<?= $data['id_barang'] ?>"><?= $data['nama_barang'] ?></option>
-                                <?php } ?>
+                                <?php } ?>-->
                                 <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
                             </select>
                         </div>
                     </div>
 					 <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="nomor_seri" class="form-label">Nomor Seri</label>
-                            <select class="form-control" name="nomor_seri" id="momor_seri" required>
-                              <!-- <option value="">Pilih Nomor Seri</option>
-                              <?php foreach ($detail_barang as $data) { ?>
-                                    <option value="<?= $data['serial_code'] ?>"><?= $data['serial_code'] ?></option>
-                                <?php } ?> -->
+                            <label for="serial_code" class="form-label">Nomor Seri</label>
+                            <select class="form-control" name="serial_code" id="serial_code" required>
+                              <!-- <option value="">Pilih Nomor Seri</option>-->
+                              <!-- <?php foreach ($detail_barang as $data) { ?>-->
+                                    <!-- <option value="<?= $data['serial_code'] ?>"><?= $data['serial_code'] ?></option>-->
+                                <!-- <?php } ?> -->
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                     <div class="mb-3">
                         <label for="tgl_replace" class="form-label">Jumlah Barang Replace</label>
-                        <input type="tex" class="form-control" name="jml_replace" id="jml_replace" placeholder="Masukkan Jumlah Barang...">
+                        <input type="text" class="form-control" name="jml_replace" id="jml_replace" placeholder="Masukkan Jumlah Barang...">
                     </div>
                     </div>
                     <div class="col-md-6">

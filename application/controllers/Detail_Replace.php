@@ -66,7 +66,7 @@ class Detail_Replace extends CI_Controller
         $id_barang = $this->input->post('id_barang');
         $jml_replace = $this->input->post('jml_replace');
         $qty_replace = $this->input->post('qty_replace');
-        $nomor_seri = $this->input->post('nomor_seri');
+        $serial_code = $this->input->post('serial_code');
         $status = $this->input->post('status');
         $keterangan = $this->input->post('keterangan');
 
@@ -77,7 +77,7 @@ class Detail_Replace extends CI_Controller
             $id_barang,
             $jml_replace,
             $qty_replace,
-            $nomor_seri,
+            $serial_code,
             $status,
             $keterangan
         ));
@@ -113,7 +113,7 @@ class Detail_Replace extends CI_Controller
             'id_barang' => $this->input->post('id_barang'),
             'jml_replace' => $this->input->post('jml_replace'),
             'qty_replace' => $this->input->post('qty_replace'),
-            'nomor_seri' => $this->input->post('nomor_seri'),
+            'serial_code' => $this->input->post('serial_code'),
             'status' => $this->input->post('status'),
             'keterangan' => $this->input->post('keterangan'),
         ];

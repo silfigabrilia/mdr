@@ -87,7 +87,7 @@ class Detail_barang extends CI_Controller
         ));
 
         $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Ditambahkan!');
-        redirect('Barang');
+        redirect("detail_barang/init/".$id_barang);
     }
 
     public function edit($id){
@@ -149,22 +149,9 @@ class Detail_barang extends CI_Controller
         redirect('detail_barang');
        }
 
-    public function hapus_data($id)
+    /* public function hapus_data($id)
        {
            $result = $this->m_detail_barang->hapus_detail($id);
-   
-           if ($result) {
-               $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Dihapus!');
-               redirect("detail_barang/init/".$data['id_barang']);
-           } else {
-               $this->session->set_flashdata('error', 'Data <strong>Gagal</strong> Dihapus!');
-               redirect('detail_barang');
-           }
-       } 
-	   
-	   /* public function hapus_data($id)
-       {
-           $result = $this->Mmain->qdel($id);
    
            if ($result) {
                $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Dihapus!');
@@ -174,4 +161,22 @@ class Detail_barang extends CI_Controller
                redirect('detail_barang');
            }
        } */
+	
+	public function hapus_data($id)
+       {
+		   //'id_detail_barang' -> $id;
+		   //$id_barang = $this->input->post('id_barang');
+		   //$id_barang = $_POST ;
+		   $barang_id = $_POST['barang_id'];
+           $result = $this->m_detail_barang->hapus_detail($id_barang);
+   
+           if ($result) {
+               $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Dihapus!');
+               redirect("detail_barang/init/".$id_barang);
+           } else {
+               $this->session->set_flashdata('error', 'Data <strong>Gagal</strong> Dihapus!');
+               redirect('detail_barang');
+           }
+       }
+	   
 }

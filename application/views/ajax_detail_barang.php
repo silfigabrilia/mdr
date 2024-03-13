@@ -1,17 +1,18 @@
+
 <?php 
 include("koneksi.php");
 $barang = $_POST['id_barang'];
-$tampil=mysqli_query($koneksi,"SELECT * FROM barang WHERE detail_barang='$barang'");
+$tampil=mysqli_query($koneksi,"SELECT * FROM detail_barang WHERE id_detail_barang='$barang'");
 $jml=mysqli_num_rows($tampil);
  
 if($jml > 0){    
-    while($d=mysqli_fetch_array($tampil)){
+    while($r=mysqli_fetch_array($tampil)){
         ?>
-        <option value="<?php echo $d['id_detail_barang'] ?>"><?php echo $d['serial_code'] ?></option>
+        <option value="<?php echo $r['nama_barang'] ?>"><?php echo $r['serial_code'] ?></option>
         <?php        
     }
 }else{
-    echo "<option selected>- Data Wilayah Tidak Ada, Pilih Yang Lain -</option>";
+    echo "<option selected>- Item Detail Tidak Ditemukan -</option>";
 }
  
 ?>

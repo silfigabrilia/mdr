@@ -80,11 +80,5 @@ class M_detail_barang extends CI_Model{
         $this->db->where('id_detail_barang', $id);
         return $this->db->delete('detail_barang');
     }  
-	
-	/* function hapus_detail($id){
-    $this->db->where($id_detail_barang, $id);
-    $this->db->delete('detail_barang');
-	return true;
-  }  */
     
 }

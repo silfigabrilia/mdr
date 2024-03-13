@@ -1,3 +1,4 @@
+<?php include 'koneksi_ajax.php' ?>
 <div class="page-heading">
     <h1 class="page-title"><?= $title ?></h1>
 </div>
@@ -8,6 +9,7 @@
             <div class="ibox-title">
                 Form Tambah Request
             </div>
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" crossorigin="anonymous">
         </div>
         <div class="ibox-body">
             <form action="<?= base_url('Detail_request/proses_tambah') ?>" method="POST">
@@ -37,7 +39,11 @@
                         <div class="input-group">
                             <select class="form-control" name="id_barang" id="id_barang">
                                 <option value="" >Pilih Barang</option>
-                                <?php foreach ($barang as $data) { ?>
+                                <?php 
+								//foreach ($koneksi, $barang as $data) { 
+								$barang = mysqli_query($koneksi,"select * from barang");
+								while($f = mysqli_fetch_array($barang)){
+								?>
                                     <option value="<?= $data['id_barang'] ?>"><?= $data['nama_barang'] ?></option>
                                 <?php } ?>
                             </select>
@@ -94,3 +100,22 @@
     </div>
 </div>
 </div>
+
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ 
+ 
+ 
+ <script type="text/javascript">
+ $('#fakultas').change(function() { 
+ var fakultas = $(this).val(); 
+ $.ajax({
+ type: 'POST', 
+ url: 'ajax_jurusan.php', 
+ data: 'fakultas_id=' + fakultas, 
+ success: function(response) { 
+ $('#jurusan').html(response); 
+ }
+ });
+ });
+ 
+ </script>

@@ -41,7 +41,7 @@
                         <td><?php echo $d->id_barang ?></td>
                         <td><?php echo $d->jml_replace ?></td>
                         <td><?php echo $d->qty_replace ?></td>
-                        <td><?php echo $d->nomor_seri ?></td>
+                        <td><?php echo $d->serial_code ?></td>
                         <td><?php echo $d->status ?></td>
                         <td><?php echo $d->keterangan ?></td>
                         <td>

@@ -17,7 +17,7 @@ class Detail_pinjam extends CI_Controller
     {
         $data['title'] = 'Detail_pinjam';
         $data['Detail_pinjam'] = $this->M_detail_pinjam->tampil_detail()->result();
-        $this->load->view('templates/header', $data);
+		$this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('detail_pinjam/detail_pinjam', $data);
@@ -36,6 +36,7 @@ class Detail_pinjam extends CI_Controller
 		$render = $this->Mmain->qRead("detail_pinjam dpm INNER JOIN pinjam p ON dpm.id_pinjam = p.id_pinjam WHERE dpm.id_pinjam = '$id' ",
 		"dpm.id_detail_pinjam, dpm.id_pinjam, dpm.id_detail_barang,
 		dpm.keterangan");
+		
 		//SELECT dpm.id_detail_pinjam, dpm.id_pinjam, dpm.id_detail_barang,
 		//dpm.keterangan FROM detail_pinjam dpm INNER JOIN pinjam p ON dpm.id_pinjam = p.id_pinjam" )
 		$data['Detail_pinjam'] = $render->result();
@@ -50,7 +51,8 @@ class Detail_pinjam extends CI_Controller
     {
         $data['title'] = 'TambahDetail';
         $data['Detail_pinjam'] = $this->M_detail_pinjam->tambah_detail()->result();
-        $this->load->view('templates/header', $data);
+        $data['detail_barang'] = $this->M_detail_pinjam->getBarang();
+		$this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('detail_pinjam/tambah_data', $data);
@@ -74,7 +76,6 @@ class Detail_pinjam extends CI_Controller
 
             $id,
             $id_pinjam,
-            $id_detail_pinjam,
 			$id_detail_barang,
             $keterangan
 
@@ -87,7 +88,7 @@ class Detail_pinjam extends CI_Controller
 
         // $this->db->insert('detail_pinjam', $data);
         $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Ditambahkan!');
-        redirect('detail_pinjam');
+        redirect('detail_pinjam/init/'.$id_pinjam);
     }
 
     public function edit_data($id)

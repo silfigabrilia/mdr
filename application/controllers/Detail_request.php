@@ -97,7 +97,7 @@ class Detail_request extends CI_Controller
         ));
 
         $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Ditambahkan!');
-        redirect('detail_request');
+        redirect("detail_request/init/".$id_barang);
 
     }
 
@@ -136,7 +136,7 @@ class Detail_request extends CI_Controller
 
         if ($this->m_detail_req->ubah_request($data)) {
             $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Diubah!');
-            redirect('detail_request');
+            redirect("detail_request/init/".$data['id_barang']);
         } else {
             $this->session->set_flashdata('error', 'Data <strong>Gagal</strong> Diubah!');
             redirect('detail_request');
