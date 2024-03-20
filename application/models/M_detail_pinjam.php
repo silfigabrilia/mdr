@@ -19,7 +19,7 @@ class M_detail_pinjam extends CI_Model
     function tampil_detail()
     {
         //return $this->db->get('detail_pinjam');
-		$query = $this->db->query("SELECT dpm.id_detail_pinjam, dpm.id_pinjam, dpm.id_detail_barang, dpm.keterangan FROM detail_pinjam dpm INNER JOIN pinjam p ON dpm.id_pinjam = p.id_pinjam ");
+		$query = $this->db->query("SELECT dpm.id_detail_pinjam, dpm.id_pinjam, dpm.id_detail_barang, dpm.keterangan FROM detail_pinjam dpm INNER JOIN pinjam p ON dpm.id_pinjam = p.id_pinjam INNER JOIN detail_barang b ON dpm.id_detail_barang=b.id_detail_barang " );
 		if ($query->num_rows() == 0) {
             $query = [];
         } else {
@@ -31,7 +31,7 @@ class M_detail_pinjam extends CI_Model
     function tambah_detail()
     {
         return $this->db->get('detail_pinjam');
-		$query = $this->db->query("SELECT dpm.id_detail_pinjam, dpm.id_pinjam, dpm.id_detail_barang, dpm.keterangan FROM detail_pinjam dpm INNER JOIN pinjam p ON dpm.id_pinjam = p.id_pinjam");
+		$query = $this->db->query("SELECT dpm.id_detail_pinjam, dpm.id_pinjam, dpm.id_detail_barang, dpm.keterangan FROM detail_pinjam dpm INNER JOIN pinjam p ON dpm.id_pinjam = p.id_pinjam INNER JOIN detail_barang b ON dpm.id_detail_barang=b.id_detail_barang");
 		if ($query->num_rows() == 0) {
             $query = [];
         } else {
@@ -44,7 +44,7 @@ class M_detail_pinjam extends CI_Model
     {
         return $this->db->insert($this->_table, $data);
     }
-    function edit_data($id)
+    public function edit_data($id)
     {
         $query = $this->db->query("SELECT * FROM detail_pinjam WHERE id_detail_pinjam = '$id'");
 
@@ -67,9 +67,10 @@ class M_detail_pinjam extends CI_Model
 
         return $this->db->update('detail_pinjam');
     }
+	
     public function hapus($id)
     {
-        $this->db->where('id_detail_pinjam', $id);
+        $this->db->where('id_pinjam', $id);
         return $this->db->delete('detail_pinjam');
     }
 }

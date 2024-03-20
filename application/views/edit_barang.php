@@ -27,7 +27,7 @@
                             <label for="stok" class="form-label">Stok</label>
                             <input type="text" class="form-control" name="stok" id="stok" min="1" value="<?= $Barang['stok'] ?>">
                         </div>
-                    </div>
+                    <!--</div>-->
                     <!-- <div class="col-md-6">
                         <div class="mb-3">
                             <label for="satuan_id" class="form-label">Satuan ID</label>
@@ -39,7 +39,7 @@
                             <label for="jenis_id" class="form-label">Jenis ID</label>
                             <input type="number" class="form-control" name="jenis_id" id="jenis_id" min="1" value="<?= $Barang['jenis_id'] ?>">
                         </div> -->
-                        <!-- <div class="row"> -->
+                        <!--<div class="row">-->
                             <div class="row float-right">
                                 <div class="col-md-12">
                                     <a href="<?= base_url('Barang') ?>" class="btn btn-danger" id="barang" style="cursor: pointer;"><i class="ti ti-reload"></i> Kembali</a>
@@ -48,10 +48,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </form>
         </div>
     </div>
-
 </div>
 </div>

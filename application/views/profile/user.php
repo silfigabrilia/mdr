@@ -1,35 +1,31 @@
-<div class="card p-2 shadow-sm border-bottom-primary">
-    <div class="card-header bg-white">
-        <h4 class="h5 align-middle m-0 font-weight-bold text-primary">
-            <?= userdata('nama'); ?>
-        </h4>
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-2 mb-4 mb-md-0">
-                <!-- <img src="<?= base_url() ?>assets/img/avatar/<?= data('foto'); ?>" alt="" class="img-thumbnail rounded mb-2"> -->
-                <a href="<?= base_url('profile/setting'); ?>" class="btn btn-sm btn-block btn-primary"><i class="fa fa-edit"></i> Edit Profile</a>
-                <a href="<?= base_url('profile/ubahpassword'); ?>" class="btn btn-sm btn-block btn-primary"><i class="fa fa-lock"></i> Ubah Password</a>
-            </div>
-            <div class="col-md-10">
-                <table class="table">
-                    <tr>
-                        <th width="200">Username</th>
-                        <td><?= userdata('name'); ?></td>
-                    </tr>
-                    <tr>
-                        <th>Email</th>
-                        <td><?= userdata('email'); ?></td>
-                    </tr>
-                    <!-- <tr>
-                        <th>Nomor Telepon</th>
-                        <td><?= userdata('no_telp'); ?></td>
-                    </tr> -->
-                    <tr>
-                        <th>Role</th>
-                        <td class="text-capitalize"><?= userdata('role'); ?></td>
-                    </tr>
-                </table>
+<div class="page-heading">
+    <h1 class="page-title">My Profile</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card mt-5">
+                <div class="card-body">
+                    <h5 class="card-title">Profile</h5>
+                    <hr>
+                    <div class="form-group">
+                        <label for="name">Nama:</label>
+                        <?php if (!empty($user) && isset('name'])) : ?>
+                            <input type="text" class="form-control" id="name" value="<?= ['name'] ?>" readonly>
+                        <?php else : ?>
+                            <input type="text" class="form-control" id="name" value="Data tidak tersedia" readonly>
+                        <?php endif; ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <?php if (!empty($user) && isset($user['email'])) : ?>
+                            <input type="email" class="form-control" id="email" value="<?= $user['email'] ?>" readonly>
+                        <?php else : ?>
+                            <input type="email" class="form-control" id="email" value="Data tidak tersedia" readonly>
+                        <?php endif; ?>
+                    </div>
+                    <!-- Tambahkan field tambahan sesuai kebutuhan -->
+                </div>
             </div>
         </div>
     </div>

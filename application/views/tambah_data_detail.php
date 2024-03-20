@@ -26,32 +26,27 @@
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="barang" class="form-label">ID Barang</label>
-                            <select class="form-control" name="barang" id="barang" required>
-                                <option value="">Pilih ID</option>
-								 <?php
-								$barang = mysqli_query($koneksi,"select * from barang");
-								while($b = mysqli_fetch_array($barang)){
+                             <label  class="form-label">ID Barang</label>
+                        <div class="input-group">
+                            <select class="form-control" name="id_barang" id="getIdBarang" required>
+                                <option value="" >Pilih Barang</option>
+                                <?php 
+								//foreach ($barang as $data) { 
+								$itembarang = mysqli_query($koneksi,"select * from barang");
+								while($b = mysqli_fetch_array($itembarang)){
 								?>
-								<option value="<?php echo $b['id_barang'] ?>"><?php echo $b['nama_barang']; ?></option>
-								<?php
-								}
-								?>
-                                <!--<?php foreach ($barang as $data) { ?>
-                                    <option value="<?= $data['id_barang'] ?>"><?= $data['nama_barang'] ?></option>
-                                <?php } ?>-->
-                                <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
+                                    <option value="<?= $b['id_barang'] ?>"><?= $b['nama_barang'] ?></option>
+                                <?php } ?>
                             </select>
+							</div>
                         </div>
                     </div>
-					 <div class="col-md-6">
+					<div class="col-md-6">
                         <div class="mb-3">
-                            <label for="serial_code" class="form-label">Nomor Seri</label>
-                            <select class="form-control" name="serial_code" id="serial_code" required>
-                              <!-- <option value="">Pilih Nomor Seri</option>-->
-                              <!-- <?php foreach ($detail_barang as $data) { ?>-->
-                                    <!-- <option value="<?= $data['serial_code'] ?>"><?= $data['serial_code'] ?></option>-->
-                                <!-- <?php } ?> -->
+                            <label class="form-label">Serial Number</label>
+                            <select class="form-control" name="serial_code" id="showSerialCode">
+                                <option value="">Pilih Nomor Seri</option>
+								
                             </select>
                         </div>
                     </div>

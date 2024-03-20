@@ -15,6 +15,7 @@ class Dashboard extends CI_Controller
         $data['replace'] = $this->m_dashboard->rpc();
         $data['barang'] = $this->m_dashboard->brg();
         $this->load->view('user/index',$data);
+		$this->load->view('dashboard',$data);
 
     }
 }

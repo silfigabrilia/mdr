@@ -9,17 +9,13 @@
             </div>
         </div>
         <div class="ibox-body">
-            <form action="<?= base_url('Detail_Barang/proses_ubah') ?>" method="POST">
+            <form action="<?= base_url('Detail_Barang/proses_ubah/') ?>" method="POST">
             <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="id_barang" class="form-label">ID Barang</label>
-                            <select class="form-control" name="id_barang" id="id_barang">
-                                <option value="">Pilih ID</option>
-                                <?php foreach ($barang as $data) { ?>
-                                    <option value="<?= $data['id_barang'] ?>"><?= $data['nama_barang'] ?></option>
-                                <?php } ?>
-                            </select>
+							<input type="text" class="form-control" name="id_barang" id="id_barang" placeholder="id ..." value="<?= $Detail_Barang['id_barang'] ?>" readonly>
+                            
                         </div>
                     </div>
                     <div class="col-md-6">

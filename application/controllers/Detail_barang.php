@@ -167,12 +167,12 @@ class Detail_barang extends CI_Controller
 		   //'id_detail_barang' -> $id;
 		   //$id_barang = $this->input->post('id_barang');
 		   //$id_barang = $_POST ;
-		   $barang_id = $_POST['barang_id'];
-           $result = $this->m_detail_barang->hapus_detail($id_barang);
+		   //$barang = $_POST['id_barang'];
+           $result = $this->m_detail_barang->hapus_detail($id);
    
            if ($result) {
                $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Dihapus!');
-               redirect("detail_barang/init/".$id_barang);
+               redirect("detail_barang/init/".$id);
            } else {
                $this->session->set_flashdata('error', 'Data <strong>Gagal</strong> Dihapus!');
                redirect('detail_barang');

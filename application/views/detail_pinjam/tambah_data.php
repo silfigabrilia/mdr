@@ -11,12 +11,12 @@
         <form action="<?= base_url('Detail_pinjam/proses_tambah') ?>" method="POST">
             <div class="ibox-body">
                 <div class="row">
-                    <!-- <div class="col-md-6">
+                    <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="nama_satuan" class="form-label">ID Detail Pinjam</label>
-                            <input type="text" class="form-control" name="nama" id="id_detail_pinjam" placeholder="Masukkan nama barang...">
+                            <label for="id_pinjam" class="form-label">ID Pinjam</label>
+                            <input type="text" class="form-control" name="id_pinjam" id="id_pinjam" placeholder="Masukkan id pinjam..." >
                         </div>
-                    </div> -->
+                    </div> 
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="id_detail_barang" class="form-label">id_detail_barang</label>

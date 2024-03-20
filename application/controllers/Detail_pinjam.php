@@ -1,3 +1,4 @@
+
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
@@ -25,15 +26,13 @@ class Detail_pinjam extends CI_Controller
     } 
 	
 	
-	    public function init($id)
+	public function init($id)
     {
         $data['title'] = 'Detail_pinjam';
         //$data['Detail_pinjam'] = $this->M_detail_pinjam->tampil_detail()->result();
         //$data['Detail_pinjam'] = $this->Mmain->qRead("pinjam where id_pinjam ='$id' ","")->result();
-		//$render  = $this->Mmain->qRead("detail_pinjam det 
-        //INNER JOIN barang p ON det.id_detail_barang = p.pinjam WHERE det.id_detail_barang  = '$id' ",
-        //"det.id_detail_pinjam, p.id_pinjam, det.id_pinjam, det.id_detail_barang, det.keterangan");
-		$render = $this->Mmain->qRead("detail_pinjam dpm INNER JOIN pinjam p ON dpm.id_pinjam = p.id_pinjam WHERE dpm.id_pinjam = '$id' ",
+		
+		$render = $this->Mmain->qRead("detail_pinjam dpm INNER JOIN pinjam p ON dpm.id_pinjam = p.id_pinjam INNER JOIN detail_barang b ON dpm.id_detail_barang=b.id_detail_barang WHERE dpm.id_pinjam = '$id' ",
 		"dpm.id_detail_pinjam, dpm.id_pinjam, dpm.id_detail_barang,
 		dpm.keterangan");
 		
@@ -71,13 +70,14 @@ class Detail_pinjam extends CI_Controller
         $id_detail_pinjam = $this->input->post('id_detail_pinjam');
 		$id_detail_barang = $this->input->post('id_detail_barang');
         $keterangan = $this->input->post('keterangan');
-
+//var_dump ($id_pinjam,$id_detail_barang,$keterangan);
+//die;
         $this->Mmain->qIns("detail_pinjam", array(
 
             $id,
             $id_pinjam,
 			$id_detail_barang,
-            $keterangan
+            $keterangan,
 
         ));
         // $data = [
@@ -88,14 +88,15 @@ class Detail_pinjam extends CI_Controller
 
         // $this->db->insert('detail_pinjam', $data);
         $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Ditambahkan!');
-        redirect('detail_pinjam/init/'.$id_pinjam);
+		
+        redirect("detail_pinjam/init/".$id_pinjam);
     }
 
     public function edit_data($id)
     {
         $data['title'] = 'edit_detail';
-        $data['Detail_pinjam'] = $this->M_detail_pinjam->edit_data($id);
-
+        $data['Detail_pinjam'] = $this->M_detail_pinjam->edit_data();
+		$data['detail_barang'] = $this->M_detail_pinjam->getBarang();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -103,28 +104,28 @@ class Detail_pinjam extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function proses_ubah()
-    {
-        if ($this->session->login['role'] == 'admin') {
-            $this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
-            redirect('dashboard');
-        }
-
-        $data = [
-            'id_pinjam' => $this->input->post('id_pinjam'),
-            'id_detail_barang' => $this->input->post('id_detail_barang'),
-            'keterangan' => $this->input->post('keterangan'),
-
-        ];
-
-        if ($this->M_detail_pinjam->ubah($data)) {
-            $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Diubah!');
-            redirect('detail_pinjam');
-        } else {
-            $this->session->set_flashdata('error', 'Data Barang <strong>Gagal</strong> Diubah!');
-            redirect('detail_pinjam');
-        }
+    public function proses_ubah($id)
+{
+    if ($this->session->login['role'] == 'admin') {
+        $this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
+        redirect('dashboard');
     }
+    
+    $data = [
+        'id_pinjam' => $this->input->post('id_pinjam'),
+        'id_detail_barang' => $this->input->post('id_detail_barang'),
+        'keterangan' => $this->input->post('keterangan'),
+    ];
+
+    if ($this->M_detail_pinjam->ubah($data)) {
+        $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Diubah!');
+        redirect("detail_pinjam/init/".$data['id_pinjam']); // Menambahkan argumen $id_pinjam
+    } else {
+        $this->session->set_flashdata('error', 'Data Barang <strong>Gagal</strong> Diubah!');
+        redirect('detail_pinjam');
+    }
+}
+
 	
 
     public function hapus_data($id)
@@ -133,10 +134,10 @@ class Detail_pinjam extends CI_Controller
 
         if ($result) {
             $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Dihapus!');
-            redirect('detail_pinjam');
+            redirect("detail_pinjam/init/".$data['id_pinjam']);
         } else {
             $this->session->set_flashdata('error', 'Data Barang <strong>Gagal</strong> Dihapus!');
-            redirect('detail_pinjam');
+            redirect('detail_pinjam/');
         }
     }
 }

@@ -1,3 +1,4 @@
+<?php include 'Koneksi.php' ?>
 <div class="page-heading">
     <h1 class="page-title"><?= $title ?></h1>
 </div>
@@ -30,14 +31,18 @@
                             <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Masukkan keterangan..." value="<?= $Detail_Request['keterangan'] ?>">
                         </div>
                     </div>
-                    					<div class="col-md-6">
+                    	<div class="col-md-6">
                         <div class="mb-3">
-                            <label for="id_barang" class="form-label">ID Barang</label>
+                            <label  class="form-label">ID Barang</label>
                         <div class="input-group">
-                            <select class="form-control" name="id_barang" id="id_barang">
+                            <select class="form-control" name="id_barang" id="getIdBarang" required>
                                 <option value="" >Pilih Barang</option>
-                                <?php foreach ($barang as $data) { ?>
-                                    <option value="<?= $data['id_barang'] ?>"><?= $data['nama_barang'] ?></option>
+                                <?php 
+								//foreach ($barang as $data) { 
+								$itembarang = mysqli_query($koneksi,"select * from barang");
+								while($b = mysqli_fetch_array($itembarang)){
+								?>
+                                    <option value="<?= $b['id_barang'] ?>"<?= $b['id_barang'] == $Detail_Request['id_barang'] ? "selected":""?>><?= $b['nama_barang'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -48,9 +53,10 @@
                             <label for="serial_code" class="form-label">Serial Number</label>
                             <select class="form-control" name="serial_code" id="serial_code">
                                 <option value="">Pilih Nomor Seri</option>
-                                <?php foreach ($detail_barang as $data) { ?>
-                                    <option value="<?= $data['serial_code'] ?>"><?= $data['serial_code'] ?></option>
-                                <?php } ?>
+								<?php foreach ($detail_barang as $data) { ?>
+                                    <!--<option value="<?= $data['serial_code'] ?>"<?= $data['serial_code'] == $Detail_Request['id_barang'] ? "selected":""?>><?= $data['serial_code'] ?></option>-->
+									<option value="<?= $data['serial_code'] ?>"<?= $data['serial_code'] == $Detail_Request['id_barang'] ? "selected":""?>><?= $data['serial_code'] ?></option>
+								<?php } ?>
                             </select>
                         </div>
                     </div>
@@ -74,23 +80,20 @@
                                 <option value="Requested">Requested</option>
                                 <option value="Finished">Finished</option>
                                 <option value="Rejected">Rejected</option>
-                                <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
                             </select>
                         </div>
-                    </div>
+					</div>
                         <!-- <div class="row"> -->
                             <div class="row float-right">
                                 <div class="col-md-12">
-                                    <a href="<?= base_url('detail_request') ?>" class="btn btn-danger" id="barang" style="cursor: pointer;"><i class="ti ti-reload"></i> Kembali</a>
+                                    <a href="<?= base_url('detail_request')?>" class="btn btn-danger" id="barang" style="cursor: pointer;"><i class="ti ti-reload"></i> Kembali</a>
                                     <button type="submit" formaction="<?= base_url('Detail_Request/proses_ubah') ?>" class="btn btn-success" id="btn-save-mtact" style="cursor: pointer;"><i class="ti ti-save"></i> Simpan</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                
             </form>
         </div>
     </div>
 
-</div>
-</div>

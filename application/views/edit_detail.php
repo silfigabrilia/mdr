@@ -24,7 +24,10 @@
                             <select class="form-control" name="id_barang" id="id_barang">
                                 <option value="">Pilih ID</option>
                                 <?php foreach ($barang as $data) { ?>
-                                    <option value="<?= $data['id_barang'] ?>"><?= $data['id_barang'] ?></option>
+                                    <option <?= $data['id_barang'] ? 'selected' : '';  ?> 
+									<?= set_select('id_barang', $data['id_barang']) ?> 
+									value="<?= $data['id_barang'] ?>">
+									<?= $data['id_barang'] . ' | ' .$data['nama_barang']; ?></option>
                                 <?php } ?>
                                 <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
                             </select>

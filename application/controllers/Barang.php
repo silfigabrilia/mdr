@@ -148,7 +148,8 @@ class Barang extends CI_Controller
 		   $data = null;
 		   if($render->num_rows() > 0){			   
 			   for($i=0; $i<$render->num_rows(); $i++){
-				  $data = "<option value=".$render->row()->serial_code."> ".$render->row()->serial_code."" ;
+				  //$data .= "<option value=".$render->row()->serial_code."> ".$render->row()->serial_code."" ;
+				  $data .= "<option value=".$render->row($i)->serial_code."> ".$render->row($i)->serial_code."</option>";
 			   }
 			   $retval = $data;
 		   }else{

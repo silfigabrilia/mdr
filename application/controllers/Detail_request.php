@@ -144,13 +144,6 @@ class Detail_request extends CI_Controller
     }
 
     public function update(){
-        // $id_request = $this->input->post('id_request');
-        // $nama = $this->input->post('nama');
-        // $tgl_request = $this->input->post('tgl_request');
-        // $id_barang = $this->input->post('barang');
-        // $jumlah = $this->input->post('jumlah');
-        // $keterangan = $this->input->post('keterangan');
-
         $nama_barang_request = $this->input->post('nama_barang_request');
         $jumlah_request = $this->input->post('jumlah_request');
         $keterangan = $this->input->post('keterangan');

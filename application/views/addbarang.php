@@ -22,7 +22,7 @@
                             <label for="stok" class="form-label">Stok</label>
                             <input type="text" class="form-control" name="stok" id="stok" min="1">
                         </div>
-                    </div>
+                    <!--</div>
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="satuan_id" class="form-label">Satuan ID</label>
@@ -33,10 +33,11 @@
                         <div class="mb-3">
                             <label for="jenis_id" class="form-label">Jenis ID</label>
                             <input type="number" class="form-control" name="jenis" id="jenis_id" min="1">
-                        </div> -->
+                        </div>-->
                         <!-- <div class="row"> -->
                             <div class="row float-right">
                                 <div class="col-md-12">
+								<a href="<?= base_url('Barang') ?>" class="btn btn-danger" id="barang" style="cursor: pointer;"><i class="ti ti-reload"></i> Kembali</a>
                                     <button type="submit" formaction="<?= base_url('Barang/proses_tambah') ?>" class="btn btn-success" id="simpanbarang" style="cursor: pointer;"><i class="ti ti-save"></i> Simpan</button>
                                 </div>
                             </div>

@@ -22,6 +22,7 @@
                     <th>Nama Barang Replace</th>
                     <th>Tanggal Replace</th>
                     <th>ID Barang</th>
+					<th>Nomor Seri</th>
                     <th>Jumlah Replace</th>
                     <th>Jumlah</th>
                     <th>Keterangan</th>
@@ -37,11 +38,12 @@
                         <td><?php echo $r->nama ?></td>
                         <td><?php echo $r->tgl_replace ?></td>
                         <td><?php echo $r->id_barang ?></td>
+						<td><?php echo $r->serial_code ?></td>
                         <td><?php echo $r->jumlah ?></td>
                         <td><?php echo $r->qty ?></td>
                         <td><?php echo $r->keterangan ?></td>
                         <td>
-                        <a href="<?= base_url('Detail_Replace/') ?>" class="btn btn-warning btn-circle btn-sm"><i class="fa fa-edit"></i></a>
+                        <a href="<?= base_url('Detail_Replace/init/') . $r->id_barang ?>" class="btn btn-warning btn-circle btn-sm"><i class="fa fa-edit"></i></a>
                         <a href="<?= base_url('Replace/edit_replace/') . $r->id_replace ?>" class="btn btn-warning btn-circle btn-sm"><i class="fa fa-pencil"></i></a>
                         <a onclick="return confirm('Yakin ingin hapus?')" href="<?= base_url('Replace/hapus_replace/') . $r->id_replace ?>" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-trash"></i></a>
                 </td>

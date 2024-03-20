@@ -1,3 +1,4 @@
+<?php include 'Koneksi.php' ?>
 <div class="page-heading">
     <h1 class="page-title"><?= $title ?></h1>
 </div>
@@ -18,18 +19,64 @@
                         <input type="hidden" name="id_replace" id="id_replace" value="<?= $Replace['id_replace'] ?>">
                     </div>
                 </div>
-                <!-- <div class="col-md-6"> -->
+                <div class="col-md-6">
                     <div class="mb-3">
                         <label for="tgl_replace" class="form-label">Tanggal Replace</label>
                         <input type="date" class="form-control" name="tgl_replace" id="tgl_replace"value="<?= $Replace['tgl_replace'] ?>">
                     </div>
+					</div>
                     <div class="col-md-6">
                     <div class="mb-3">
                         <label for="jumlah" class="form-label">Jumlah</label>
                         <input type="text" class="form-control" name="jumlah" id="jumlah" placeholder="Masukkan Jumlah..."value="<?= $Replace['jumlah'] ?>">
                     </div>
                 </div>
-                <!-- <div class="col-md-6"> -->
+                    	<div class="col-md-6">
+                        <div class="mb-3">
+                            <label  class="form-label">ID Barang</label>
+                        <div class="input-group">
+                            <select class="form-control" name="id_barang" id="getIdBarang" required>
+                                <option value="" >Pilih Barang</option>
+                                <?php 
+								//foreach ($barang as $data) { 
+								$itembarang = mysqli_query($koneksi,"select * from barang");
+								while($b = mysqli_fetch_array($itembarang)){
+								?>
+                                    <option value="<?= $b['id_barang'] ?>"><?= $b['nama_barang'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+				 <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="serial_code" class="form-label">Nomor Seri</label>
+                            <select class="form-control" name="serial_code" id="showSerialCode">
+                                <option value="">Pilih Nomor Seri</option>
+                                
+                                <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="qty" class="form-label">Quantity</label>
+                        <input type="text" class="form-control" name="qty" id="qty" placeholder="Masukkan Kuantitas Barang..." value="<?= $Replace['qty'] ?>">
+                    </div>
+                    </div>
+					 <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="status" class="form-label">Status</label>
+                            <select class="form-control" name="status" id="status" placeholder="Pilih Status...">
+                                <option value="">Pilih Status</option>
+                                <option value="Requested">Requested</option>
+                                <option value="Finished">Finished</option>
+                                <option value="Rejected">Rejected</option>
+                                <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
+                            </select>
+                        </div>
+                    </div>
+                <div class="col-md-6">
                     <div class="mb-3">
                         <label for="keterangan" class="form-label">keterangan</label>
                         <input type="text" class="form-control" name="keterangan" id="keterangan" min="1"value="<?= $Replace['keterangan'] ?>">

@@ -3,15 +3,34 @@
 class M_detail_replace extends CI_Model
 {
     function tampil_detail(){
-        return $this->db->get('detail_ganti');
+        $query = $this->db->query("SELECT det.id_detail_replace, det.nama_replace, det.tgl_replace, det.id_barang, det.jml_replace, det.qty_replace, det.serial_code, det.status, det.keterangan 
+        FROM detail_ganti det INNER JOIN barang b ON det.id_barang = b.id_barang"); //WHERE det.id_barang = '$id'
+        
+        if ($query->num_rows() == 0) {
+            $query = [];
+        } else {
+            $query = $query->result_array();
+        }
+
+        return $query;
      }
      function tampil_data_detail(){
-       return $this->db->get('detail_ganti');
+       return $this->db->get('detail_replace');
+        $query = $this->db->query("SELECT det.id_detail_replace, det.nama_replace, det.tgl_replace, det.id_barang, det.jml_replace, det.qty_replace, det.serial_code, det.status, det.keterangan 
+        FROM detail_ganti det INNER JOIN barang b ON det.id_barang = b.id_barang"); //WHERE det.id_barang = '$id'
+        
+        if ($query->num_rows() == 0) {
+            $query = [];
+        } else {
+            $query = $query->result_array();
+        }
+
+        return $query;
     }
 	
 	public function getseri()
-{
-    $query = $this->db->query("SELECT * FROM detail_barang ORDER BY serial_code  ASC");
+	{
+    $query = $this->db->query("SELECT * FROM detail_barang ORDER BY serial_code ASC");
 	//$query = $this->db->query("SELECT id_barang, nama_barang, COALESCE(stok, 0) AS stok FROM barang WHERE stok <> 0");
 
     if ($query->num_rows() == 0) {
@@ -21,7 +40,7 @@ class M_detail_replace extends CI_Model
     }
 
     return $query;
-}
+	}
     
     public function getBarang()
     {
@@ -64,6 +83,10 @@ class M_detail_replace extends CI_Model
             return $this->db->update('detail_ganti');
         }
         
+		 function update_data($where,$data,$table){
+        $this->db->where($where);
+        $this->db->update($table,$data);
+    } 
         public function del_replace($id)
         {
             $this->db->where('id_detail_replace', $id);

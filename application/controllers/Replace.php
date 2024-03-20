@@ -56,6 +56,7 @@ class Replace extends CI_Controller
             $id_barang,
             $jumlah,
             $qty,
+			$serial_code,
             $keterangan
         ));
         $this->session->set_flashdata('success', 'Data Replace <strong>Berhasil</strong> Ditambahkan!');
@@ -86,8 +87,10 @@ class Replace extends CI_Controller
             'nama' => $this->input->post('nama'),
             'tgl_replace' => $this->input->post('tgl_replace'),
             'id_barang' => $this->input->post('id_barang'),
+			'serial_code' => $this->input->post('serial_code'),
             'jumlah' => $this->input->post('jumlah'),
             'qty' => $this->input->post('qty'),
+			'status' => $this->input->post('status'),
             'keterangan' => $this->input->post('keterangan'),
 
         ];

@@ -31,7 +31,7 @@
                 </tr>
                 <?php 
                 $no = 1;
-                foreach($Detail_replace as $d){
+                foreach($Detail_Replace as $d){
                     ?>
                     <tr>
                         <td><?php echo $no++ ?></td>
@@ -45,6 +45,7 @@
                         <td><?php echo $d->status ?></td>
                         <td><?php echo $d->keterangan ?></td>
                         <td>
+						
                         <a href="<?= base_url('Detail_Replace/edit_detail/') . $d->id_detail_replace ?>" class="btn btn-warning btn-circle btn-sm"><i class="fa fa-pencil"></i></a>
                         <a onclick="return confirm('Yakin ingin hapus?')" href="<?= base_url('Detail_Replace/del_replace/') . $d->id_detail_replace ?>" class="btn btn-danger btn-circle btn-sm"><i class="fa fa-trash"></i></a>
                 </td>
