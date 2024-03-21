@@ -16,5 +16,15 @@ class Auth_model extends CI_Model
     {
         return $this->db->insert($this->_table, $data);
     }
+	
+	public function get($id = null)
+    {
+        $this->db->from('user');
+        if ($id != null) {
+            $this->db->where('id', $id);
+        }
+        $query = $this->db->get();
+        return $query;
+    }
     
 }

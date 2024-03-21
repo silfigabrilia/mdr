@@ -10,6 +10,7 @@ class Detail_pinjam extends CI_Controller
         // cek_login();
 
         $this->load->model('M_detail_pinjam');
+		$this->load->model('m_pinjam');
         $this->load->model('Mmain');
         $this->load->helper('url');
     }
@@ -17,7 +18,7 @@ class Detail_pinjam extends CI_Controller
     public function index()
     {
         $data['title'] = 'Detail_pinjam';
-        $data['Detail_pinjam'] = $this->M_detail_pinjam->tampil_detail()->result();
+        $data['Detail_pinjam'] = $this->M_detail_pinjam->tampil_detail();
 		$this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -95,7 +96,7 @@ class Detail_pinjam extends CI_Controller
     public function edit_data($id)
     {
         $data['title'] = 'edit_detail';
-        $data['Detail_pinjam'] = $this->M_detail_pinjam->edit_data();
+        $data['Detail_pinjam'] = $this->M_detail_pinjam->edit_data($id);
 		$data['detail_barang'] = $this->M_detail_pinjam->getBarang();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
@@ -119,22 +120,19 @@ class Detail_pinjam extends CI_Controller
 
     if ($this->M_detail_pinjam->ubah($data)) {
         $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Diubah!');
-        redirect("detail_pinjam/init/".$data['id_pinjam']); // Menambahkan argumen $id_pinjam
+        redirect("detail_pinjam/init/".$data['id_pinjam']); 
     } else {
         $this->session->set_flashdata('error', 'Data Barang <strong>Gagal</strong> Diubah!');
         redirect('detail_pinjam');
     }
 }
-
-	
-
-    public function hapus_data($id)
+    public function hapus($id)
     {
         $result = $this->M_detail_pinjam->hapus($id);
 
         if ($result) {
             $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Dihapus!');
-            redirect("detail_pinjam/init/".$data['id_pinjam']);
+            redirect("detail_pinjam/");
         } else {
             $this->session->set_flashdata('error', 'Data Barang <strong>Gagal</strong> Dihapus!');
             redirect('detail_pinjam/');

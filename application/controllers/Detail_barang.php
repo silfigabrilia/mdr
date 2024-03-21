@@ -16,8 +16,8 @@ class Detail_barang extends CI_Controller
     public function index()
     {
         $data['title'] = 'Detail_Barang';
-        $data['Detail_Barang'] = $this->m_detail_barang->tampil_detail()->result();
-		
+        //$data['Detail_Barang'] = $this->m_detail_barang->tampil_detail()->result();
+		$data['Detail_Barang'] = $this->m_detail_barang->tampil_detail();
        // $render  = $this->Mmain->qRead("detail_barang det 
         //INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang  = '$id' ",
         //"det.id_detail_barang, b.nama_barang, det.serial_code, det.lokasi, det.qtty");

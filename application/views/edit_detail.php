@@ -1,3 +1,4 @@
+<?php include 'Koneksi.php' ?>
 <div class="page-heading">
     <h1 class="page-title"><?= $title ?></h1>
 </div>
@@ -18,25 +19,27 @@
                         <input type="hidden" name="id_detail_replace" id="id_detail_replace" value="<?= $Detail_Replace['id_detail_replace'] ?>">
                     </div>
                 </div>
-				<div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="id_barang" class="form-label">ID Barang</label>
-                            <select class="form-control" name="id_barang" id="id_barang">
-                                <option value="">Pilih ID</option>
-                                <?php foreach ($barang as $data) { ?>
-                                    <option <?= $data['id_barang'] ? 'selected' : '';  ?> 
-									<?= set_select('id_barang', $data['id_barang']) ?> 
-									value="<?= $data['id_barang'] ?>">
-									<?= $data['id_barang'] . ' | ' .$data['nama_barang']; ?></option>
-                                <?php } ?>
-                                <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
-                            </select>
-                        </div>
-                    </div>
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="jumlah" class="form-label">Jumlah</label>
                         <input type="text" class="form-control" name="jml_replace" id="jml_replace" placeholder="Masukkan Jumlah..."value="<?= $Detail_Replace['jml_replace'] ?>">
+                    </div>
+                </div>
+				<div class="col-md-6">
+                        <div class="mb-3">
+                            <label  class="form-label">ID Barang</label>
+                        <div class="input-group">
+                            <select class="form-control" name="id_barang" id="getIdBarang" required>
+                                <option value="" >Pilih Barang</option>
+                                <?php 
+							//foreach ($barang as $data) { 
+							$itembarang = mysqli_query($koneksi,"select * from barang");
+							while($b = mysqli_fetch_array($itembarang)){
+								?>
+                                    <option value="<?= $b['id_barang'] ?>"<?= $b['id_barang'] == $Detail_Replace['id_barang'] ? "selected":""?>><?= $b['nama_barang'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -45,15 +48,15 @@
                         <input type="date" class="form-control" name="tgl_replace" id="tgl_replace"value="<?= $Detail_Replace['tgl_replace'] ?>">
                     </div>
                     </div>
-					 <div class="col-md-6">
+				<div class="col-md-6">
                         <div class="mb-3">
-                            <label for="nomor_seri" class="form-label">Nomor Seri</label>
-                            <select class="form-control" name="nomor_seri" id="momor_seri">
+                            <label for="serial_code" class="form-label">Nomor Seri</label>
+                            <select class="form-control" name="serial_code" id="serial_code">
                                 <option value="">Pilih Nomor Seri</option>
-                                <?php foreach ($detail_barang as $data) { ?>
-                                    <option value="<?= $data['serial_code'] ?>"><?= $data['serial_code'] ?></option>
-                                <?php } ?>
-                                <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
+								<?php foreach ($detail_barang as $data) { ?>
+                                    <!--<option value="<?= $data['serial_code'] ?>"<?= $data['serial_code'] == $Detail_Request['id_barang'] ? "selected":""?>><?= $data['serial_code'] ?></option>-->
+										<option value="<?= $data['serial_code'] ?>"<?= $data['serial_code'] == $Detail_Replace['id_barang'] ? "selected":""?>><?= $data['serial_code'] ?></option>
+									<?php } ?>
                             </select>
                         </div>
                     </div>

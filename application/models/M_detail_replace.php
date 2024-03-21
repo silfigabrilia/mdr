@@ -15,7 +15,7 @@ class M_detail_replace extends CI_Model
         return $query;
      }
      function tampil_data_detail(){
-       return $this->db->get('detail_replace');
+       return $this->db->get('detail_ganti');
         $query = $this->db->query("SELECT det.id_detail_replace, det.nama_replace, det.tgl_replace, det.id_barang, det.jml_replace, det.qty_replace, det.serial_code, det.status, det.keterangan 
         FROM detail_ganti det INNER JOIN barang b ON det.id_barang = b.id_barang"); //WHERE det.id_barang = '$id'
         

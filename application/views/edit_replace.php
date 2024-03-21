@@ -37,12 +37,12 @@
                         <div class="input-group">
                             <select class="form-control" name="id_barang" id="getIdBarang" required>
                                 <option value="" >Pilih Barang</option>
-                                <?php 
-								//foreach ($barang as $data) { 
-								$itembarang = mysqli_query($koneksi,"select * from barang");
-								while($b = mysqli_fetch_array($itembarang)){
+								  <?php 
+							//foreach ($barang as $data) { 
+							$itembarang = mysqli_query($koneksi,"select * from barang");
+							while($b = mysqli_fetch_array($itembarang)){
 								?>
-                                    <option value="<?= $b['id_barang'] ?>"><?= $b['nama_barang'] ?></option>
+                                    <option value="<?= $b['id_barang'] ?>"<?= $b['id_barang'] == $Replace['id_barang'] ? "selected":""?>><?= $b['nama_barang'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -53,6 +53,9 @@
                             <label for="serial_code" class="form-label">Nomor Seri</label>
                             <select class="form-control" name="serial_code" id="showSerialCode">
                                 <option value="">Pilih Nomor Seri</option>
+								<?php foreach ($detail_barang as $data) { ?>
+										<option value="<?= $data['serial_code'] ?>"<?= $data['serial_code'] == $Detail_Replace['id_barang'] ? "selected":""?>><?= $data['serial_code'] ?></option>
+									<?php } ?>
                                 
                                 <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
                             </select>
@@ -76,6 +79,7 @@
                             </select>
                         </div>
                     </div>
+		   
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="keterangan" class="form-label">keterangan</label>

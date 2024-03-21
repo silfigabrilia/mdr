@@ -57,16 +57,17 @@ class M_detail_pinjam extends CI_Model
         return $query;
     }
 
-    public function ubah($data)
-    {
+public function ubah($data)
+{
+    $this->db->set('id_detail_barang', $data['id_detail_barang']);
+    $this->db->set('keterangan', $data['keterangan']);
 
-        $this->db->set('id_pinjam', $data['id_pinjam']);
-        $this->db->set('id_detail_barang', $data['id_detail_barang']);
-        $this->db->set('keterangan', $data['keterangan']);
+    $this->db->where('id_pinjam', $data['id_pinjam']);
 
+    return $this->db->update('detail_pinjam');
+}
 
-        return $this->db->update('detail_pinjam');
-    }
+	
 	
     public function hapus($id)
     {

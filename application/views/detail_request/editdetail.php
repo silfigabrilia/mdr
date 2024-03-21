@@ -55,7 +55,7 @@
                                 <option value="">Pilih Nomor Seri</option>
 								<?php foreach ($detail_barang as $data) { ?>
                                     <!--<option value="<?= $data['serial_code'] ?>"<?= $data['serial_code'] == $Detail_Request['id_barang'] ? "selected":""?>><?= $data['serial_code'] ?></option>-->
-									<option value="<?= $data['serial_code'] ?>"<?= $data['serial_code'] == $Detail_Request['id_barang'] ? "selected":""?>><?= $data['serial_code'] ?></option>
+									<option value="<?= $data['serial_code'] ?>"<?= $data['serial_code'] == $data['id_barang'] ? "selected":""?>><?= $data['serial_code'] ?></option>
 								<?php } ?>
                             </select>
                         </div>

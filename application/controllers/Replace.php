@@ -45,8 +45,10 @@ class Replace extends CI_Controller
         $nama = $this->input->post('nama');
         $date = $this->input->post('tgl_replace');
         $id_barang = $this->input->post('id_barang');
+		$serial_code = $this->input->post('serial_code');
         $jumlah = $this->input->post('jumlah');
         $qty = $this->input->post('qty');
+		$status = $this->input->post('status');
         $keterangan = $this->input->post('keterangan');
 
         $this->Mmain->qIns("ganti", array(
@@ -54,9 +56,10 @@ class Replace extends CI_Controller
             $nama,
             $date,
             $id_barang,
+			$serial_code,
             $jumlah,
             $qty,
-			$serial_code,
+			$status,
             $keterangan
         ));
         $this->session->set_flashdata('success', 'Data Replace <strong>Berhasil</strong> Ditambahkan!');

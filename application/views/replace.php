@@ -24,7 +24,8 @@
                     <th>ID Barang</th>
 					<th>Nomor Seri</th>
                     <th>Jumlah Replace</th>
-                    <th>Jumlah</th>
+					<th>Quantity</th>
+					<th>Status</th>
                     <th>Keterangan</th>
                     <th>Aksi</th>
                 </tr>
@@ -41,6 +42,7 @@
 						<td><?php echo $r->serial_code ?></td>
                         <td><?php echo $r->jumlah ?></td>
                         <td><?php echo $r->qty ?></td>
+						<td><?php echo $r->status ?></td>
                         <td><?php echo $r->keterangan ?></td>
                         <td>
                         <a href="<?= base_url('Detail_Replace/init/') . $r->id_barang ?>" class="btn btn-warning btn-circle btn-sm"><i class="fa fa-edit"></i></a>
