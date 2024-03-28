@@ -35,9 +35,9 @@
                             <label for="nama_barang" class="form-label">Nama Barang</label>
                             <select class="form-control" name="nama_barang" id="nama_barang">
                                 <option value="">Pilih Barang</option>
-                                <option value="barang1">Barang 1</option>
-                                <option value="barang2">Barang 2</option>
-                                <option value="barang3">Barang 3</option>
+                                <?php foreach ($barang as $data) { ?>
+                                    <option value="<?= $data['nama_barang'] ?>"><?= $data['nama_barang'] . ' [Sisa stok : ' . $data['stok'] . ']' ?></option>
+                                <?php } ?>
                                 <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
                             </select>
                         </div>

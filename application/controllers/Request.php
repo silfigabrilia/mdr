@@ -16,35 +16,23 @@ class Request extends CI_Controller
     public function index()
     {
         $data['title'] = 'Request';
-        $data['Request'] = $this->m_data->tampil_request()->result();
-		//$data['Request'] = $render->result();
+        //$data['Request'] = $this->m_data->tampil_request()->result();
+		//$data['Request'] = $this->Mmain->getid();
+		$render=$this->Mmain->qRead("request");
+		$data['Request'] = $render->result();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('request', $data);
         $this->load->view('templates/footer');
     }
-	
-	/* public function init($id)
-    {
-        $data['title'] = 'Request';
-        //$data['Detail_Barang'] = $this->m_detail_barang->tampil_detail()->result();
-		$render  = $this->Mmain->qRead("request r 
-        INNER JOIN barang b ON r.id_barang = b.id_barang WHERE r.id_barang  = '$id' ",
-        "r.id_request, b.nama_barang, r.nama, r.tgl_request, r.jumlah", r.keterangan);
-
-        // $a=$this->Mmain->qRead("detail_barang db right OUTER JOIN barang b ON b.id_barang = b.id_barang = b.id_barang","db.id_barang, db.serial_code, db.lokasi, db.qtty");
-        $data['Request'] = $render->result();
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('request', $data);
-        $this->load->view('templates/footer'); */
 
     public function tambah()
     {
         $data['title'] = 'Request';
-        $data['Request'] = $this->m_data->tampil_datarequest()->result();
+        //$data['Request'] = $this->m_data->tampil_datarequest()->result();
+		$render=$this->Mmain->qRead("request");
+		$data['Request'] = $render->result();
 		$data['barang'] = $this->m_detail_barang->getBarang();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
@@ -103,7 +91,7 @@ class Request extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function proses_ubah()
+    /* public function proses_ubah()
     {
         if ($this->session->login['role'] == 'admin') {
             $this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
@@ -128,9 +116,43 @@ class Request extends CI_Controller
             $this->session->set_flashdata('error', 'Data <strong>Gagal</strong> Diubah!');
             redirect('request');
         }
-    }
+    } */
+	
+	public function proses_ubah()
+	{
+		if ($this->session->login['role'] == 'admin') {
+			$this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
+			redirect('dashboard');
+		}
 
-    public function update(){
+		// Mendapatkan ID dari inputan POST
+		$id = $this->input->post('id_request');
+
+		// Data untuk diubah
+		$data = [
+			'id_request' => $this->input->post('id_request'),
+            'nama' => $this->input->post('nama'),
+            'tgl_request' => $this->input->post('tgl_request'),
+            'id_barang' => $this->input->post('id_barang'),
+            'jumlah' => $this->input->post('jumlah'),
+            'keterangan' => $this->input->post('keterangan'),
+		];
+
+		// Memuat database dan model
+		$this->load->database();
+		$this->load->model('Mmain');
+
+		// Menggunakan metode qUpdpart untuk mengubah data
+		$this->Mmain->qUpdpart("request", 'id_request', $id, array_keys($data), array_values($data));
+
+		// Set flash data untuk notifikasi keberhasilan
+		$this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Diubah!');
+
+		// Redirect ke halaman detail_request
+		redirect('request');
+	}
+
+    /* public function update(){
         $id_request = $this->input->post('id_request');
         $nama = $this->input->post('nama');
         $tgl_request = $this->input->post('tgl_request');
@@ -152,11 +174,12 @@ class Request extends CI_Controller
         
         $this->m_data->update_data_request($where,$data,'request');
         redirect('request');
-       }
+       } */
 
     public function hapus_data($id)
        {
-           $result = $this->m_data->hapus_request($id);
+           //$result = $this->m_data->hapus_request($id);
+		   $result = $this->Mmain->qDel("request","id_request",$id);
    
            if ($result) {
                $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Dihapus!');

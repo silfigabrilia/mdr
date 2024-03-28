@@ -2,7 +2,7 @@
  
 class M_detail_barang extends CI_Model{
 
-    function tampil_detail()
+    /* function tampil_detail()
     {
        //return $this->db->get('detail_barang');
         $query = $this->db->query("SELECT det.id_detail_barang, b.nama_barang, det.serial_code, det.lokasi, det.qtty 
@@ -30,7 +30,7 @@ class M_detail_barang extends CI_Model{
         }
 
         return $query;
-    }
+    } */
 
     public function getBarang()
     {

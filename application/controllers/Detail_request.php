@@ -13,6 +13,8 @@ class Detail_request extends CI_Controller
         $this->load->helper('url');
     }
 
+	var $data="id_barang";
+	
     public function index()
     {
         $data['title'] = 'Detail_Request';
@@ -113,75 +115,54 @@ class Detail_request extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function proses_ubah()
-    {
-        if ($this->session->login['role'] == 'admin') {
-            $this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
-            redirect('dashboard');
-        }
-        // $id = $this->Mmain->autoId("detail_request","id_detail_request","DRQ","DRQ"."001","001");
+   public function proses_ubah()
+	{
+		if ($this->session->login['role'] == 'admin') {
+			$this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
+			redirect('dashboard');
+		}
 
-        $data = [
-            'id_detail_request' => $this->input->post('id_detail_request'),
-            'nama_barang_request' => $this->input->post('nama_barang_request'),
-            'jumlah_request' => $this->input->post('jumlah_request'),
-            'keterangan' => $this->input->post('keterangan'),
-            'id_barang' => $this->input->post('id_barang'),
-            'serial_code' => $this->input->post('serial_code'),
-            'jumlah' => $this->input->post('jumlah'),
-            'tanggal_waktu' => $this->input->post('tanggal_waktu'),
-            'status' => $this->input->post('status'),
+		// Mendapatkan ID dari inputan POST
+		$id = $this->input->post('id_detail_request');
 
-        ];
+		// Data untuk diubah
+		$data = [
+			'id_detail_request' => $id,
+			'nama_barang_request' => $this->input->post('nama_barang_request'),
+			'jumlah_request' => $this->input->post('jumlah_request'),
+			'keterangan' => $this->input->post('keterangan'),
+			'id_barang' => $this->input->post('id_barang'),
+			'serial_code' => $this->input->post('serial_code'),
+			'jumlah' => $this->input->post('jumlah'),
+			'tanggal_waktu' => $this->input->post('tanggal_waktu'),
+			'status' => $this->input->post('status'),
+		];
 
-        if ($this->m_detail_req->ubah_request($data)) {
-            $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Diubah!');
-            redirect("detail_request/init/".$data['id_barang']);
-        } else {
-            $this->session->set_flashdata('error', 'Data <strong>Gagal</strong> Diubah!');
-            redirect('detail_request');
-        }
-    }
+		// Memuat database dan model
+		$this->load->database();
+		$this->load->model('Mmain');
 
-    public function update(){
-        $nama_barang_request = $this->input->post('nama_barang_request');
-        $jumlah_request = $this->input->post('jumlah_request');
-        $keterangan = $this->input->post('keterangan');
-        $id_barang = $this->input->post('id_barang');
-        $serial_code = $this->input->post('serial_code');
-        $jumlah = $this->input->post('jumlah');
-        $tanggal_waktu = $this->input->post('tanggal_waktu');
-        $status = $this->input->post('status');
+		// Menggunakan metode qUpdpart untuk mengubah data
+		$this->Mmain->qUpdpart("detail_request", 'id_detail_request', $id, array_keys($data), array_values($data));
 
-        $data = array(
-        'nama_barang_request' => $nama_barang_request,
-        'jumlah_request' => $jumlah_request,
-        'keterangan' =>$keterangan,
-        'id_barang' => $id_barang,
-        'serial_code' => $serial_code,
-        'jumlah' => $jumlah,
-        'tanggal_waktu' => $tanggal_waktu,
-        'status' => $status,
-        );
-        
-        $where = array(
-        'id_detail_request' => $id_detail_request
-        );
-        
-        $this->m_detail_req->update_data_detail($where,$data,'detail_request');
-        redirect('detail_request');
-       }
+		// Set flash data untuk notifikasi keberhasilan
+		$this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Diubah!');
+
+		// Redirect ke halaman detail_request
+		redirect("detail_request/init/".$data['id_barang']);
+	}
 
     public function hapus_data($id)
        {
-           $result = $this->m_detail_req->hapus_request($id);
+           //$result = $this->m_detail_req->hapus_request($id);
+		   $result=$this->Mmain->qDel("Detail_request","id_detail_request",$id);
    
-           if ($result) {
+           if ($render) {
                $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Dihapus!');
-               redirect('detail_request');
+               redirect('detail_request/init'.$data);
            } else {
                $this->session->set_flashdata('error', 'Data <strong>Gagal</strong> Dihapus!');
-               redirect('detail_request');
+               redirect('detail_request/');
            }
        }
 }

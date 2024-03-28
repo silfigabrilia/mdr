@@ -22,7 +22,7 @@
                             <label for="stok" class="form-label">Stok</label>
                             <input type="text" class="form-control" name="stok" id="stok" min="1">
                         </div>
-                    <!--</div>
+                    </div>
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="satuan_id" class="form-label">Satuan ID</label>

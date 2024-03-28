@@ -93,7 +93,7 @@ class Pinjam extends CI_Controller
     {
         $data['title'] = 'Pinjam';
         $data['Pinjam'] = $this->m_pinjam->edit_data($id);
-
+		$data['barang'] = $this->m_pinjam->getBarang();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -102,38 +102,39 @@ class Pinjam extends CI_Controller
     }
 
     public function proses_ubah()
-    {
-        if ($this->session->login['role'] == 'admin') {
-            $this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
-            redirect('dashboard');
-        }
-
-        $data = [
-            'id_pinjam' => $this->input->post('id_pinjam'),
-            'nama_peminjam' => $this->input->post('nama_peminjam'),
-            'nama_penerima' => $this->input->post('nama_penerima'),
-            'nama_pemberi' => $this->input->post('nama_pemberi'),
-            'nama_barang' => $this->input->post('nama_barang'),
-            'tgl_pinjam' => $this->input->post('tgl_pinjam'),
-            'tgl_kembali' => $this->input->post('tgl_kembali'),
-            'jam_pinjam' => $this->input->post('jam_pinjam'),
-            'jam_kembali' => $this->input->post('nama_kembali'),
-            'keterangan' => $this->input->post('keterangan'),
-
-
-        ];
-
-        if ($this->m_pinjam->ubah($data)) {
-            $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Diubah!');
-            redirect('pinjam');
-        } else {
-            $this->session->set_flashdata('error', 'Data Barang <strong>Gagal</strong> Diubah!');
-            redirect('pinjam');
-        }
+{
+    if ($this->session->login['role'] == 'admin') {
+        $this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
+        redirect('dashboard');
     }
+
+    $data = [
+        'id_pinjam' => $this->input->post('id_pinjam'),
+        'nama_peminjam' => $this->input->post('nama_peminjam'),
+        'nama_penerima' => $this->input->post('nama_penerima'),
+        'nama_pemberi' => $this->input->post('nama_pemberi'),
+        'nama_barang' => $this->input->post('nama_barang'),
+        'tgl_pinjam' => $this->input->post('tgl_pinjam'),
+        'tgl_kembali' => $this->input->post('tgl_kembali'),
+        'jam_pinjam' => $this->input->post('jam_pinjam'),
+        'jam_kembali' => $this->input->post('jam_kembali'),
+        'keterangan' => $this->input->post('keterangan'),
+    ];
+
+    // Load model
+    $this->load->model('Mmain');
+
+    // Menggunakan metode qUpdpart untuk mengubah data
+    $this->Mmain->qUpdpart('pinjam', 'id_pinjam', $data['id_pinjam'], ['nama_peminjam', 'nama_penerima', 'nama_pemberi', 'nama_barang', 'tgl_pinjam', 'tgl_kembali', 'jam_pinjam', 'jam_kembali', 'keterangan'], [$data['nama_peminjam'], $data['nama_penerima'], $data['nama_pemberi'], $data['nama_barang'], $data['tgl_pinjam'], $data['tgl_kembali'], $data['jam_pinjam'], $data['jam_kembali'], $data['keterangan']]);
+
+    $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Diubah!');
+    
+    redirect('pinjam');
+}
+
     public function hapus_data($id)
     {
-        $result = $this->m_pinjam->hapus($id);
+        $result = $this->Mmain->qDel("pinjam", "id_pinjam", $id);
 
         if ($result) {
             $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Dihapus!');

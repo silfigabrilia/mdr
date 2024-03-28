@@ -15,7 +15,9 @@ class Barang extends CI_Controller
     public function index()
     {
         $data['title'] = 'Barang';
-        $data['Barang'] = $this->m_data->tampil_data('barang')->result();
+        //$data['Barang'] = $this->m_data->tampil_data('barang')->result();
+		$render=$this->Mmain->qRead("barang");
+		$data['Barang'] = $render->result();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -26,7 +28,9 @@ class Barang extends CI_Controller
     public function tambah()
     {
         $data['title'] = 'Barang';
-        $data['Barang'] = $this->m_data->tampil_databarang()->result();
+        //$data['Barang'] = $this->m_data->tampil_databarang()->result();
+		$render=$this->Mmain->qRead("barang");
+		$data['Barang'] = $render->result();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -81,7 +85,7 @@ class Barang extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function proses_ubah()
+    /* public function proses_ubah()
     {
         if ($this->session->login['role'] == 'admin') {
             $this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
@@ -95,7 +99,6 @@ class Barang extends CI_Controller
             'stok' => $this->input->post('stok'),
             'satuan_id' => $this->input->post('satuan_id'),
             'jenis_id' => $this->input->post('jenis_id'),
-
         ];
 
         if ($this->m_data->ubah($data)) {
@@ -105,9 +108,42 @@ class Barang extends CI_Controller
             $this->session->set_flashdata('error', 'Data Barang <strong>Gagal</strong> Diubah!');
             redirect('barang');
         }
-    }
+    } */
+	
+	public function proses_ubah()
+	{
+		if ($this->session->login['role'] == 'admin') {
+			$this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
+			redirect('dashboard');
+		}
 
-    function update(){
+		// Mendapatkan ID dari inputan POST
+		$id = $this->input->post('id_barang');
+
+		// Data untuk diubah
+		$data = [
+			'id_barang' => $this->input->post('id_barang'),
+            'nama_barang' => $this->input->post('nama_barang'),
+            'stok' => $this->input->post('stok'),
+            'satuan_id' => $this->input->post('satuan_id'),
+            'jenis_id' => $this->input->post('jenis_id'),
+		];
+
+		// Memuat database dan model
+		$this->load->database();
+		$this->load->model('Mmain');
+
+		// Menggunakan metode qUpdpart untuk mengubah data
+		$this->Mmain->qUpdpart("barang", 'id_barang', $id, array_keys($data), array_values($data));
+
+		// Set flash data untuk notifikasi keberhasilan
+		$this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Diubah!');
+
+		// Redirect ke halaman detail_request
+		redirect('barang');
+	}
+
+    /* function update(){
         $id_barang = $this->input->post('id_barang');
         $nama_barang = $this->input->post('nama_barang');
         $stok = $this->input->post('stok');
@@ -127,11 +163,12 @@ class Barang extends CI_Controller
         
         $this->m_data->update_data($where,$data,'barang');
         redirect('barang');
-       }
+       } */
 
        public function hapus_data($id)
        {
-           $result = $this->m_data->hapus($id);
+           //$result = $this->m_data->hapus($id);
+		   $result = $this->Mmain->qDel("barang","id_barang",$id);
    
            if ($result) {
                $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Dihapus!');

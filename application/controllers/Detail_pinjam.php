@@ -4,6 +4,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Detail_pinjam extends CI_Controller
 {
+	private $mainTable = 'detail_pinjam';
+    /* private $mainPk = 'id_pinjam';  */
+	
     public function __construct()
     {
         parent::__construct();
@@ -49,8 +52,13 @@ class Detail_pinjam extends CI_Controller
 	
     public function tambah_detail()
     {
+		
         $data['title'] = 'TambahDetail';
-        $data['Detail_pinjam'] = $this->M_detail_pinjam->tambah_detail()->result();
+        /* $data['Detail_pinjam'] = $this->M_detail_pinjam->tambah_detail()->result(); */
+		$render = $this->Mmain->qRead("detail_pinjam dpm INNER JOIN pinjam p ON dpm.id_pinjam = p.id_pinjam INNER JOIN detail_barang b ON dpm.id_detail_barang=b.id_detail_barang WHERE dpm.id_pinjam ",
+		"dpm.id_detail_pinjam, dpm.id_pinjam, dpm.id_detail_barang,
+		dpm.keterangan");
+		$data['Detail_pinjam'] = $render->result();
         $data['detail_barang'] = $this->M_detail_pinjam->getBarang();
 		$this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
@@ -105,7 +113,7 @@ class Detail_pinjam extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function proses_ubah($id)
+/*     public function proses_ubah($id)
 {
     if ($this->session->login['role'] == 'admin') {
         $this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
@@ -125,17 +133,46 @@ class Detail_pinjam extends CI_Controller
         $this->session->set_flashdata('error', 'Data Barang <strong>Gagal</strong> Diubah!');
         redirect('detail_pinjam');
     }
-}
-    public function hapus($id)
-    {
-        $result = $this->M_detail_pinjam->hapus($id);
-
-        if ($result) {
-            $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Dihapus!');
-            redirect("detail_pinjam/");
-        } else {
-            $this->session->set_flashdata('error', 'Data Barang <strong>Gagal</strong> Dihapus!');
-            redirect('detail_pinjam/');
-        }
+} */
+public function proses_ubah($id)
+{
+    
+    if ($this->session->login['role'] == 'admin') {
+        $this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
+        redirect('dashboard');
     }
+    
+    $data = [
+        'id_pinjam' => $this->input->post('id_pinjam'),
+        'id_detail_barang' => $this->input->post('id_detail_barang'),
+        'keterangan' => $this->input->post('keterangan'),
+    ];
+
+    // Load database and model
+    $this->load->database();
+    $this->load->model('Mmain');
+
+    // Menggunakan metode qUpdpart untuk mengubah data
+    $this->Mmain->qUpdpart($this->mainTable, 'id_pinjam', $data['id_pinjam'], ['id_detail_barang', 'keterangan'], [$data['id_detail_barang'], $data['keterangan']]);
+
+    $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Diubah!');
+    
+    redirect("detail_pinjam/init/".$data['id_pinjam']); 
+}
+
+
+    public function hapus($id)
+{
+    
+    $result = $this->Mmain->qDel("detail_pinjam", "id_pinjam", $id);
+
+    
+    if ($result) {
+        $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Dihapus!');
+        redirect("detail_pinjam/");
+    } else {
+        $this->session->set_flashdata('error', 'Data Barang <strong>Gagal</strong> Dihapus!');
+        redirect('detail_pinjam/');
+    }
+}
 }

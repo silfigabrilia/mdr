@@ -161,13 +161,13 @@
                     </li> -->
                     <li class="dropdown dropdown-user">
                         <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
-                            <img src="<?= base_url('assets'); ?>/img/admin-avatar.png" />
+                            <img src="<?= base_url('assets'); ?>/img/mdr.png" />
                             <span>Admin<i class="fa fa-angle-down m-l-5"></i></a></span>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="<?= base_url('profile'); ?>"><i class="fa fa-user"></i>Profile</a>
                             <!-- <a class="dropdown-item" href="<?= base_url('assets'); ?>profile.html"><i class="fa fa-cog"></i>Settings</a> -->
                             <li class="dropdown-divider"></li>
-                            <a class="dropdown-item" href=<?= base_url('auth'); ?>><i class="fa fa-power-off"></i>Logout</a>
+                            <a class="dropdown-item" href=<?= base_url('auth/logout'); ?>><i class="fa fa-power-off"></i>Logout</a>
                         </ul>
                     </li>
                 </ul>
@@ -180,7 +180,7 @@
             <div id="sidebar-collapse">
                 <div class="admin-block d-flex">
                     <div>
-                        <img src="<?= base_url('assets'); ?>./img/admin-avatar.png" width="45px" />
+                        <img src="<?= base_url('assets'); ?>./img/mdr.png" width="45px" />
                     </div>
                     <div class="admin-info">
                         <div class="font-strong">Admin</div><small>Administrator</small></div>
@@ -208,7 +208,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href=# ><i class="sidebar-item-icon fa fa-edit"></i>
+                        <a href="#" ><i class="sidebar-item-icon fa fa-edit"></i>
                             <span class="nav-label">Barang</span><i class="fa fa-angle-left arrow"></i></a>
                         <ul class="nav-2-level collapse">
                             <li>
@@ -344,7 +344,7 @@
     
     <!-- END THEME CONFIG PANEL -->
     <!-- BEGIN PAGA BACKDROPS-->
-    <div class="sidenav-backdrop backdrop"></div>
+    <!--<div class="sidenav-backdrop backdrop"></div>
     <div class="preloader-backdrop">
         <div class="page-preloader">Loading</div>
     </div>

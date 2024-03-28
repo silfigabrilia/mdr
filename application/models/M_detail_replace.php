@@ -70,6 +70,8 @@ class M_detail_replace extends CI_Model
         
             return $query;
         }
+		
+		
         public function edit_detail_replace($data)
         {
             $this->db->set('nama_replace', $data['nama_replace']);
@@ -87,7 +89,7 @@ class M_detail_replace extends CI_Model
         $this->db->where($where);
         $this->db->update($table,$data);
     } 
-        public function del_replace($id)
+       public function del_replace($id)
         {
             $this->db->where('id_detail_replace', $id);
             return $this->db->delete('detail_ganti');

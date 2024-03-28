@@ -21,7 +21,7 @@
 				 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="tgl_replace" class="form-label">Tanggal Replace</label>
-                        <input type="date" class="form-control" name="tgl_replace" id="tgl_replace">
+                        <input type="date" class="form-control" name="tgl_replace" id="tgl_replace" value="<?= date('Y-m-d')?>">
                     </div>
 				</div>
 					<div class="col-md-6">

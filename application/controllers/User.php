@@ -20,8 +20,14 @@ class User extends CI_Controller
         $data['request'] = $this->m_dashboard->count('request');
         $data['replace'] = $this->m_dashboard->count('ganti');
         $data['barang'] = $this->m_dashboard->count('barang');
-        $this->load->view('user/index',$data);
+        
+		$this->load->view('user/index',$data);
+		
     }
+	public function tampil()
+	{
+		$this->load->view('templates/sidebar',$data);
+	}
 
     // public function dashboard() 
     // {

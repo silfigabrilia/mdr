@@ -20,6 +20,7 @@
 	success: function(s) {
 			//alert(s);		
 			$('#showSerialCode').append(s); 
+			$('#serial_code').val(data.serial_code).append('selected','selected');
 		}
 	});
  });
