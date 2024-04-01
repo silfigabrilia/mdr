@@ -48,7 +48,11 @@ class Detail_request extends CI_Controller
     public function tambah()
     {
         $data['title'] = 'Detail_Request';
-        $data['Detail_Request'] = $this->m_detail_req->tampil_datarequest()->result();
+		$render  = $this->Mmain->qRead("detail_request det 
+        INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang",
+        "det.id_detail_request, det.nama_barang_request, det.jumlah_request, det.keterangan, det.id_barang, det.serial_code, det.jumlah, det.tanggal_waktu, det.status");
+        $data['Detail_Request'] = $render->result();
+		//$data['Detail_Request'] = $this->m_detail_req->tampil_datarequest()->result();
 		$data['barang'] = $this->m_detail_barang->getBarang();
 		#$data['detail_barang'] = $this->m_detail_req->getseri();
         $this->load->view('templates/header', $data);
@@ -113,6 +117,11 @@ class Detail_request extends CI_Controller
         $this->load->view('templates/sidebar', $data);
         $this->load->view('detail_request/editdetail',$data);
         $this->load->view('templates/footer');
+		
+		/* $isAll = $this->Mmain->qRead(
+										"tb_accfrm AS a INNER JOIN tb_frm AS b ON a.code_frm = b.code_frm 
+										WHERE a.id_acc ='".$this->session->userdata['accUser']."' AND b.id_frm='".$this->viewLink."'",
+										"a.is_add as isadd,a.is_edt as isedt,a.is_del as isdel,a.is_spec1 as acc1,a.is_spec2 as acc2","")->row(); */
     }
 
    public function proses_ubah()

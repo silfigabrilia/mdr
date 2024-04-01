@@ -189,7 +189,7 @@ var $data="id_barang";
    
            if ($result) {
                $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Dihapus!');
-               redirect('detail_barang/init/'.$id_barang);
+               redirect("detail_barang/init/".$id_barang);
            } else {
                $this->session->set_flashdata('error', 'Data <strong>Gagal</strong> Dihapus!');
                redirect('detail_barang');

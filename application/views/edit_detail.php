@@ -50,19 +50,20 @@
                         <input type="date" class="form-control" name="tgl_replace" id="tgl_replace"value="<?= $Detail_Replace['tgl_replace'] ?>">
                     </div>
                     </div>
-				<div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="serial_code" class="form-label">Nomor Seri</label>
-                            <select class="form-control" name="serial_code" id="serial_code">
-                                <option value="" selected="selected" disabled="disabled">Pilih Nomor Seri</option>
-								<?php foreach ($detail_barang as $data) { ?>
-										<option value="<?= $data['serial_code'] ?>"
-										<?= $data['id_barang'] == $Detail_Replace['serial_code'] ? selected :"selected"?>>
-										<?= $data['serial_code'] ?></option>
-									<?php } ?>
-                            </select>
-                        </div>
-                    </div>
+					<div class="col-md-6">
+					<div class="mb-3">
+						<label for="serial_code" class="form-label">Nomor Seri</label>
+						<select class="form-control" name="serial_code" id="showSerialCode">
+							<option value="" selected="selected" disabled="disabled">Pilih Nomor Seri</option>
+							<?php foreach ($detail_barang as $data) { ?>
+								<option value="<?= $data['serial_code'] ?>" <?= $data['serial_code'] == $Detail_Replace['serial_code'] ? "selected" : "" ?>>
+									<?= $data['serial_code'] ?>
+								</option>
+							<?php } ?>
+						</select>
+					</div>
+				</div>
+				
 					 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="qty_replace" class="form-label">Quantity</label>
@@ -70,20 +71,21 @@
                     
                     </div>
                 </div>
-				<?php
-				$data = ['Requested', 'Finished', 'Rejected'];
-				?>
 				<div class="col-md-6">
 					<div class="mb-3">
 						<label for="status" class="form-label">Status</label>
 						<select class="form-control" name="status" id="status" placeholder="Pilih Status...">
-							<option value="<?$Detail_Replace['status'] ?>"> <? $Detail_Replace['status']?></option>
-							<<option <?php if($data == 'Requested') { echo "selected"; } ?> value='Requested'>Requested</option>
-							<option <?php if($data == 'Finished') { echo "selected"; } ?> value='Finished'>Finished</option>
-							<option <?php if($data == 'Rejected') { echo "selected"; } ?> value='Rejected'>Rejected</option>
+							<?php
+							$status_options = ['Requested', 'Finished', 'Rejected'];
+							foreach ($status_options as $option) {
+								$selected = ($Detail_Replace['status'] == $option) ? 'selected' : '';
+								echo "<option value='$option' $selected>$option</option>";
+							}
+							?>
 						</select>
 					</div>
 				</div>
+				
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="keterangan" class="form-label">keterangan</label>

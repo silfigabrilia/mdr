@@ -55,7 +55,9 @@
                                 <option value="">Pilih Nomor Seri</option>
 								<?php foreach ($detail_barang as $data) { ?>
                                     <!--<option value="<?= $data['serial_code'] ?>"<?= $data['serial_code'] == $Detail_Request['id_barang'] ? "selected":""?>><?= $data['serial_code'] ?></option>-->
-									<option value="<?= $data['serial_code'] ?>"<?= $data['serial_code'] == $data['id_barang'] ? "selected":""?>><?= $data['serial_code'] ?></option>
+									<option value="<?= $data['serial_code'] ?>" <?= $data['serial_code'] == $Detail_Request['serial_code'] ? "selected" : "" ?>>
+									<?= $data['serial_code'] ?>
+								</option>
 								<?php } ?>
                             </select>
                         </div>
@@ -69,20 +71,24 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="tanggal_waktu" class="form-label">Tanggal Waktu</label>
-                            <input type="date" class="form-control" name="tanggal_waktu" id="tanggal_waktu" value="<?= $Detail_Request['tanggal_waktu'] ?>">
+                            <input type="datetime-local" class="form-control" name="tanggal_waktu" id="tanggal_waktu" value="<?= $Detail_Request['tanggal_waktu'] ?>">
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="status" class="form-label">Status</label>
-                            <select class="form-control" name="status" id="status" placeholder="Pilih Status...">
-                                <option value="">Pilih Status</option>
-                                <option value="Requested">Requested</option>
-                                <option value="Finished">Finished</option>
-                                <option value="Rejected">Rejected</option>
-                            </select>
-                        </div>
+					<div class="mb-3">
+						<label for="status" class="form-label">Status</label>
+						<select class="form-control" name="status" id="status" placeholder="Pilih Status...">
+							<?php
+							$status_options = ['Requested', 'Finished', 'Rejected'];
+							foreach ($status_options as $option) {
+								$selected = ($Detail_Request['status'] == $option) ? 'selected' : '';
+								echo "<option value='$option' $selected>$option</option>";
+							}
+							?>
+						</select>
 					</div>
+				</div>
+					
                         <!-- <div class="row"> -->
                             <div class="row float-right">
                                 <div class="col-md-12">

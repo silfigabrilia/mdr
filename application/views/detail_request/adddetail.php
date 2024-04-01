@@ -68,7 +68,7 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="tanggal_waktu" class="form-label">Tanggal Waktu</label>
-                            <input type="date" class="form-control" name="tanggal_waktu" id="tanggal_waktu" >
+                            <input type="datetime-local" class="form-control" name="tanggal_waktu" id="tanggal_waktu" >
                         </div>
                     </div>
                     <div class="col-md-6">
