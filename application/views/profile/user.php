@@ -52,7 +52,8 @@
     <div class="card mb-3 col-lg-8">
         <div class="row no-gutters">
             <div class="mb-2 mt-2 col-md-4">
-                <img src="<?= base_url('assets'); ?>/img/mdr.png" /" class="card-img" width="75px">
+                <!--<img src="<?= base_url('assets'); ?>/img/mdr.png" /" class="card-img" width="75px">-->
+				<img src="<?= base_url('assets/img/users/') . $user['image']; ?>" class="card-img">
             </div>
             <div class="col-md-8">
                 <div class="card-body">

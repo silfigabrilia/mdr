@@ -15,7 +15,7 @@
                         <div class="mb-3">
                             <label for="nama_peminjam" class="form-label">Nama Peminjam</label>
                             <input type="text" class="form-control" name="nama_peminjam" id="nama_peminjam" placeholder="Masukkan Nama Peminjam..." value="<?= $Pinjam['nama_peminjam'] ?>">
-                            <input type="hidden" name="id_pinjam" id="id_satuan" value="<?= $Pinjam['id_pinjam'] ?>">
+                            <input type="hidden" name="id_pinjam" id="nama_pinjam" value="<?= $Pinjam['id_pinjam'] ?>">
                         </div>
                     </div>
                     <div class="col-md-6">

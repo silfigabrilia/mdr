@@ -3,8 +3,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Detail_barang extends CI_Controller
 {
-private $mainTable = 'detail_barang';
-var $data="id_barang";
+//private $mainTable = 'detail_barang';
+
 
     public function __construct()
     {
@@ -15,15 +15,18 @@ var $data="id_barang";
         $this->load->helper('url');
     }
 	
+	var $data="id_barang"; 
+	
     public function index()
     {
         $data['title'] = 'Detail_Barang';
         //$data['Detail_Barang'] = $this->m_detail_barang->tampil_detail()->result();
-		$data['Detail_Barang'] = $this->m_detail_barang->tampil_detail()->result();
+		//$data['Detail_Barang'] = $this->Mmain->qRead('detail_barang')->result();
+		$data['Detail_Barang'] = $this->Mmain->qRead("detail_barang det 
+        INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang ",
+        "det.id_detail_barang, b.nama_barang, det.serial_code, det.lokasi, det.qtty")->result();
        // $render  = $this->Mmain->qRead("detail_barang det 
-        //INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang  = '$id' ",
-        //"det.id_detail_barang, b.nama_barang, det.serial_code, det.lokasi, det.qtty");
-
+        
         // $a=$this->Mmain->qRead("detail_barang db right OUTER JOIN barang b ON b.id_barang = b.id_barang = b.id_barang","db.id_barang, db.serial_code, db.lokasi, db.qtty");
         //$data['Detail_Barang'] = $render->result();
         $this->load->view('templates/header', $data);
@@ -107,49 +110,6 @@ var $data="id_barang";
         $this->load->view('detail_barang/editdetail',$data);
         $this->load->view('templates/footer');
     }
-
-    /* public function proses_ubah($id)
-    {
-        if ($this->session->login['role'] == 'admin') {
-            $this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
-            redirect('dashboard');
-        }
-        // $id = $this->Mmain->autoId("detail_request","id_detail_request","DRQ","DRQ"."001","001");
-
-        /* $data = [
-            'id_detail_barang' => $id,
-            'id_barang' => $this->input->post('id_barang'),
-            'serial_code' => $this->input->post('serial_code'),
-            'lokasi' => $this->input->post('lokasi'),
-            'qtty' => $this->input->post('qtty'),
-        ]; */
-		/* $id_detail_barang = $this->input->post('id_detail_barang');
-		$id_barang = $this->input->post('id_barang');
-        $serial_code = $this->input->post('serial_code');
-        $lokasi = $this->input->post('lokasi');
-        $qtty = $this->input->post('qtty');
-		
-		$this->Mmain->qUpd("detail_barang", array(
-            $id,
-            $id_barang,
-            $serial_code,
-            $lokasi,
-            $qtty,
-        ));  */
-
-         /* if ($this->Mmain->qUpd($data)) {
-            $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Diubah!');
-			//echo $data;
-           redirect("detail_barang/init/".$data['id_barang']);
-        } else {
-            $this->session->set_flashdata('error', 'Data <strong>Gagal</strong> Diubah!');
-            redirect('detail_barang');
-        } 
-		
-		$this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> DiUpdate!');
-        redirect("detail_barang/init/".$id_barang);
-		
-    } */ 
 	
 	public function proses_ubah($id)
 	{
@@ -183,18 +143,43 @@ var $data="id_barang";
 
     public function hapus_data($id)
        {
-		   $id_barang = $this->input->post('id_barang');
+		   //$id_barang = $this->input->post('id_barang');
            //$result = $this->Mmain->qDel($id);
 		   $result = $this->Mmain->qDel("detail_barang","id_detail_barang",$id);
    
            if ($result) {
                $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Dihapus!');
-               redirect("detail_barang/init/".$id_barang);
+               redirect('detail_barang');
            } else {
                $this->session->set_flashdata('error', 'Data <strong>Gagal</strong> Dihapus!');
                redirect('detail_barang');
            }
-       } 
+       }  
+	   
+	
+	/* public function hapus_data($id)
+{
+    $result = $this->Mmain->qDel("detail_barang","id_detail_barang",$id);
+
+    if ($result) {
+        $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Dihapus!');
+        // Dapatkan id_barang berdasarkan $id yang dihapus
+        $detail_barang = $this->Mmain->qRead("detail_barang det 
+        INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang  = '$id' ",
+        "det.id_detail_barang, b.nama_barang, det.serial_code, det.lokasi, det.qtty"); // Gantilah dengan metode yang sesuai di model
+
+        if ($detail_barang) {
+            $id_barang = $detail_barang->id_barang;
+            redirect("detail_barang/init/$id_barang");
+        } else {
+            $this->session->set_flashdata('error', 'ID Barang Tidak Ditemukan!');
+            redirect('detail_barang');
+        }
+    } else {
+        $this->session->set_flashdata('error', 'Data <strong>Gagal</strong> Dihapus!');
+        redirect('detail_barang');
+    }
+} */
 	
 	
 	   

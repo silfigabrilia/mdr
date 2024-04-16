@@ -6,7 +6,13 @@
             <div id="sidebar-collapse">
                 <div class="admin-block d-flex">
                     <div>
-                        <img src="<?= base_url('assets'); ?>/img/mdr.png"" width="45px" />
+						<img src="<?= base_url('assets'); ?>./img/mdr.png" width="45px" />
+                        <!--<img src="<?= base_url('assets/img/users/') . $user['image']; ?>" width="45px" />-->
+						<!--<?php if(isset($user) && isset($user['image']) && !empty($user['image'])): ?>
+							<img src="<?= base_url('assets/img/users/') . $user['image']; ?>" width="45px" />
+						<?php else: ?>
+							<p>Gambar tidak tersedia.</p>
+						<?php endif; ?>-->
                     </div>
                     <div class="admin-info">
                         <div class="font-strong">Admin</div><small>Administrator</small></div>

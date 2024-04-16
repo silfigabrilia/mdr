@@ -16,7 +16,9 @@ class Pinjam extends CI_Controller
     public function index()
     {
         $data['title'] = 'Pinjam';
-        $data['Pinjam'] = $this->m_pinjam->pinjam()->result();
+        /* $data['Pinjam'] = $this->m_pinjam->pinjam()->result(); */
+		$render=$this->Mmain->qRead("pinjam");
+		$data['Pinjam'] = $render->result();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -26,9 +28,10 @@ class Pinjam extends CI_Controller
     public function tambah_pinjam()
     {
         $data['title'] = 'TambahPinjam';
-        $data['Pinjam'] = $this->m_pinjam->tambah_pinjam()->result();
-        $data['barang'] = $this->m_pinjam->getBarang();
-
+       /*   $data['Pinjam'] = $this->m_pinjam->tambah_pinjam()->result();  */
+		$render=$this->Mmain->qRead("pinjam");
+		$data['Pinjam'] = $render->result();
+		$data['barang'] = $this->m_pinjam->getBarang();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);

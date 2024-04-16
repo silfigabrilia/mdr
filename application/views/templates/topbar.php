@@ -4,8 +4,8 @@
         <header class="header">
             <div class="page-brand">
                 <a class="link" href="<?= base_url('assets'); ?>index.html">
-                    <span class="brand">PT MDR
-                        <span class="brand-tip">(admin)</span>
+                    <span class="brand">Mangli Djaya Raya
+                        <!--<span class="brand-tip">(admin)</span>-->
                     </span>
                     <span class="brand-mini"></span>
                 </a>
@@ -142,7 +142,11 @@
                     </li> -->
                        <li class="dropdown dropdown-user">
                         <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
-                            <img src="<?= base_url('assets'); ?>/img/mdr.png" />
+							<img src="<?= base_url('assets'); ?>./img/mdr.png" width="45px" />
+                            <!--<img src="<?= base_url('assets/img/users/') . $user['image']; ?>" />-->
+							<!--<?php if(isset($user) && isset($user['image'])): ?>
+								<img src="<?= base_url('assets/img/users/') . $user['image']; ?>" />
+							<?php endif; ?>-->
                             <span>Admin<i class="fa fa-angle-down m-l-5"></i></a></span>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="<?= base_url('profile'); ?>"><i class="fa fa-user"></i>Profile</a>
@@ -152,7 +156,6 @@
                         </ul>
                     </li>
                 </ul>
-
                 <!-- END TOP-RIGHT TOOLBAR-->
             </div>
         </header>

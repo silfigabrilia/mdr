@@ -19,6 +19,7 @@ class Detail_request extends CI_Controller
     {
         $data['title'] = 'Detail_Request';
         $data['Detail_Request'] = $this->m_detail_req->tampil_datarequest()->result();
+		//$data['Detail_Request'] = $this->Mmain->qRead('detail_request');
 		//$render  = $this->Mmain->qRead("detail_request det 
         //INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang  = '$id' ",
         //"det.id_detail_barang, det.nama_barang_request, det.jumlah_request, det.keterangan, det.id_barang, det.serial_code, det.jumlah, det.tanggal_waktu, det.status");
@@ -53,7 +54,7 @@ class Detail_request extends CI_Controller
         "det.id_detail_request, det.nama_barang_request, det.jumlah_request, det.keterangan, det.id_barang, det.serial_code, det.jumlah, det.tanggal_waktu, det.status");
         $data['Detail_Request'] = $render->result();
 		//$data['Detail_Request'] = $this->m_detail_req->tampil_datarequest()->result();
-		$data['barang'] = $this->m_detail_barang->getBarang();
+		//$data['barang'] = $this->Mmain->qRead('barang'); 
 		#$data['detail_barang'] = $this->m_detail_req->getseri();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);

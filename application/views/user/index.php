@@ -23,8 +23,8 @@
         <header class="header">
             <div class="page-brand">
                 <a class="link" href="<?= base_url('assets'); ?>index.html">
-                    <span class="brand">PT MDR
-                        <span class="brand-tip">(admin)</span>
+                    <span class="brand">Mangli Djaya Raya
+                        <!--<span class="brand-tip">(Admin)</span>-->
                     </span>
                     <span class="brand-mini"></span>
                 </a>
@@ -161,8 +161,8 @@
                     </li> -->
                     <li class="dropdown dropdown-user">
                         <a class="nav-link dropdown-toggle link" data-toggle="dropdown">
-                            <img src="<?= base_url('assets'); ?>/img/mdr.png" />
-                            <span>Admin<i class="fa fa-angle-down m-l-5"></i></a></span>
+                            <img src="<?= base_url('assets/img/users/') . $user['image']; ?>" />
+                            <span><?= $user['name']; ?><i class="fa fa-angle-down m-l-5"></i></a></span>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="<?= base_url('profile'); ?>"><i class="fa fa-user"></i>Profile</a>
                             <!-- <a class="dropdown-item" href="<?= base_url('assets'); ?>profile.html"><i class="fa fa-cog"></i>Settings</a> -->
@@ -180,10 +180,10 @@
             <div id="sidebar-collapse">
                 <div class="admin-block d-flex">
                     <div>
-                        <img src="<?= base_url('assets'); ?>./img/mdr.png" width="45px" />
+                        <img src="<?= base_url('assets/img/users/') . $user['image']; ?>" width="45px" />
                     </div>
                     <div class="admin-info">
-                        <div class="font-strong">Admin</div><small>Administrator</small></div>
+                        <div class="font-strong"><?= $user['name']; ?></div><small>Administrator</small></div>
                 </div>
                 <ul class="side-menu metismenu">
                     <li>

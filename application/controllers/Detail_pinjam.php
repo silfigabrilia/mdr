@@ -1,4 +1,3 @@
-
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
@@ -146,7 +145,9 @@ public function proses_ubah($id)
         'id_pinjam' => $this->input->post('id_pinjam'),
         'id_detail_barang' => $this->input->post('id_detail_barang'),
         'keterangan' => $this->input->post('keterangan'),
+	
     ];
+
 
     // Load database and model
     $this->load->database();
