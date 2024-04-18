@@ -18,11 +18,11 @@
                             <input type="hidden" name="id_jenis" id="id_jenis" value="<?= $Jenis['id_jenis'] ?>">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <!--<div class="col-md-6">
                         <div class="mb-3">
                             <label for="nomor_seri" class="form-label">Nomor Seri</label>
                             <input type="text" class="form-control" name="nomor_seri" id="nomor_seri" min="1" value="<?= $Jenis['nomor_seri'] ?>">
-                        </div>
+                        </div>-->
                     </div>
                 </div>
         </div>

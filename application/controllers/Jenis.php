@@ -39,21 +39,21 @@ class Jenis extends CI_Controller
             $this->session->set_flashdata('error', 'Tambah data hanya untuk admin!');
             redirect('dashboard');
         }
-        $id = $this->Mmain->autoId("satuan","id_satuan","ST","ST"."001","001");
+        $id = $this->Mmain->autoId("jenis","id_jenis","JS","JS"."001","001");
 
-        $data = [
+        /* $data = [
             'id_jenis' => $this->input->post('id_jenis'),
             'nama_jenis' => $this->input->post('nama_jenis'),
             'nomor_seri' => $this->input->post('nomor_seri'),
 
-        ];
+        ]; */
         $nama = $this->input->post('nama');
         $nomor = $this->input->post('nomor');
 
         $this->Mmain->qIns("jenis", array(
             $id,
             $nama,
-            $nomor
+            '',''
         ));
         $this->session->set_flashdata('success', 'Jenis Barang <strong>Berhasil</strong> Ditambahkan!');
         redirect('jenis');
@@ -82,7 +82,7 @@ class Jenis extends CI_Controller
         $data = [
             'id_jenis' => $this->input->post('id_jenis'),
             'nama_jenis' => $this->input->post('nama_jenis'),
-            'nomor_seri' => $this->input->post('nomor_seri'),
+            //'nomor_seri' => $this->input->post('nomor_seri'),
 
         ];
 

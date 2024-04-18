@@ -19,11 +19,37 @@
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="stok" class="form-label">Stok</label>
+                            <label for="stok" class="form-label">Quantity</label>
                             <input type="text" class="form-control" name="stok" id="stok" min="1">
                         </div>
                     </div>
-                    <div class="col-md-6">
+					 <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="id_jenis" class="form-label">Jenis</label>
+                            <select class="form-control" name="id_jenis" id="id_jenis">
+                                <option value="">Pilih Jenis</option>
+                                <?php foreach ($jenis as $data) { ?>
+                                    <option value="<?= $data['nama_jenis'] ?>"><?= $data['nama_jenis'] ?></option>
+                                <?php } ?>
+                                <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
+                            </select>
+                        </div>
+                    </div>
+					<div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="id_satuan" class="form-label">Satuan</label>
+                            <select class="form-control" name="id_satuan" id="id_satuan">
+                                <option value="">Pilih Satuan</option>
+                                <?php foreach ($satuan as $data) { ?>
+                                    <option value="<?= $data['nama_satuan'] ?>"><?= $data['nama_satuan'] ?></option>
+                                <?php } ?>
+                                <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <!--<div class="col-md-6">
                         <div class="mb-3">
                             <label for="satuan_id" class="form-label">Satuan ID</label>
                             <input type="text" class="form-control" name="satuan" id="satuan_id" min="1">

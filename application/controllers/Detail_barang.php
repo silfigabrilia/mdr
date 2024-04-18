@@ -5,7 +5,6 @@ class Detail_barang extends CI_Controller
 {
 //private $mainTable = 'detail_barang';
 
-
     public function __construct()
     {
         parent::__construct();
@@ -21,10 +20,10 @@ class Detail_barang extends CI_Controller
     {
         $data['title'] = 'Detail_Barang';
         //$data['Detail_Barang'] = $this->m_detail_barang->tampil_detail()->result();
-		//$data['Detail_Barang'] = $this->Mmain->qRead('detail_barang')->result();
-		$data['Detail_Barang'] = $this->Mmain->qRead("detail_barang det 
-        INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang ",
-        "det.id_detail_barang, b.nama_barang, det.serial_code, det.lokasi, det.qtty")->result();
+		$data['Detail_Barang'] = $this->Mmain->qRead('detail_barang')->result();
+		//$data['Detail_Barang'] = $this->Mmain->qRead("detail_barang det 
+        //INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang ",
+        //"det.id_detail_barang, b.nama_barang, det.serial_code, det.lokasi, det.qtty")->result();
        // $render  = $this->Mmain->qRead("detail_barang det 
         
         // $a=$this->Mmain->qRead("detail_barang db right OUTER JOIN barang b ON b.id_barang = b.id_barang = b.id_barang","db.id_barang, db.serial_code, db.lokasi, db.qtty");
@@ -36,15 +35,16 @@ class Detail_barang extends CI_Controller
         $this->load->view('templates/footer');
     }
 	
-	    public function init($id)
+	public function init($id)
     {
         $data['title'] = 'Detail_Barang';
         //$data['Detail_Barang'] = $this->m_detail_barang->tampil_detail()->result();
 		$render  = $this->Mmain->qRead("detail_barang det 
         INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang  = '$id' ",
-        "det.id_detail_barang, b.nama_barang, det.serial_code, det.lokasi, det.qtty");
+        "det.id_detail_barang, b.nama_barang, det.id_barang, det.item_description, det.serial_code, det.lokasi, det.qtty, det.keterangan");
 
         // $a=$this->Mmain->qRead("detail_barang db right OUTER JOIN barang b ON b.id_barang = b.id_barang = b.id_barang","db.id_barang, db.serial_code, db.lokasi, db.qtty");
+        $data['id'] = $id;
         $data['Detail_Barang'] = $render->result();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
@@ -53,13 +53,14 @@ class Detail_barang extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function tambah()
+    public function tambah($id)
     {
         $data['title'] = 'Detail_Barang';
         //$data['Detail_Barang'] = $this->m_detail_barang->tampil_datadetail()->result();
 		$render  = $this->Mmain->qRead("detail_barang det 
         INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang ",
-        "det.id_detail_barang, b.nama_barang, det.serial_code, det.lokasi, det.qtty");
+        "det.id_detail_barang, b.nama_barang, det.item_description, det.serial_code, det.lokasi, det.qtty, det.keterangan");
+		$data['id'] = $id;
 		$data['Detail_Barang'] = $render->result();
         $data['barang'] = $this->m_detail_barang->getBarang();
         $this->load->view('templates/header', $data);
@@ -79,16 +80,20 @@ class Detail_barang extends CI_Controller
         $id = $this->Mmain->autoId("detail_barang","id_detail_barang","DB","DB"."001","001");
 
         $id_barang = $this->input->post('id_barang');
+		$item_description = $this->input->post('item_description');
         $serial_code = $this->input->post('serial_code');
         $lokasi = $this->input->post('lokasi');
         $qtty = $this->input->post('qtty');
+		$keterangan = $this->input->post('keterangan');
         
         $this->Mmain->qIns("detail_barang", array(
             $id,
             $id_barang,
+			$item_description,
             $serial_code,
             $lokasi,
             $qtty,
+			$keterangan,
         ));
 
         $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Ditambahkan!');
@@ -99,8 +104,6 @@ class Detail_barang extends CI_Controller
         $data['title'] = 'Detail_Barang';
         $data['Detail_Barang'] = $this->m_detail_barang->edit_detail($id);
 		//$render = $this->Mmain->qRead("detail_barang WHERE id_detail_barang='".$id."'","id_detail_barang","")->row()->id_detail_barang;
-		//$render=$this->Mmain->qRead("detail_barang det WHERE id_detail_barang = '$id'");
-		//$render = $this->Mmain->qRead("detail_barang WHERE id_detail_barang = '$id'");
 		/* $render = $this->Mmain->qRead("detail_barang WHERE id_detail_barang = '$id'");
 		$data['Detail_Barang'] = $render->result(); */
 		$data['barang'] = $this->m_detail_barang->getBarang();
@@ -122,9 +125,11 @@ class Detail_barang extends CI_Controller
 		$data = [
 			'id_detail_barang' => $id,
 			'id_barang' => $this->input->post('id_barang'),
+			'item_description' => $this->input->post('item_description'),
 			'serial_code' => $this->input->post('serial_code'),
 			'lokasi' => $this->input->post('lokasi'),
 			'qtty' => $this->input->post('qtty'),
+			'keterangan' => $this->input->post('keterangan'),
 		];
 
 		// Load database and model
@@ -132,7 +137,8 @@ class Detail_barang extends CI_Controller
 		$this->load->model('Mmain');
 
 		// Menggunakan metode qUpdpart untuk mengubah data
-		$this->Mmain->qUpdpart($this->mainTable, 'id_detail_barang', $data['id_detail_barang'], ['id_barang', 'serial_code', 'lokasi', 'qtty'], [$data['id_barang'], $data['serial_code'], $data['lokasi'], $data['qtty']]);
+		//$this->Mmain->qUpdpart($this->mainTable, 'id_detail_barang', $data['id_detail_barang'], ['id_barang', 'serial_code', 'lokasi', 'qtty'], [$data['id_barang'], $data['serial_code'], $data['lokasi'], $data['qtty']]);
+		$this->Mmain->qUpdpart("detail_barang", 'id_detail_barang', $id, array_keys($data), array_values($data));
 
 		// Set flash data for success notification
 		$this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Diubah!');
@@ -141,46 +147,19 @@ class Detail_barang extends CI_Controller
 		redirect("detail_barang/init/".$data['id_barang']); 
 	}
 
-    public function hapus_data($id)
+    public function hapus_data($id,$idBarang)
        {
-		   //$id_barang = $this->input->post('id_barang');
-           //$result = $this->Mmain->qDel($id);
+		   
 		   $result = $this->Mmain->qDel("detail_barang","id_detail_barang",$id);
    
            if ($result) {
                $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Dihapus!');
-               redirect('detail_barang');
+               redirect("detail_barang/init/".$idBarang);
            } else {
                $this->session->set_flashdata('error', 'Data <strong>Gagal</strong> Dihapus!');
-               redirect('detail_barang');
+               redirect("detail_barang/init/".$idBarang);
            }
        }  
 	   
-	
-	/* public function hapus_data($id)
-{
-    $result = $this->Mmain->qDel("detail_barang","id_detail_barang",$id);
-
-    if ($result) {
-        $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Dihapus!');
-        // Dapatkan id_barang berdasarkan $id yang dihapus
-        $detail_barang = $this->Mmain->qRead("detail_barang det 
-        INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang  = '$id' ",
-        "det.id_detail_barang, b.nama_barang, det.serial_code, det.lokasi, det.qtty"); // Gantilah dengan metode yang sesuai di model
-
-        if ($detail_barang) {
-            $id_barang = $detail_barang->id_barang;
-            redirect("detail_barang/init/$id_barang");
-        } else {
-            $this->session->set_flashdata('error', 'ID Barang Tidak Ditemukan!');
-            redirect('detail_barang');
-        }
-    } else {
-        $this->session->set_flashdata('error', 'Data <strong>Gagal</strong> Dihapus!');
-        redirect('detail_barang');
-    }
-} */
-	
-	
 	   
 }

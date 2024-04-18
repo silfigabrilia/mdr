@@ -46,13 +46,18 @@ class M_detail_pinjam extends CI_Model
     }
     public function edit_data($id)
     {
-        $query = $this->db->query("SELECT * FROM detail_pinjam WHERE id_detail_pinjam = '$id'");
+        $query = $this->db->query("SELECT * FROM detail_pinjam WHERE id_detail_pinjam = '".$id."' ");
 
         if ($query->num_rows() == 0) {
             $query = [];
+			
         } else {
+		
             $query = $query->row_array();
+			
         }
+		
+		//echo $query->num_rows();
 
         return $query;
     }

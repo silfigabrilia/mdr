@@ -24,22 +24,36 @@
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="stok" class="form-label">Stok</label>
+                            <label for="stok" class="form-label">Quantity</label>
                             <input type="text" class="form-control" name="stok" id="stok" min="1" value="<?= $Barang['stok'] ?>">
                         </div>
-                    <!--</div>-->
-                    <!-- <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="satuan_id" class="form-label">Satuan ID</label>
-                            <input type="text" class="form-control" name="satuan_id" id="satuan_id" min="1" value="<?= $Barang['satuan_id'] ?>">
-                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="jenis_id" class="form-label">Jenis ID</label>
-                            <input type="number" class="form-control" name="jenis_id" id="jenis_id" min="1" value="<?= $Barang['jenis_id'] ?>">
-                        </div> -->
-                        <!--<div class="row">-->
+					<div class="col-md-6">
+					<div class="mb-3">
+					<label for="id_jenis" class="form-label">Jenis</label>
+					<select class="form-control" name="id_jenis" id="id_jenis">
+					<option value="" selected="selected" disabled="disabled">Pilih Jenis</option>
+					<?php foreach ($jenis as $data) { ?>
+						<option value="<?= $data['nama_jenis'] ?>" <?= $data['nama_jenis'] == $Barang['id_jenis'] ? "selected" : "" ?>>
+							<?= $data['nama_jenis'] ?>
+						</option>
+					<?php } ?>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-6">
+					<div class="mb-3">
+					<label for="id_satuan" class="form-label">Satuan</label>
+					<select class="form-control" name="id_satuan" id="id_satuan">
+					<option value="" selected="selected" disabled="disabled">Pilih Satuan</option>
+					<?php foreach ($satuan as $data) { ?>
+						<option value="<?= $data['nama_satuan'] ?>" <?= $data['nama_satuan'] == $Barang['id_satuan'] ? "selected" : "" ?>>
+							<?= $data['nama_satuan'] ?>
+						</option>
+					<?php } ?>
+							</select>
+						</div>
+					</div>
                             <div class="row float-right">
                                 <div class="col-md-12">
                                     <a href="<?= base_url('Barang') ?>" class="btn btn-danger" id="barang" style="cursor: pointer;"><i class="ti ti-reload"></i> Kembali</a>

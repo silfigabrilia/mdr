@@ -15,9 +15,9 @@
                     <th>No</th>
                     <th>ID Barang</th>
                     <th>Nama Barang</th>
-                    <th>Stok</th>
-                    <!-- <th>ID Satuan</th>
-                    <th>ID Jenis</th> -->
+					<th>Jenis</th>
+                    <th>Quantity</th>
+                    <th>Satuan</th>
                     <th>Aksi</th>
                 </tr>
                 <?php 
@@ -28,9 +28,10 @@
                         <td><?php echo $no++ ?></td>
                         <td><?php echo $b->id_barang ?></td>
                         <td><?php echo $b->nama_barang ?></td>
+						<td><?php echo $b->id_jenis ?></td>
                         <td><?php echo $b->stok ?></td>
-                        <!-- <td><?php echo $b->satuan_id ?></td>
-                        <td><?php echo $b->jenis_id ?></td> -->
+                        <td><?php echo $b->id_satuan ?></td>
+                        
                         <td>
                         <a onclick=return href="<?= base_url('detail_barang/init/') . $b->id_barang ?>" class="btn btn-warning" title="Detail"><i class="fa fa-edit"></i></a>
                         <a onclick=return href="<?= base_url('barang/edit/') . $b->id_barang ?>" class="btn btn-warning" title="Edit"><i class="ti ti-pencil"></i></a>

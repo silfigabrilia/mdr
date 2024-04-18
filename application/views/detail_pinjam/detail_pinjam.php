@@ -30,8 +30,8 @@
                             <td><?php echo $dp->id_detail_barang ?></td>
                             <td><?php echo $dp->keterangan ?></td>
                             <td>
-                                <a href="<?= base_url('detail_pinjam/edit_data/') . $dp->id_pinjam  ?>" class="btn btn-warning" title="Edit pinjam"><i class="ti ti-pencil"></i></a>
-                                <a href="<?= base_url('detail_pinjam/hapus/') . $dp->id_pinjam  ?>" class="btn btn-danger" onclick="alert('Apakah anda yakin ingin menghapus?')" id="delete" title="Hapus" style="cursor: pointer;"><i class="ti ti-trash"></i></button>
+                                <a href="<?= base_url('detail_pinjam/edit_data/') . $dp->id_detail_pinjam  ?>" class="btn btn-warning" title="Edit pinjam"><i class="ti ti-pencil"></i></a>
+                                <a href="<?= base_url('detail_pinjam/hapus/') . $dp->id_detail_pinjam.'/'.$dp->id_pinjam  ?>" class="btn btn-danger" onclick="alert('Apakah anda yakin ingin menghapus?')" id="delete" title="Hapus" style="cursor: pointer;"><i class="ti ti-trash"></i></button>
 
                             </td>
                         </tr>

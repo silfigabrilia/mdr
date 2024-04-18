@@ -3,7 +3,7 @@
         <!-- START HEADER-->
         <header class="header">
             <div class="page-brand">
-                <a class="link" href="<?= base_url('assets'); ?>index.html">
+                <a class="link" href="#">
                     <span class="brand">Mangli Djaya Raya
                         <!--<span class="brand-tip">(admin)</span>-->
                     </span>

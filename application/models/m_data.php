@@ -1,8 +1,35 @@
 <?php 
  
 class M_data extends CI_Model{
+
     function tampil_data(){
         return $this->db->get('barang');
+    }
+	public function getJenis()
+    {
+        $query = $this->db->query("SELECT * FROM jenis ORDER BY nama_jenis ASC");
+
+        if ($query->num_rows() == 0) {
+            $query = [];
+        } else {
+            $query = $query->result_array();
+        }
+
+
+        return $query;
+    }
+	public function getSatuan()
+    {
+        $query = $this->db->query("SELECT * FROM satuan ORDER BY nama_satuan ASC");
+
+        if ($query->num_rows() == 0) {
+            $query = [];
+        } else {
+            $query = $query->result_array();
+        }
+
+
+        return $query;
     }
 
     function tampil_databarang(){

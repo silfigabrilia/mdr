@@ -18,12 +18,12 @@
                             <input type="hidden" name="id_satuan" id="id_satuan" value="<?= $Satuan['id_satuan'] ?>">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <!--<div class="col-md-6">
                         <div class="mb-3">
                             <label for="nomer_seri" class="form-label">Nomer Seri</label>
                             <input type="text" class="form-control" name="nomer_seri" id="nomer_seri" min="1" value="<?= $Satuan['nomer_seri'] ?>">
                         </div>
-                    </div>
+                    </div>-->
                 </div>
         </div>
     </div>

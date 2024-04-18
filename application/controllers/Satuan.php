@@ -40,12 +40,12 @@ class Satuan extends CI_Controller
             redirect('dashboard');
         }
 
-        $data = [
+        /* $data = [
             'id_satuan' => $this->input->post('id_satuan'),
             'nama_satuan' => $this->input->post('nama_satuan'),
             'nomer_seri' => $this->input->post('nomer_seri'),
 
-        ];
+        ]; */
 
         $nama = $this->input->post('nama');
         $nomer = $this->input->post('nomer');
@@ -53,7 +53,7 @@ class Satuan extends CI_Controller
         $this->Mmain->qIns("satuan", array(
             0,
             $nama,
-            $nomer
+            '',''
 
         ));
 
@@ -83,7 +83,7 @@ class Satuan extends CI_Controller
         $data = [
             'id_satuan' => $this->input->post('id_satuan'),
             'nama_satuan' => $this->input->post('nama_satuan'),
-            'nomer_seri' => $this->input->post('nomer_seri'),
+            //'nomer_seri' => $this->input->post('nomer_seri'),
 
         ];
 

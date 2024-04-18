@@ -29,8 +29,10 @@ class Barang extends CI_Controller
     {
         $data['title'] = 'Barang';
         //$data['Barang'] = $this->m_data->tampil_databarang()->result();
-		$render=$this->Mmain->qRead("barang");
+		$render=$this->Mmain->qRead("barang","");
 		$data['Barang'] = $render->result();
+		$data['jenis'] = $this->m_data->getJenis();
+		$data['satuan'] = $this->m_data->getSatuan();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -58,15 +60,15 @@ class Barang extends CI_Controller
 
         $nama = $this->input->post('nama');
         $stok = $this->input->post('stok');
-        $satuan = $this->input->post('satuan');
-        $jenis = $this->input->post('jenis');
+		$jenis = $this->input->post('id_jenis');
+        $satuan = $this->input->post('id_satuan');
         
         $this->Mmain->qIns("barang", array(
             $id,
             $nama,
             $stok,
-            $satuan,
-            $jenis
+            $jenis,
+			$satuan
 
         ));
 
@@ -77,7 +79,11 @@ class Barang extends CI_Controller
     
     public function edit($id){
         $data['title'] = 'Barang';
+		/* $render=$this->Mmain->qRead("barang","");
+		$data['Barang'] = $render->result(); */
         $data['Barang'] = $this->m_data->edit_data($id);
+		$data['jenis'] = $this->m_data->getJenis();
+		$data['satuan'] = $this->m_data->getSatuan();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -125,8 +131,8 @@ class Barang extends CI_Controller
 			'id_barang' => $this->input->post('id_barang'),
             'nama_barang' => $this->input->post('nama_barang'),
             'stok' => $this->input->post('stok'),
-            'satuan_id' => $this->input->post('satuan_id'),
-            'jenis_id' => $this->input->post('jenis_id'),
+            'id_satuan' => $this->input->post('id_satuan'),
+            'id_jenis' => $this->input->post('id_jenis')
 		];
 
 		// Memuat database dan model
@@ -195,5 +201,22 @@ class Barang extends CI_Controller
 		  
 		   echo $retval;
 	   }
+	   
+	   /* public function getjenis(){
+		   $id_jenis = $this->input->post('id_jenis');
+		   $render = $this->Mmain->qRead("barang where id_jenis = '".$id_jenis."'","");
+		   $data = null;
+		   if($render->num_rows() > 0){			   
+			   for($i=0; $i<$render->num_rows(); $i++){
+				  //$data .= "<option value=".$render->row()->serial_code."> ".$render->row()->serial_code."" ;
+				  $data .= "<option value=".$render->row($i)->nama_jenis."> ".$render->row($i)->nama_jenis."</option>";
+			   }
+			   $retval = $data;
+		   }else{
+			   $retval = '<option selected>- Item Detail Tidak Ditemukan, Pilih Yang Lain - </option>';
+		   }
+		  
+		   echo $retval;
+	   } */
 
 }

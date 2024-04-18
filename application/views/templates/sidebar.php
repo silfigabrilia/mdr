@@ -26,7 +26,7 @@
                     <li class="heading">FEATURES</li>
                    <li>
 						<a href="#" id="peminjamDropdown"><i class="sidebar-item-icon fa fa-bookmark"></i>
-							<span class="nav-label">Peminjam</span><i class="fa fa-angle-left arrow"></i></a>
+							<span class="nav-label">Peminjaman</span><i class="fa fa-angle-left arrow"></i></a>
 						<ul class="nav-2-level collapse">
 							<li>
 								<a href="<?= base_url('request'); ?>">Request</a>

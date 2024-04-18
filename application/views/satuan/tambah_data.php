@@ -17,12 +17,12 @@
                             <input type="text" class="form-control" name="nama" id="nama_satuan" placeholder="Masukkan nama barang...">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <!--<div class="col-md-6">
                         <div class="mb-3">
                             <label for="nomer_seri" class="form-label">Nomer Seri</label>
                             <input type="text" class="form-control" name="nomer" id="nomer_seri" min="1">
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
     </div>

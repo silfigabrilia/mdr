@@ -12,7 +12,7 @@
         </div>
         <div class="ibox-body">
             <form action="<?= base_url('Detail_barang/proses_tambah') ?>" method="POST">
-                    <div class="row form-group">
+                    <!--<div class="row form-group">
                     <label class="col-md-2 text-md-right" for="id_barang">ID Barang</label>
                     <div class="col-md-3">
                         <div class="input-group">
@@ -22,14 +22,22 @@
                                     <option value="<?= $data['id_barang'] ?>"><?= $data['nama_barang'] ?></option>
                                 <?php } ?>
                             </select>
-                            <!-- <div class="input-group-append">
-                                <a class="btn btn-primary" href="<?= base_url('barang/tambah'); ?>"><i class="fa fa-plus"></i></a>
-                            </div>
-                        </div>
-                        <?= form_error('id_barang', '<small class="text-danger">', '</small>'); ?> -->
                         </div>
                     </div>
-                </div>
+                </div>-->
+				
+					<div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="id_barang" class="form-label">ID Barang</label>
+							<input type="text" class="form-control" name="id_barang" id="id_barang" placeholder="id ..." value="<?= $id ?>" readonly>
+                        </div>
+                    </div>
+					<div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="item_description" class="form-label">Item Description</label>
+							<input type="text" class="form-control" name="item_description" id="item_description" placeholder="masukkan item description ...">
+                        </div>
+                    </div>
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="serial_code" class="form-label">Serial Code</label>
@@ -47,6 +55,12 @@
                         <div class="mb-3">
                             <label for="qtty" class="form-label">Quantity</label>
                             <input type="number" class="form-control" name="qtty" id="qtty" min="1">
+                        </div>
+						</div>
+					<div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="keterangan" class="form-label">Keterangan</label>
+                            <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Masukkan keterangan..." >
                         </div>
                         <!-- </div> -->
                         <div class="row">

@@ -1,5 +1,5 @@
 <div class="page-heading">
-    <h1 class="page-title">Master Barang</h1>
+    <h1 class="page-title">Data Satuan</h1>
 </div>
 <div class="page-content fade-in-up">
     <div class="ibox">
@@ -15,7 +15,7 @@
                         <th>No</th>
                         <th>ID Satuan</th>
                         <th>Nama Satuan</th>
-                        <th>Nomer Seri</th>
+                        <!--<th>Nomer Seri</th>-->
                         <th>Aksi</th>
                     </tr>
                     <?php
@@ -26,7 +26,7 @@
                             <td><?php echo $no++ ?></td>
                             <td><?php echo $S->id_satuan ?></td>
                             <td><?php echo $S->nama_satuan ?></td>
-                            <td><?php echo $S->nomer_seri ?></td>
+                            <!--<td><?php echo $S->nomer_seri ?></td>-->
                             <td>
                                 <a href="<?= base_url('satuan/edit_data/' . $S->id_satuan) ?>" class="btn btn-warning" title="Edit satuan"><i class="ti ti-pencil"></i></a>
                                 <a href="<?= base_url('satuan/hapus_data/' . $S->id_satuan) ?>" class="btn btn-danger" onclick="alert('Apakah anda yakin ingin menghapus?')" id="deletesatuan" title="Hapus satuan" style="cursor: pointer;"><i class="ti ti-trash"></i></button>

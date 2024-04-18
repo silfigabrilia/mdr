@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="<?= base_url('assets'); ?>/css/replace.css" rel="stylesheet" />
+</head>
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
@@ -32,6 +38,7 @@
                 <?php 
                 $no = 1;
                 foreach($replace as $r){
+					$status_class = $r->status === 'requested' ? 'table-requested-row' : '';
                     ?>
                     <tr>
                         <td><?php echo $no++ ?></td>

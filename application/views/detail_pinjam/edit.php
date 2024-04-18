@@ -14,26 +14,31 @@
 			<div class="row">			
 				<div class="col-md-6">
 					<div class="mb-3">
-						<label for="id_pinjam" class="form-label">ID Pinjam</label>
+						<label for="id_pinjam" class="form-label">ID Detail Pinjam</label>
 						<input type="text" class="form-control" name="id_pinjam" id="id_pinjam" placeholder="Masukkan id pinjam..." value="<?= isset($id_pinjam) ? $id_pinjam : '' ?>">
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="mb-3">
-						<label for="id_detail_barang" class="form-label">id_detail_barang</label>
+						<label for="id_detail_barang" class="form-label">Barang</label>
 						<select class="form-control" name="id_detail_barang" id="id_detail_barang">
 							<option value="">Pilih Barang</option>
-							<?php foreach ($detail_barang as $data) { ?>
-								<option value="<?= $data['id_detail_barang'] ?>"><?= $data['id_detail_barang'] ?></option>
+							<?php 
+								$isDefault="";
+								foreach ($detail_barang as $data) { 
+									$isDefault = $data['id_detail_barang']==$Detail_pinjam['id_detail_barang'] ? " selected " : "";
+								?>
+								<option <?= $isDefault;?> value="<?= $data['id_detail_barang'] ?>">
+									<?= $data['id_detail_barang'] ?> - <?= $data['serial_code'] ?>
+								</option>
 							<?php } ?>
-							<!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
 						</select>
-					</div> 
+					</div>
 				</div>
 				<div class="col-md-6">
 				<div class="mb-3">
 					<label for="keterangan" class="form-label">keterangan</label>
-					<input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Masukkan Keterangan..."value="<?= isset($Detail_pinjam['keterangan']) ?  : '' ?>">
+					<input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Masukkan Keterangan..."value="<?= $Detail_pinjam['keterangan']; ?>">
 				</div>
 			</div>
             </div>

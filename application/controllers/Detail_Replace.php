@@ -167,15 +167,14 @@ public function init($id)
         redirect('detail_replace');
        }
 
-    public function del_replace($id)
-    {
-       $result = $this->Mmain->qDel("detail_ganti","id_detail_replace",$id);
-	    if ($result) {
-            $this->session->set_flashdata('success', 'Jenis Barang <strong>Berhasil</strong> Dihapus!');
-            redirect('detail_replace');
-        } else {
-            $this->session->set_flashdata('error', 'Jenis Barang <strong>Gagal</strong> Dihapus!');
-            redirect('detail_replace');
-        }
+   public function del_replace($id,$idBarang)
+{
+    $result = $this->Mmain->qDel("detail_ganti", "id_detail_replace", $id);
+    if ($result) {
+        redirect("detail_replace/init/".$idBarang);
+    } else {
+        $this->session->set_flashdata('error', 'Jenis Barang <strong>Gagal</strong> Dihapus!');
+        redirect("detail_replace/init/".$idBarang);
     }
+}
 }
