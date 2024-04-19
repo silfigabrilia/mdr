@@ -24,30 +24,51 @@
                             <input type="date" class="form-control" name="tgl_request" id="tgl_request" value="<?= $Request['tgl_request'] ?>">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <!--<div class="col-md-6">
                         <div class="mb-3">
                             <label for="id_barang" class="form-label">ID Barang</label>
                             <select class="form-control" name="id_barang" id="id_barang">
-                                <option value="">Pilih ID</option>
-                                <?php foreach ($barang as $data) { ?>
+                                <option value="">Pilih ID</option>-->
+                                <!--<?php foreach ($barang as $data) { ?>-->
                                     <!--<option <?= $data['id_barang'] ? 'selected' : '';  ?> <?= set_select('id_barang', $data['id_barang']) ?> value="<?= $data['id_barang'] ?>"><?= $data['id_barang'] . ' | ' . $data['nama_barang'] ?></option>-->
-									<option value="<?= $data['id_barang'] ?>"<?= $data['id_barang'] == $Request['id_barang'] ? "selected":""?>><?= $data['nama_barang'] ?></option>
+									<!--<option value="<?= $data['id_barang'] ?>"<?= $data['id_barang'] == $Request['id_barang'] ? "selected":""?>><?= $data['nama_barang'] ?></option>
 								<?php } ?>
-                                <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
                             </select>
+                        </div>
+                    </div>-->
+					
+					<div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="barang_request" class="form-label">Barang Request</label>
+                            <input type="text" class="form-control" name="barang_request" id="barang_request" placeholder="Masukkan barang request..." value="<?= $Request['barang_request'] ?>">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="jumlah" class="form-label">Jumlah</label>
-                            <input type="number" class="form-control" name="jumlah" id="jenis_id" min="1" value="<?= $Request['jumlah'] ?>">
+                            <input type="number" class="form-control" name="jumlah" id="jumlah" min="1" value="<?= $Request['jumlah'] ?>">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="keterangan" class="form-label">Keterangan</label>
-                            <input type="text" class="form-control" name="keterangan" id="keterangan" min="1" value="<?= $Request['keterangan'] ?>">
+                            <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Masukkan keterangan..." value="<?= $Request['keterangan'] ?>">
                         </div>
+						</div>
+					<div class="col-md-6">
+					<div class="mb-3">
+						<label for="status" class="form-label">Status</label>
+						<select class="form-control" name="status" id="status" placeholder="Pilih Status...">
+							<?php
+							$status_options = ['Requested', 'Finished', 'Rejected'];
+							foreach ($status_options as $option) {
+								$selected = ($Detail_Request['status'] == $option) ? 'selected' : '';
+								echo "<option value='$option' $selected>$option</option>";
+							}
+							?>
+						</select>
+					</div>
+				</div>
                         <!-- <div class="row"> -->
                             <div class="row float-right">
                                 <div class="col-md-12">

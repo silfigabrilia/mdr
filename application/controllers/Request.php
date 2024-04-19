@@ -49,29 +49,21 @@ class Request extends CI_Controller
         }
         $id = $this->Mmain->autoId("request","id_request","RQ","RQ"."001","001");
 
-        // $data = [
-        //     'id_detail_barang' => $this->input->post('id_request'),
-        //     'id_barang' => $this->input->post('nama'),
-        //     'tgl_request' => $this->input->post('tgl_request'),
-        //     'id_barang' => $this->input->post('id_barang'),
-        //     'jumlah' => $this->input->post('jumlah'),
-        //     'keterangan' => $this->input->post('keterangan'),
-
-        // ];
-
         $nama = $this->input->post('nama');
         $tgl_request = $this->input->post('tgl_request');
-        $id_barang = $this->input->post('id_barang');
+        $barang_request = $this->input->post('barang_request');
         $jumlah = $this->input->post('jumlah');
         $keterangan = $this->input->post('keterangan');
+		$status = $this->input->post('status');
         
         $this->Mmain->qIns("request", array(
             $id,
             $nama,
             $tgl_request,
-            $id_barang,
+            $barang_request,
             $jumlah,
-            $keterangan
+            $keterangan,
+			$status
 
         ));
 
@@ -90,33 +82,6 @@ class Request extends CI_Controller
         $this->load->view('edit_request',$data);
         $this->load->view('templates/footer');
     }
-
-    /* public function proses_ubah()
-    {
-        if ($this->session->login['role'] == 'admin') {
-            $this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
-            redirect('dashboard');
-        }
-        $id = $this->Mmain->autoId("request","id_request","RQ","RQ"."001","001");
-
-        $data = [
-            'id_request' => $this->input->post('id_request'),
-            'nama' => $this->input->post('nama'),
-            'tgl_request' => $this->input->post('tgl_request'),
-            'id_barang' => $this->input->post('id_barang'),
-            'jumlah' => $this->input->post('jumlah'),
-            'keterangan' => $this->input->post('keterangan'),
-
-        ];
-
-        if ($this->m_data->ubah_request($data)) {
-            $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Diubah!');
-            redirect('request');
-        } else {
-            $this->session->set_flashdata('error', 'Data <strong>Gagal</strong> Diubah!');
-            redirect('request');
-        }
-    } */
 	
 	public function proses_ubah()
 	{
@@ -133,9 +98,10 @@ class Request extends CI_Controller
 			'id_request' => $this->input->post('id_request'),
             'nama' => $this->input->post('nama'),
             'tgl_request' => $this->input->post('tgl_request'),
-            'id_barang' => $this->input->post('id_barang'),
+            'barang_request' => $this->input->post('barang_request'),
             'jumlah' => $this->input->post('jumlah'),
             'keterangan' => $this->input->post('keterangan'),
+			'status' => $this->input->post('status'),
 		];
 
 		// Memuat database dan model

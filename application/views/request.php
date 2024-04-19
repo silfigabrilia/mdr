@@ -16,9 +16,10 @@
                     <th>ID Request</th>
                     <th>Nama</th>
                     <th>Tanggal</th>
-                    <th>ID Barang</th>
+                    <th>Barang Request</th>
                     <th>Jumlah</th>
                     <th>Keterangan</th>
+					<th>Status</th>
                     <th>Aksi</th>
                 </tr>
                 <?php 
@@ -30,12 +31,13 @@
                         <td><?php echo $r->id_request ?></td>
                         <td><?php echo $r->nama?></td>
                         <td><?php echo $r->tgl_request ?></td>
-                        <td><?php echo $r->id_barang ?></td>
+                        <td><?php echo $r->barang_request ?></td>
                         <td><?php echo $r->jumlah ?></td>
                         <td><?php echo $r->keterangan ?></td>
+						<td><?php echo $r->status ?></td>
                         <td>
 						
-                        <a onclick=return href="<?= base_url('detail_request/init/'). $r->id_barang ?>" class="btn btn-warning" title="Detail"><i class="fa fa-edit"></i></a>
+                        <a onclick=return href="<?= base_url('detail_request/init/'). $r->barang_request ?>" class="btn btn-warning" title="Detail"><i class="fa fa-edit"></i></a>
                         <a onclick=return href="<?= base_url('request/edit/') . $r->id_request ?>" class="btn btn-warning" title="Edit"><i class="ti ti-pencil"></i></a>
                         <a onclick="return confirm('Yakin ingin hapus?')" href="<?= base_url('request/hapus_data/') . $r->id_request ?>"class="btn btn-danger" id="deleterequest" title="Hapus" style="cursor: pointer;"><i class="ti ti-trash"></i></button>
                 </td>

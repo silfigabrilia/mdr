@@ -28,6 +28,7 @@ class Detail_pinjam extends CI_Controller
         $this->load->view('templates/footer'); 
     } 
 	
+	
 	public function init($id)
     {
         $data['title'] = 'Detail_pinjam';
@@ -162,18 +163,18 @@ public function proses_ubah($id)
 }
 
 
-    public function hapus($id,$idPinjam)
+    public function hapus($id)
 {
     
-    $result = $this->Mmain->qDel("detail_pinjam", "id_detail_pinjam", $id);
+    $result = $this->Mmain->qDel("detail_pinjam", "id_pinjam", $id);
 
     
     if ($result) {
         $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Dihapus!');
-        redirect("detail_pinjam/init/".$idPinjam);
+        redirect("detail_pinjam/");
     } else {
         $this->session->set_flashdata('error', 'Data Barang <strong>Gagal</strong> Dihapus!');
-        redirect("detail_pinjam/init/".$idPinjam);
+        redirect('detail_pinjam/');
     }
 }
 }
