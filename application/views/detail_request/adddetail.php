@@ -14,10 +14,16 @@
         <div class="ibox-body">
             <form action="<?= base_url('Detail_request/proses_tambah') ?>" method="POST">
                 <div class="row">
+					<div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="id_request" class="form-label">ID Request</label>
+                            <input type="text" class="form-control" name="id_request" id="id_request" placeholder="ID Request..." value="<?= $id ?>" readonly> 
+                        </div>
+                    </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="nama_barang_request" class="form-label">Nama Barang Request</label>
-                            <input type="text" class="form-control" name="nama_barang_request" id="nama_barang_request" placeholder="Masukkan nama barang..."> 
+                            <label for="barang_request" class="form-label">Nama Barang Request</label>
+                            <input type="text" class="form-control" name="barang_request" id="barang_request" placeholder="Masukkan nama barang..."> 
                         </div>
                     </div>
                     <div class="col-md-6">

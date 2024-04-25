@@ -68,7 +68,7 @@ class Request extends CI_Controller
         ));
 
         $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Ditambahkan!');
-        redirect('request');
+        redirect('detail_request/tambah/'.$id.'');
 
     }
 

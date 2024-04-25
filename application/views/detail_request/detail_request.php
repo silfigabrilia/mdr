@@ -5,7 +5,7 @@
     <div class="ibox">
         <div class="ibox-head">
             <div class="ibox-title">
-                <a href="<?= base_url('detail_request/tambah') ?>" class="btn btn-primary"><i class="ti ti-plus"></i> Tambah </a>
+                <a href="<?= base_url('detail_request/tambah/'.$id.'') ?>" class="btn btn-primary"><i class="ti ti-plus"></i> Tambah </a>
             </div>
         </div>
     <div class="ibox-body">
@@ -14,6 +14,7 @@
                 <tr>
                     <th>No</th>
                     <th>ID Detail Request</th>
+					<th>ID Request</th>
                     <th>Nama Barang Request</th>
                     <th>Jumlah Request</th>
                     <th>Keterangan</th>
@@ -31,7 +32,8 @@
                     <tr>
                         <td><?php echo $no++ ?></td>
                         <td><?php echo $dr->id_detail_request ?></td>
-                        <td><?php echo $dr->nama_barang_request?></td>
+						<td><?php echo $dr->id_request ?></td>
+                        <td><?php echo $dr->barang_request?></td>
                         <td><?php echo $dr->jumlah_request ?></td>
                         <td><?php echo $dr->keterangan?></td>
                         <td><?php echo $dr->id_barang ?></td>
@@ -42,7 +44,7 @@
                         <td>
                         
                         <a onclick=return href="<?= base_url('detail_request/edit/') . $dr->id_detail_request ?>" class="btn btn-warning" title="Edit"><i class="ti ti-pencil"></i></a>
-                        <a onclick="return confirm('Yakin ingin hapus?')" href="<?= base_url('detail_request/hapus_data/') . $dr->id_detail_request ?>"class="btn btn-danger" id="deleterequest" title="Hapus" style="cursor: pointer;"><i class="ti ti-trash"></i></button>
+                        <a onclick="return confirm('Yakin ingin hapus?')" href="<?= base_url('detail_request/hapus_data/') . $dr->id_detail_request.'/'.$dr->id_request ?>"class="btn btn-danger" id="deleterequest" title="Hapus" style="cursor: pointer;"><i class="ti ti-trash"></i></button>
                 </td>
                 </tr>
                 <?php } ?>

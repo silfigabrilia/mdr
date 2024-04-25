@@ -93,31 +93,6 @@ class Barang extends CI_Controller
         $this->load->view('edit_barang',$data);
         $this->load->view('templates/footer');
     }
-
-    /* public function proses_ubah()
-    {
-        if ($this->session->login['role'] == 'admin') {
-            $this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
-            redirect('dashboard');
-        }
-        // $id = $this->Mmain->autoId("barang","id_barang","BR","BR"."001","001");
-
-        $data = [
-            'id_barang' => $this->input->post('id_barang'),
-            'nama_barang' => $this->input->post('nama_barang'),
-            'stok' => $this->input->post('stok'),
-            'satuan_id' => $this->input->post('satuan_id'),
-            'jenis_id' => $this->input->post('jenis_id'),
-        ];
-
-        if ($this->m_data->ubah($data)) {
-            $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Diubah!');
-            redirect('barang');
-        } else {
-            $this->session->set_flashdata('error', 'Data Barang <strong>Gagal</strong> Diubah!');
-            redirect('barang');
-        }
-    } */
 	
 	public function proses_ubah()
 	{
@@ -148,31 +123,10 @@ class Barang extends CI_Controller
 		// Set flash data untuk notifikasi keberhasilan
 		$this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Diubah!');
 
-		// Redirect ke halaman detail_request
+		// Redirect ke halaman Barang
 		redirect('barang');
 	}
 
-    /* function update(){
-        $id_barang = $this->input->post('id_barang');
-        $nama_barang = $this->input->post('nama_barang');
-        $stok = $this->input->post('stok');
-        $satuan_id = $this->input->post('satuan_id');
-        $jenis_id = $this->input->post('jenis_id');
-        
-        $data = array(
-        'nama_barang' => $nama_barang,
-        'stok' => $stok,
-        'satuan_id' => $satuan_id,
-        'jenis_id' => $jenis_id,
-        );
-        
-        $where = array(
-        'id_barang' => $id_barang
-        );
-        
-        $this->m_data->update_data($where,$data,'barang');
-        redirect('barang');
-       } */
 
        public function hapus_data($id)
        {
@@ -205,21 +159,5 @@ class Barang extends CI_Controller
 		   echo $retval;
 	   }
 	   
-	   /* public function getjenis(){
-		   $id_jenis = $this->input->post('id_jenis');
-		   $render = $this->Mmain->qRead("barang where id_jenis = '".$id_jenis."'","");
-		   $data = null;
-		   if($render->num_rows() > 0){			   
-			   for($i=0; $i<$render->num_rows(); $i++){
-				  //$data .= "<option value=".$render->row()->serial_code."> ".$render->row()->serial_code."" ;
-				  $data .= "<option value=".$render->row($i)->nama_jenis."> ".$render->row($i)->nama_jenis."</option>";
-			   }
-			   $retval = $data;
-		   }else{
-			   $retval = '<option selected>- Item Detail Tidak Ditemukan, Pilih Yang Lain - </option>';
-		   }
-		  
-		   echo $retval;
-	   } */
 
 }

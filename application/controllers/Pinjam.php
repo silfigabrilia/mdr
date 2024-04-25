@@ -74,6 +74,8 @@ class Pinjam extends CI_Controller
 
         // var_dump($nama_peminjam, $nama_penerima, $nama_pemberi,);
         // die;
+		
+		
         $this->Mmain->qIns("pinjam", array(
 
             $id,

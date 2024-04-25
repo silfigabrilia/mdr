@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="ibox-body">
-            <form action="<?= base_url('Detail_Replace/proses_tambah_detail')?>" method="POST">
+            <form action="<?= base_url('Replace/proses_tambah_detail')?>" method="POST">
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-3">

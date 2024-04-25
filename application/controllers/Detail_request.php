@@ -34,10 +34,14 @@ class Detail_request extends CI_Controller
     {
         $data['title'] = 'Detail_Request';
         //$data['Detail_Barang'] = $this->m_detail_barang->tampil_detail()->result();
-		$render  = $this->Mmain->qRead("detail_request det 
+		/* $render  = $this->Mmain->qRead("detail_request det 
         INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang  = '$id' ",
-        "det.id_detail_request, det.nama_barang_request, det.jumlah_request, det.keterangan, det.id_barang, det.serial_code, det.jumlah, det.tanggal_waktu, det.status");
-
+        "det.id_detail_request, det.barang_request, det.jumlah_request, det.keterangan, det.id_barang, det.serial_code, det.jumlah, det.tanggal_waktu, det.status"); */
+		$data['id'] = $id;
+		$render  = $this->Mmain->qRead("detail_request det 
+        INNER JOIN request r ON det.id_request = r.id_request WHERE det.id_request  = '$id' ",
+        "det.id_detail_request, det.id_request, det.barang_request, det.jumlah_request, det.keterangan, det.id_barang, det.serial_code, det.jumlah, det.tanggal_waktu, det.status");
+		
         $data['Detail_Request'] = $render->result();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
@@ -46,13 +50,14 @@ class Detail_request extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function tambah()
+    public function tambah($id)
     {
         $data['title'] = 'Detail_Request';
 		$render  = $this->Mmain->qRead("detail_request det 
         INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang",
-        "det.id_detail_request, det.nama_barang_request, det.jumlah_request, det.keterangan, det.id_barang, det.serial_code, det.jumlah, det.tanggal_waktu, det.status");
+        "det.id_detail_request, det.id_request, det.barang_request, det.jumlah_request, det.keterangan, det.id_barang, det.serial_code, det.jumlah, det.tanggal_waktu, det.status");
         $data['Detail_Request'] = $render->result();
+		$data['id'] = $id;
 		//$data['Detail_Request'] = $this->m_detail_req->tampil_datarequest()->result();
 		//$data['barang'] = $this->Mmain->qRead('barang'); 
 		#$data['detail_barang'] = $this->m_detail_req->getseri();
@@ -71,17 +76,8 @@ class Detail_request extends CI_Controller
         }
         $id = $this->Mmain->autoId("detail_request","id_detail_request","DRQ","DRQ"."001","001");
 
-        // $data = [
-        //     'id_detail_barang' => $this->input->post('id_request'),
-        //     'id_barang' => $this->input->post('nama'),
-        //     'tgl_request' => $this->input->post('tgl_request'),
-        //     'id_barang' => $this->input->post('id_barang'),
-        //     'jumlah' => $this->input->post('jumlah'),
-        //     'keterangan' => $this->input->post('keterangan'),
-
-        // ];
-
-        $nama_barang_request = $this->input->post('nama_barang_request');
+		$id_request = $this->input->post('id_request');
+        $barang_request = $this->input->post('barang_request');
         $jumlah_request = $this->input->post('jumlah_request');
         $keterangan = $this->input->post('keterangan');
         $id_barang = $this->input->post('id_barang');
@@ -90,9 +86,25 @@ class Detail_request extends CI_Controller
         $tanggal_waktu = $this->input->post('tanggal_waktu');
         $status = $this->input->post('status');
         
-        $this->Mmain->qIns("detail_request", array(
+		if ($status == 'Finished') {
+		$renQty = $this->Mmain->qRead("detail_barang where serial_code = '".$serial_code."' ","qtty, id_detail_barang");
+		
+		 if ($renQty->num_rows() > 0) {
+            foreach ($renQty->result() as $row) {
+                $qty = $row->qtty;
+                $idDetailBarang = $row->id_detail_barang;
+            }
+        }		
+		
+		$valStok = $qty - $jumlah;
+		
+		$this->Mmain->qUpdpart("detail_barang", "id_detail_barang", $idDetailBarang, Array("qtty"), Array($valStok) );
+		}
+		
+		$this->Mmain->qIns("detail_request", array(
             $id,
-            $nama_barang_request,
+			$id_request,
+            $barang_request,
             $jumlah_request,
             $keterangan,
             $id_barang,
@@ -103,8 +115,10 @@ class Detail_request extends CI_Controller
 
         ));
 
+		
+        
         $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Ditambahkan!');
-        redirect("detail_request/init/".$id_barang);
+        redirect("detail_request/init/".$id_request);
 
     }
 
@@ -138,7 +152,8 @@ class Detail_request extends CI_Controller
 		// Data untuk diubah
 		$data = [
 			'id_detail_request' => $id,
-			'nama_barang_request' => $this->input->post('nama_barang_request'),
+			'id_request' => $this->input->post('id_request'),
+			'barang_request' => $this->input->post('barang_request'),
 			'jumlah_request' => $this->input->post('jumlah_request'),
 			'keterangan' => $this->input->post('keterangan'),
 			'id_barang' => $this->input->post('id_barang'),
@@ -159,20 +174,20 @@ class Detail_request extends CI_Controller
 		$this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Diubah!');
 
 		// Redirect ke halaman detail_request
-		redirect("detail_request/init/".$data['id_barang']);
+		redirect("detail_request/init/".$data['id_request']);
 	}
 
-    public function hapus_data($id)
+    public function hapus_data($id,$idRequest)
        {
            //$result = $this->m_detail_req->hapus_request($id);
 		   $result=$this->Mmain->qDel("Detail_request","id_detail_request",$id);
    
            if ($render) {
                $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Dihapus!');
-               redirect('detail_request/init'.$data);
+               redirect("detail_request/init/".$idRequest);
            } else {
                $this->session->set_flashdata('error', 'Data <strong>Gagal</strong> Dihapus!');
-               redirect('detail_request/');
+               redirect("detail_request/init/".$idRequest);
            }
        }
 }

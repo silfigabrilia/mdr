@@ -39,8 +39,8 @@ public function init($id)
         $this->load->view('detail_replace', $data);
         $this->load->view('templates/footer');
     }
-	
-    public function tambah_data_detail()
+    
+	public function tambah_data_detail()
 	 {
         $data['title'] = 'Detail_Replace';
         //$data['Detail_Replace'] = $this->M_detail_replace->tampil_data_detail()->result();
@@ -88,7 +88,6 @@ public function init($id)
         $this->session->set_flashdata('success', 'Data Detail Replace <strong>Berhasil</strong> Ditambahkan!');
         redirect("detail_replace/init/".$id_barang);
     }
-    
 
     public function edit_detail($id)
     {

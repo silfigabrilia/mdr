@@ -63,7 +63,7 @@ class Replace extends CI_Controller
             $keterangan
         ));
         $this->session->set_flashdata('success', 'Data Replace <strong>Berhasil</strong> Ditambahkan!');
-        redirect('replace');
+        redirect('Detail_Replace/tambah_data_detail');
     }
     
 
@@ -146,6 +146,7 @@ class Replace extends CI_Controller
 		// Redirect ke halaman detail_request
 		redirect('replace');
 	}
+    
 
     public function hapus_replace($id)
     {
