@@ -1,24 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <link href="<?= base_url('assets'); ?>/css/replace.css" rel="stylesheet" />
-</head>
+<div class="page-heading">
+    <h1 class="page-title"><?= $title ?></h1>
+</div>
 <div class="page-content fade-in-up">
     <div class="ibox">
         <div class="ibox-head">
-            <div class="ibox-title">Replace</div>
-        </div>
-        <div class="col-auto">
-                <a href="<?= base_url('replace/tambah_data_replace') ?>" class="btn btn-sm btn-primary btn-icon-split">
+           <a href="<?= base_url('replace/tambah_data_replace') ?>" class="btn btn-sm btn-primary btn-icon-split">
                     <span class="icon">
                         <i class="fa fa-plus"></i>
                     </span>
                     <span class="text">
                         Tambah Data Replace
                     </span>
-                </a>
-            </div>
+					</a>
+        </div>
+       
     <div class="ibox-body">
         <table class="table table-striped table-bordered table-hover" id="example-table" cellspacing="0" width="100%">
             <thead>

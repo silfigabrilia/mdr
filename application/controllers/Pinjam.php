@@ -150,4 +150,3 @@ class Pinjam extends CI_Controller
         }
     }
 }
-

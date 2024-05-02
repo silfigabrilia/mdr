@@ -18,29 +18,30 @@
                             <input type="text" class="form-control" name="id_pinjam" id="id_pinjam" placeholder="Masukkan id pinjam..." value="<?= $id ?>" readonly>
                         </div>
                     </div> 
-					
-    					<div class="col-md-6">
-                        <div class="mb-3">
-                            <label  class="form-label">ID Barang</label>
-                        <div class="input-group">
-                            <select class="form-control" name="id_barang" id="getIdBarang" required>
-                                <option value="" >Pilih Barang</option>
-                                <?php 
-								//foreach ($barang as $data) { 
-								$itembarang = mysqli_query($koneksi,"select * from barang");
-								while($b = mysqli_fetch_array($itembarang)){
-								?>
-                                    <option value="<?= $b['id_barang'] ?>"><?= $b['nama_barang'] ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+					<div class="col-md-6">
+					<div class="mb-3">
+						<label for="id_detail_barang" class="form-label">Id Detail Barang</label>
+						<select class="form-control" name="id_detail_barang" id="id_detail_barang">
+							<option value="">Pilih Barang</option>
+							<?php 
+							// Pastikan $barang berisi data sebelum di-loop
+							if(isset($detail_barang) && !empty($detail_barang)) {
+								foreach ($detail_barang as $data) { 
+							?>
+							<option value="<?= $data['id_detail_barang'] ?>"><?= $data['id_detail_barang'] ?></option>
+							<?php 
+								} 
+							}
+							?>
+							<!--tambahkan opsi barang lainnya sesuai kebutuhan -->
+						</select>
+					</div>
+				</div>
 
 
 					 <div class="col-md-6">
                         <div class="mb-3">
-                             <label  class="form-label">nama barang</label>
+                             <label  class="form-label">Nama Barang</label>
                         <div class="input-group">
                             <select class="form-control" name="id_barang" id="getIdBarang" required>
                                 <option value="" >Pilih Barang</option>
@@ -57,11 +58,11 @@
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="nama_barang" class="form-label">Item Description</label>
-                            <select class="form-control" name="nama_barang" id="nama_barang">
-                                <option value="">Pilih Barang</option>
+                            <label for="item-description" class="form-label">Item Description</label>
+                            <select class="form-control" name="id_detail_barang" id="id_detail_barang">
+                                <option value="">Pilih Item Description</option>
                                 <?php foreach ($detail_barang as $data) { ?>
-                                    <option value="<?= $data['id_detail_barang'] ?>"><?= $data['item_description'] ?></option>
+                                    <option value="<?= $data['item_description'] ?>"><?= $data['item_description'] ?></option>
                                 <?php } ?>
                                 <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
                             </select>
@@ -94,7 +95,7 @@
     </div>
     <div class="row float-right">
         <div class="col-md-12">
-            <a href="<?= base_url('Detail_pinjam') ?>" class="btn btn-danger" id="deleteSatuan" style="cursor: pointer;"><i class="ti ti-reload"></i> Kembali</a>
+           <!-- <a href="<?= base_url('Detail_pinjam') ?>" class="btn btn-danger" id="deleteSatuan" style="cursor: pointer;"><i class="ti ti-reload"></i> Kembali</a>-->
             <button type="submit" formaction="<?= base_url('Detail_pinjam/proses_tambah') ?>" class="btn btn-success" id="simpansatuan" style="cursor: pointer;"><i class="ti ti-save"></i> Simpan</button>
         </div>
     </div>

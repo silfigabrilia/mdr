@@ -32,6 +32,30 @@ class mMain  extends CI_Model
 
         return $id1;
     }
+	
+	function getDataPinjam($id)
+    {
+		$query = $this->db->query("SELECT b.nama_barang,
+										dp.serial_code,
+										dp.item_description,
+										dp.qtty,
+										dp.keterangan,
+										dp.id_detail_pinjam
+								FROM pinjam AS p
+								LEFT JOIN detail_pinjam AS dp
+									ON p.id_pinjam = dp.id_pinjam
+								LEFT JOIN barang AS b
+									ON dp.id_barang = b.id_barang
+								WHERE p.id_pinjam = '$id'");
+		
+		if ($query->num_rows() == 0) {
+			$query = [];
+		} else {
+			$query = $query->result_array();
+		}
+		
+		return $query;
+    }
 
     function getid($fval, $ftb, $fid) //fval = flag value, 
     {
@@ -79,6 +103,12 @@ class mMain  extends CI_Model
 
         $this->db->delete($tbq);
     }
+	
+	 public function delDetail($id)
+	{
+		$this->db->where('id_detail_pinjam', $id);
+		return $this->db->delete('detail_pinjam');
+	} 
 
     // ++++++++++++++++++++++++++++++++++++++++++ Create Update query
     function qUpd($tbq, $idq, $idflag, $valq)

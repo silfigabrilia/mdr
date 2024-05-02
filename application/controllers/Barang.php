@@ -76,7 +76,7 @@ class Barang extends CI_Controller
         ));
 
         $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Ditambahkan!');
-        redirect('barang');
+        redirect('detail_barang/tambah/'.$id.'');
 
     }
     

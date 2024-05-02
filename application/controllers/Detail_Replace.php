@@ -27,7 +27,7 @@ class Detail_Replace extends CI_Controller
 	
 public function init($id)
  {
-        $data['title'] = 'Detail_Replace';
+        $data['title'] = 'Detail Replace';
         //$data['Detail_Barang'] = $this->m_detail_barang->tampil_detail()->result();
 		$render  = $this->Mmain->qRead("detail_ganti det
         INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang  = '$id' ",

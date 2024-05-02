@@ -13,16 +13,16 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>id_pinjam</th>
-                        <th>nama_peminjam</th>
-                        <th>nama_penerima</th>
-                        <th>nama_pemberi</th>
-                        <th>nama barang</th>
-                        <th>tgl_pinjam</th>
-                        <th>tgl_kembali</th>
-                        <th>jam_pinjam</th>
-                        <th>jam_kembali</th>
-                        <th>keterangan</th>
+                        <th>ID Pinjam</th>
+                        <th>Nama Peminjam</th>
+                        <th>Nama Penerima</th>
+                        <th>Nama Pemberi</th>
+                        <th>Nama Barang</th>
+                        <th>Tanggal Pinjam</th>
+                        <th>Tanggal Kembali</th>
+                        <th>Jam Pinjam</th>
+                        <th>Jam Kembali</th>
+                        <th>Keterangan</th>
                         <th>Aksi</th>
                     </tr>
                     <?php
