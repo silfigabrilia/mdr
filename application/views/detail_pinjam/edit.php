@@ -33,30 +33,13 @@
 						</div>
 					</div>
 				</div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="item-description" class="form-label">Item Description</label>
-                            <select class="form-control" name="id_detail_barang" id="id_detail_barang">
-                                <option value="">Pilih Barang</option>
-                                <?php foreach ($detail_barang as $data) { ?>
-                                    <option value="<?= $data['item_description'] ?>" <?= $data['item_description'] == $Detail_Barang['item_description'] ? "selected" : ""; ?>>
-									<?= $data['item_description'] ?>
-                                <?php } ?>
-                                <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
-                            </select>
-                        </div>
-                    </div>
 
 				<div class="col-md-6">
                         <div class="mb-3">
                             <label class="form-label">Serial Code</label>
                             <select class="form-control" name="serial_code" id="showSerialCode">
                                 <option value="">Pilih Nomor Seri</option>
-								<?php foreach ($detail_barang as $data) { ?>
-								<option value="<?= $data['serial_code'] ?>" <?= $data['serial_code'] == $Detail_pinjam['serial_code'] ? "selected" : "" ?>>
-									<?= $data['serial_code'] ?>
-								</option>
-							<?php } ?>
+								
                             </select>
                         </div>
                     </div>

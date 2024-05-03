@@ -98,8 +98,10 @@ die; */
         $id = $this->Mmain->autoId("detail_pinjam", "id_detail_pinjam", "DP", "DP" . "001", "001");
 
         $id_pinjam 			= $this->input->post('id_pinjam');
-		$id_detail_barang	 = $this->input->post('id_detail_barang');
+		$id_detail_barang	= $this->input->post('id_detail_barang');
+		$id_barang 			= $this->input->post('id_barang');
 		$serial_code 		= $this->input->post('serial_code');
+		$item_description 	= $this->input->post('item_description');
 		$qtty 				= $this->input->post('qtty');
         $keterangan 		= $this->input->post('keterangan');
 		
@@ -111,27 +113,19 @@ die; */
 		if ($detail_barang_data->num_rows()>0 ) {
         $idDetailBarang = $detail_barang_data->row()->id_detail_barang;
 		
-		$this->Mmain->qUpdpart("detail_barang", "id_detail_barang", $idDetailBarang, Array($serial_code), Array($id_detail_barang));
-		} 
-		
 		$this->Mmain->qIns("detail_pinjam", array(
             $id,
             $id_pinjam,
-			$id_detail_barang,
-			/* $id_barang,
-			$serial_code,
-			$item_description,  */
+			$idDetailBarang, // ini value hasil dari qRead diatas.
 			$qtty,
             $keterangan,
         )); 
         
-
-        //$this->db->insert('detail_pinjam', $data); 
+		} 
+	
         $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Ditambahkan!');
 		
-		
         redirect("detail_pinjam/init/".$id_pinjam);
-		
     }
 
     public function edit_data($id)
@@ -156,18 +150,24 @@ die; */
     }
 	
 	$id = $this->input->post('id_detail_pinjam');
-    
+	
+    /* $detail_barang_data = $this->Mmain->qRead("detail_barang where serial_code = '$serial_code' ", "id_detail_barang");
+	
+	if ($detail_barang_data->num_rows()>0 ) {
+        $idDetailBarang = $detail_barang_data->row()->id_detail_barang; */
+		
     $data = [
 		'id_detail_pinjam' => $id,
         'id_pinjam' => $this->input->post('id_pinjam'),
 		'id_detail_barang' => $this->input->post('id_detail_barang'),
-		'id_barang' => $this->input->post('id_barang'),
+		/* 'id_barang' => $this->input->post('id_barang'),
 		'serial_code' => $this->input->post('serial_code'),
-		'item_description' => $this->input->post('item_description'),
+		'item_description' => $this->input->post('item_description'), */
 		'qtty' =>$this->input->post('qtty'),
         'keterangan' => $this->input->post('keterangan'),
 	
     ];
+	//}
 	
     // Load database and model
     $this->load->database();
@@ -180,16 +180,16 @@ die; */
     
 	$this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Diubah!');
     
-    //redirect('detail_pinjam/init/'.$data['id_pinjam']); 
-	redirect('pinjam'); 
+    redirect('detail_pinjam/init/'.$data['id_pinjam']); 
+	//redirect('pinjam'); 
 } 
 
 
     public function hapus($id)
 {
     
-    //$result = $this->Mmain->qDel("detail_pinjam", "id_pinjam", $id);
-	$result = $this->Mmain->delDetail($id);
+    $result = $this->Mmain->qDel("detail_pinjam", "id_detail_pinjam", $id);
+	//$result = $this->Mmain->delDetail($id);
     
     if ($result) {
         $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Dihapus!');
