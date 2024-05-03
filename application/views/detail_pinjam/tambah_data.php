@@ -18,26 +18,6 @@
                             <input type="text" class="form-control" name="id_pinjam" id="id_pinjam" placeholder="Masukkan id pinjam..." value="<?= $id ?>" readonly>
                         </div>
                     </div> 
-					<div class="col-md-6">
-					<div class="mb-3">
-						<label for="id_detail_barang" class="form-label">Id Detail Barang</label>
-						<select class="form-control" name="id_detail_barang" id="id_detail_barang">
-							<option value="">Pilih Barang</option>
-							<?php 
-							// Pastikan $barang berisi data sebelum di-loop
-							if(isset($detail_barang) && !empty($detail_barang)) {
-								foreach ($detail_barang as $data) { 
-							?>
-							<option value="<?= $data['id_detail_barang'] ?>"><?= $data['id_detail_barang'] ?></option>
-							<?php 
-								} 
-							}
-							?>
-							<!--tambahkan opsi barang lainnya sesuai kebutuhan -->
-						</select>
-					</div>
-				</div>
-
 
 					 <div class="col-md-6">
                         <div class="mb-3">
@@ -56,18 +36,7 @@
 							</div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="item-description" class="form-label">Item Description</label>
-                            <select class="form-control" name="id_detail_barang" id="id_detail_barang">
-                                <option value="">Pilih Item Description</option>
-                                <?php foreach ($detail_barang as $data) { ?>
-                                    <option value="<?= $data['item_description'] ?>"><?= $data['item_description'] ?></option>
-                                <?php } ?>
-                                <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
-                            </select>
-                        </div>
-                    </div>
+                    
 
 				<div class="col-md-6">
                         <div class="mb-3">
@@ -80,13 +49,13 @@
                     </div>
 					<div class="col-md-6">
                     <div class="mb-3">
-                        <label for="qty" class="form-label">Quantity</label>
-                        <input type="text" class="form-control" name="qtty" id="qtty" placeholder="Masukkan Kuantitas Barang...">
+                        <label for="qtty" class="form-label">Quantity</label>
+                        <input type="number" class="form-control" name="qtty" id="qtty" placeholder="Masukkan Kuantitas Barang...">
                     </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="Keterangan" class="form-label">Keterangan</label>
+                            <label for="keterangan" class="form-label">Keterangan</label>
                             <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Masukkan nama barang...">
                         </div>
                     </div>

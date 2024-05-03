@@ -39,7 +39,7 @@
                             <select class="form-control" name="id_detail_barang" id="id_detail_barang">
                                 <option value="">Pilih Barang</option>
                                 <?php foreach ($detail_barang as $data) { ?>
-                                    <option value="<?= $data['item_description'] ?>" <?= $data['item_description'] == $Detail_pinjam['item_description'] ? "selected" : ""; ?>>
+                                    <option value="<?= $data['item_description'] ?>" <?= $data['item_description'] == $Detail_Barang['item_description'] ? "selected" : ""; ?>>
 									<?= $data['item_description'] ?>
                                 <?php } ?>
                                 <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
@@ -62,13 +62,13 @@
                     </div>
 					<div class="col-md-6">
                     <div class="mb-3">
-                        <label for="qty" class="form-label">Quantity</label>
+                        <label for="qtty" class="form-label">Quantity</label>
                         <input type="text" class="form-control" name="qtty" id="qtty" placeholder="Masukkan Kuantitas Quantity..." value="<?= $Detail_pinjam['qtty'] ?>">
                     </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="Keterangan" class="form-label">Keterangan</label>
+                            <label for="keterangan" class="form-label">Keterangan</label>
                             <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Masukkan nama Keterangan..." value="<?= $Detail_pinjam['keterangan'] ?>">
                         </div>
                     </div>

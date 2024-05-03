@@ -25,16 +25,17 @@
                     foreach ($Detail_pinjam as $dp) {
                     ?>
                         <tr>
-                            <td><?php echo $no++ ?></td>
+							<td><?php echo $no++ ?></td>
 							
-							<td><?php echo $dp['nama_barang'] ?></td>
-							<td><?php echo $dp['serial_code'] ?></td>
-							<td><?php echo $dp['item_description'] ?></td>
-							<td><?php echo $dp['qtty'] ?></td>
-                            <td><?php echo $dp['keterangan'] ?></td>
+							<td><?php echo $dp->nama_barang ?></td>
+							<td><?php echo $dp->serial_code ?></td>
+							<td><?php echo $dp->item_description ?></td>
+							<td><?php echo $dp->qtty ?></td>
+							<td><?php echo $dp->keterangan ?></td>
+							
                             <td>
-                                <a href="<?= base_url('detail_pinjam/edit_data/') . $dp['id_detail_pinjam']  ?>" class="btn btn-warning" title="Edit pinjam"><i class="ti ti-pencil"></i></a>
-                                <a href="<?= base_url('detail_pinjam/hapus/') . $dp['id_detail_pinjam']  ?>" class="btn btn-danger" onclick="alert('Apakah anda yakin ingin menghapus?')" id="delete" title="Hapus" style="cursor: pointer;"><i class="ti ti-trash"></i></button>
+                                <a href="<?= base_url('detail_pinjam/edit_data/') . $dp->id_detail_pinjam  ?>" class="btn btn-warning" title="Edit pinjam"><i class="ti ti-pencil"></i></a>
+                                <a href="<?= base_url('detail_pinjam/hapus/') . $dp->id_detail_pinjam  ?>" class="btn btn-danger" onclick="alert('Apakah anda yakin ingin menghapus?')" id="delete" title="Hapus" style="cursor: pointer;"><i class="ti ti-trash"></i></button>
 
                             </td>
                         </tr>
