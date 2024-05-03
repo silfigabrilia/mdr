@@ -10,6 +10,12 @@ class Barang extends CI_Controller
         $this->load->model('m_data');
         $this->load->model('Mmain');
         $this->load->helper('url');
+		
+		$this->load->library('form_validation');
+		if (!$this->session->userdata('email')){
+		redirect('auth');
+		
+    }
     }
 
     public function index()

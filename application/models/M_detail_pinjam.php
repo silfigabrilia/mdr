@@ -14,6 +14,18 @@ class M_detail_pinjam extends CI_Model
 
         return $query;
     }
+	public function getSeri()
+    {
+        $query = $this->db->query("SELECT * FROM detail_barang ORDER BY serial_code ASC");
+
+        if ($query->num_rows() == 0) {
+            $query = [];
+        } else {
+            $query = $query->result_array();
+        }
+
+        return $query;
+    }
 	public function getItemDescription()
     {
         $query = $this->db->query("SELECT * FROM detail_barang ORDER BY id_detail_barang ASC");

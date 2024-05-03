@@ -11,7 +11,12 @@ class Request extends CI_Controller
         $this->load->model('Mmain');
 		$this->load->model('m_detail_barang');
         $this->load->helper('url');
+    $this->load->library('form_validation');
+		if (!$this->session->userdata('email')){
+		redirect('auth');
+		
     }
+	}
 
     public function index()
     {

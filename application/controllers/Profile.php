@@ -13,7 +13,12 @@ class Profile extends CI_Controller
 		$email = $this->session->userdata('email');
         $data['user'] = $this->Auth_model->userdata($email);
 		$user = $this->db->get_where('user', ['email' => $email])->row_array(); */
-    }
+	$this->load->library('form_validation');
+		if (!$this->session->userdata('email')){
+		redirect('auth');
+		
+    }   
+   }
 
     public function index()
     {

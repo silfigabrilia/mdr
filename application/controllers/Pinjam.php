@@ -11,7 +11,13 @@ class Pinjam extends CI_Controller
         $this->load->model('m_pinjam');
         $this->load->model('Mmain');
         $this->load->helper('url');
+		
+		
+		if (!$this->session->userdata('email')){
+		redirect('auth');
+		
     }
+	}
 
     public function index()
     {
@@ -150,3 +156,4 @@ class Pinjam extends CI_Controller
         }
     }
 }
+

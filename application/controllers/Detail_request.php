@@ -11,7 +11,12 @@ class Detail_request extends CI_Controller
 		$this->load->model('m_detail_barang');
         $this->load->model('Mmain');
         $this->load->helper('url');
+    $this->load->library('form_validation');
+		if (!$this->session->userdata('email')){
+		redirect('auth');
+		
     }
+	}
 
 	var $data="id_barang";
 	

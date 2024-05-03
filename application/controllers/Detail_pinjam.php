@@ -15,7 +15,13 @@ class Detail_pinjam extends CI_Controller
 		$this->load->model('m_pinjam');
         $this->load->model('Mmain');
         $this->load->helper('url');
+   
+		
+		if (!$this->session->userdata('email')){
+		redirect('auth');
+		}
     }
+	
 
     public function index()
     {
@@ -134,6 +140,7 @@ die; */
         $data['Detail_pinjam'] = $this->M_detail_pinjam->edit_data($id);
 		$data['id'] = $id;
 		$data['detail_barang'] = $this->M_detail_pinjam->getBarang();
+		$data['detail_barang'] = $this->M_detail_pinjam->getSeri();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -141,8 +148,8 @@ die; */
         $this->load->view('templates/footer');
     }
 
- public function proses_ubah()
-{
+	public function proses_ubah()
+	{
     
     if ($this->session->login['role'] == 'admin') {
         $this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
@@ -151,10 +158,10 @@ die; */
 	
 	$id = $this->input->post('id_detail_pinjam');
 	
-    /* $detail_barang_data = $this->Mmain->qRead("detail_barang where serial_code = '$serial_code' ", "id_detail_barang");
+   $detail_barang_data = $this->Mmain->qRead("detail_barang where serial_code = '$serial_code' ", "id_detail_barang");
 	
 	if ($detail_barang_data->num_rows()>0 ) {
-        $idDetailBarang = $detail_barang_data->row()->id_detail_barang; */
+        $idDetailBarang = $detail_barang_data->row()->id_detail_barang; 
 		
     $data = [
 		'id_detail_pinjam' => $id,
@@ -167,7 +174,7 @@ die; */
         'keterangan' => $this->input->post('keterangan'),
 	
     ];
-	//}
+	}
 	
     // Load database and model
     $this->load->database();
@@ -180,16 +187,15 @@ die; */
     
 	$this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Diubah!');
     
-    redirect('detail_pinjam/init/'.$data['id_pinjam']); 
-	//redirect('pinjam'); 
+    //redirect('detail_pinjam/init/'.$data['id_pinjam']); 
+	redirect('pinjam'); 
 } 
 
 
-    public function hapus($id)
+    public function hapus($id) 
 {
-    
     $result = $this->Mmain->qDel("detail_pinjam", "id_detail_pinjam", $id);
-	//$result = $this->Mmain->delDetail($id);
+    //$result = $this->Mmain->delDetail($id);
     
     if ($result) {
         $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Dihapus!');
@@ -200,3 +206,6 @@ die; */
     }
 }
 }
+
+
+

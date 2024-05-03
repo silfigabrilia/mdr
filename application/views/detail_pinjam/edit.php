@@ -24,7 +24,7 @@
 								//foreach ($barang as $data) { 
 								 $itembarang = mysqli_query($koneksi, "SELECT * FROM barang");
 								while ($b = mysqli_fetch_array($itembarang)) {
-									$selected = ($b['id_barang'] == $Detail_pinjam['id_barang']) ? "selected" : ""; ?>
+									$selected = ($b['id_barang'] == $Detail_Barang['id_barang']) ? "selected" : ""; ?>
 									<option value="<?= $b['id_barang'] ?>" <?= $selected ?>>
 										<?= $b['nama_barang'] ?>
 									</option>
