@@ -150,59 +150,54 @@ die; */
 
 	public function proses_ubah()
 	{
-    
-    if ($this->session->login['role'] == 'admin') {
-        $this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
-        redirect('dashboard');
-    }
-	
-	$id = $this->input->post('id_detail_pinjam');
-	
-   $detail_barang_data = $this->Mmain->qRead("detail_barang where serial_code = '$serial_code' ", "id_detail_barang");
-	
-	if ($detail_barang_data->num_rows()>0 ) {
-        $idDetailBarang = $detail_barang_data->row()->id_detail_barang; 
+		if ($this->session->login['role'] == 'admin') {
+			$this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
+			redirect('dashboard');
+		}
 		
-    $data = [
-		'id_detail_pinjam' => $id,
-        'id_pinjam' => $this->input->post('id_pinjam'),
-		'id_detail_barang' => $this->input->post('id_detail_barang'),
-		/* 'id_barang' => $this->input->post('id_barang'),
-		'serial_code' => $this->input->post('serial_code'),
-		'item_description' => $this->input->post('item_description'), */
-		'qtty' =>$this->input->post('qtty'),
-        'keterangan' => $this->input->post('keterangan'),
-	
-    ];
+		$id = $this->input->post('id_detail_pinjam');
+		//$serial_code = $this->input->post('serial_code');
+
+		$detail_barang_data = $this->Mmain->qRead("detail_barang where serial_code = '$serial_code' ", "id_detail_barang");
+
+		if ($detail_barang_data->num_rows() > 0) {
+			$idDetailBarang = $detail_barang_data->row()->id_detail_barang; 
+			
+			$data = [
+				'id_detail_pinjam' => $id,
+				'id_pinjam' => $this->input->post('id_pinjam'),
+				'id_detail_barang' => $idDetailBarang, 
+				'qtty' => $this->input->post('qtty'),
+				'keterangan' => $this->input->post('keterangan'),
+			];
+
+			// Menggunakan metode qUpdpart untuk mengubah data
+			$this->Mmain->qUpdpart("detail_pinjam", 'id_detail_pinjam', $id, array_keys($data), array_values($data)); // Menambahkan argumen terakhir
+			
+			$this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Diubah!');
+			
+			redirect('pinjam'); 
+		} else {
+			$this->session->set_flashdata('error', 'Serial code tidak ditemukan!');
+			redirect('pinjam');
+		}
 	}
-	
-    // Load database and model
-    $this->load->database();
-    $this->load->model('Mmain');
-
-    // Menggunakan metode qUpdpart untuk mengubah data
-/*     $this->Mmain->qUpdpart($this->mainTable, 'id_pinjam', $data['id_pinjam'], ['id_detail_barang', 'keterangan'], [$data['id_detail_barang'], $data['keterangan']]); */
-	
-	$this->Mmain->qUpdpart("detail_pinjam", 'id_detail_pinjam', $id, array_keys($data), array_values($data));
-    
-	$this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Diubah!');
-    
-    //redirect('detail_pinjam/init/'.$data['id_pinjam']); 
-	redirect('pinjam'); 
-} 
 
 
-    public function hapus($id) 
+
+
+
+    public function hapus($id,$idPinjam) 
 {
     $result = $this->Mmain->qDel("detail_pinjam", "id_detail_pinjam", $id);
     //$result = $this->Mmain->delDetail($id);
     
     if ($result) {
         $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Dihapus!');
-        redirect("detail_pinjam/");
+        redirect("detail_pinjam/init/".$idPinjam);
     } else {
         $this->session->set_flashdata('error', 'Data Barang <strong>Gagal</strong> Dihapus!');
-        redirect("detail_pinjam/");
+        redirect("detail_pinjam/init/".$idPinjam);
     }
 }
 }
