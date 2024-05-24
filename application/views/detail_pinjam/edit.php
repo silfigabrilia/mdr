@@ -13,7 +13,12 @@
 		
             <form action="<?= base_url('Detail_pinjam/proses_ubah/') ?>" method="POST">
 			<div class="row">			
-				
+				<div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="id_detail_pinjam" class="form-label">ID Detail Pinjam</label>
+                            <input type="text" class="form-control" name="id_detail_pinjam" id="id_detail_pinjam" placeholder="ID Detail_pinjam..." value="<?= $Detail_pinjam['id_detail_pinjam'] ?>" readonly>
+                        </div>
+                    </div>
 					 <div class="col-md-6">
                         <div class="mb-3">
                              <label  class="form-label">Nama Barang</label>

@@ -22,7 +22,7 @@ class Detail_request extends CI_Controller
 	
     public function index()
     {
-        $data['title'] = 'Detail_Request';
+        $data['title'] = 'Detail Request';
         $data['Detail_Request'] = $this->m_detail_req->tampil_datarequest()->result();
 		//$data['Detail_Request'] = $this->Mmain->qRead('detail_request');
 		//$render  = $this->Mmain->qRead("detail_request det 
@@ -37,7 +37,7 @@ class Detail_request extends CI_Controller
 	
 	public function init($id)
     {
-        $data['title'] = 'Detail_Request';
+        $data['title'] = 'Detail Request';
         //$data['Detail_Barang'] = $this->m_detail_barang->tampil_detail()->result();
 		/* $render  = $this->Mmain->qRead("detail_request det 
         INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang  = '$id' ",
@@ -57,7 +57,7 @@ class Detail_request extends CI_Controller
 
     public function tambah($id)
     {
-        $data['title'] = 'Detail_Request';
+        $data['title'] = 'Detail Request';
 		$render  = $this->Mmain->qRead("detail_request det 
         INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang",
         "det.id_detail_request, det.id_request, det.barang_request, det.jumlah_request, det.keterangan, det.id_barang, det.serial_code, det.jumlah, det.tanggal_waktu, det.status");
@@ -128,7 +128,7 @@ class Detail_request extends CI_Controller
     }
 
     public function edit($id){
-        $data['title'] = 'Detail_Request';
+        $data['title'] = 'Detail Request';
         $data['Detail_Request'] = $this->m_detail_req->edit_request($id);
 		$data['barang'] = $this->m_detail_barang->getBarang();
 		$data['detail_barang'] = $this->m_detail_req->getseri();

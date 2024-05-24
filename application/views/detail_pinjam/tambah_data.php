@@ -1,6 +1,6 @@
 <?php include 'koneksi.php' ?>
 <div class="page-heading">
-    <h1 class="page-title"></h1>
+    <h1 class="page-title"><?= $title ?></h1>
 </div>
 <div class="page-content fade-in-up">
     <div class="ibox">
@@ -69,5 +69,4 @@
         </div>
     </div>
     </form>
-</div>
 </div>

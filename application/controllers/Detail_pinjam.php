@@ -25,7 +25,7 @@ class Detail_pinjam extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Detail_pinjam';
+        $data['title'] = 'Detail pinjam';
         $data['Detail_pinjam'] = $this->M_detail_pinjam->tampil_detail();
 		/* echo json_encode($data['Detail_pinjam']); die; */
 		$this->load->view('templates/header', $data);
@@ -39,7 +39,7 @@ class Detail_pinjam extends CI_Controller
 	public function init($id)
     {
 		
-        $data['title'] = 'Detail_pinjam';
+        $data['title'] = 'Detail pinjam';
         //$data['Detail_pinjam'] = $this->M_detail_pinjam->tampil_detail()->result();
         //$data['Detail_pinjam'] = $this->Mmain->qRead("pinjam where id_pinjam ='$id' ","")->result();
 		
@@ -67,7 +67,7 @@ class Detail_pinjam extends CI_Controller
     public function tambah_detail($id)
     {
 		
-        $data['title'] = 'TambahDetail';
+        $data['title'] = 'Tambah Detail';
 		
 		/* $render = $this->Mmain->qRead("barang b INNER JOIN detail_barang bd ON b.id_barang = bd.id_barang 
 		INNER JOIN detail_pinjam dj ON bd.id_detail_barang = dj.id_detail_barang 
@@ -136,7 +136,7 @@ die; */
 
     public function edit_data($id)
     {
-        $data['title'] = 'edit_detail';
+        $data['title'] = 'edit detail';
         $data['Detail_pinjam'] = $this->M_detail_pinjam->edit_data($id);
 		$data['id'] = $id;
 		$data['detail_barang'] = $this->M_detail_pinjam->getBarang();
@@ -156,35 +156,37 @@ die; */
 		}
 		
 		$id = $this->input->post('id_detail_pinjam');
-		//$serial_code = $this->input->post('serial_code');
+		$serial_code = $this->input->post('serial_code');
 
 		$detail_barang_data = $this->Mmain->qRead("detail_barang where serial_code = '$serial_code' ", "id_detail_barang");
 
 		if ($detail_barang_data->num_rows() > 0) {
 			$idDetailBarang = $detail_barang_data->row()->id_detail_barang; 
+			$qty = $this->input->post('qtty');
+			$keterangan = $this->input->post('keterangan');
 			
 			$data = [
-				'id_detail_pinjam' => $id,
 				'id_pinjam' => $this->input->post('id_pinjam'),
 				'id_detail_barang' => $idDetailBarang, 
-				'qtty' => $this->input->post('qtty'),
+				'qtty' => '10',
 				'keterangan' => $this->input->post('keterangan'),
 			];
-
+			
+			
 			// Menggunakan metode qUpdpart untuk mengubah data
-			$this->Mmain->qUpdpart("detail_pinjam", 'id_detail_pinjam', $id, array_keys($data), array_values($data)); // Menambahkan argumen terakhir
+			$tbColUpd = Array("id_detail_barang", "qtty","keterangan");
+			$tbColVal = Array($idDetailBarang, $qty,$keterangan);
+			$this->Mmain->qUpdpart("detail_pinjam", 'id_detail_pinjam', $id, $tbColUpd, $tbColVal); // Menambahkan argumen terakhir
 			
 			$this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Diubah!');
 			
+			//echo json_encode($tbColVal);
 			redirect('pinjam'); 
 		} else {
 			$this->session->set_flashdata('error', 'Serial code tidak ditemukan!');
 			redirect('pinjam');
 		}
 	}
-
-
-
 
 
     public function hapus($id,$idPinjam) 

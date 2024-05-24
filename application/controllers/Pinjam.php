@@ -98,7 +98,7 @@ class Pinjam extends CI_Controller
         ));
 
         $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Ditambahkan!');
-        redirect('pinjam');
+        redirect('Detail_pinjam/tambah_detail/'.$id.'');
     }
     public function edit_data($id)
     {

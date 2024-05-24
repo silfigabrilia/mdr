@@ -23,7 +23,7 @@ class Detail_barang extends CI_Controller
 	
     public function index()
     {
-        $data['title'] = 'Detail_Barang';
+        $data['title'] = 'Detail Barang';
         //$data['Detail_Barang'] = $this->m_detail_barang->tampil_detail()->result();
 		$data['Detail_Barang'] = $this->Mmain->qRead('detail_barang')->result();
 		//$data['Detail_Barang'] = $this->Mmain->qRead("detail_barang det 
@@ -42,7 +42,7 @@ class Detail_barang extends CI_Controller
 	
 	public function init($id)
     {
-        $data['title'] = 'Detail_Barang';
+        $data['title'] = 'Detail Barang';
         //$data['Detail_Barang'] = $this->m_detail_barang->tampil_detail()->result();
 		$render  = $this->Mmain->qRead("detail_barang det 
         INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang  = '$id' ",
@@ -60,7 +60,7 @@ class Detail_barang extends CI_Controller
 
     public function tambah($id)
     {
-        $data['title'] = 'Detail_Barang';
+        $data['title'] = 'Detail Barang';
         //$data['Detail_Barang'] = $this->m_detail_barang->tampil_datadetail()->result();
 		$render  = $this->Mmain->qRead("detail_barang det 
         INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang ",
@@ -106,7 +106,7 @@ class Detail_barang extends CI_Controller
     }
 
     public function edit($id){
-        $data['title'] = 'Detail_Barang';
+        $data['title'] = 'Detail Barang';
         $data['Detail_Barang'] = $this->m_detail_barang->edit_detail($id);
 		//$render = $this->Mmain->qRead("detail_barang WHERE id_detail_barang='".$id."'","id_detail_barang","")->row()->id_detail_barang;
 		/* $render = $this->Mmain->qRead("detail_barang WHERE id_detail_barang = '$id'");
