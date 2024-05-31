@@ -1,7 +1,12 @@
 <div class="content">
     <div class="brand">
-        <a class="link" href="index.html">PT Mangli Djaya Raya</a>
+        <br></br>
+        <h1 class="link" href="<?= base_url('auth') ?>">PT Mangli Djaya Raya</h1>
     </div>
+<!--<div class="content">
+    <div class="brand">
+        <a class="link" href="index.html">PT Mangli Djaya Raya</a>
+    </div>-->
     <form id="register-form" action="<?= base_url('auth/registration'); ?>" method="post">
         <h2 class="login-title">Sign Up</h2>
 

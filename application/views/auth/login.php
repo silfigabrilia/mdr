@@ -24,5 +24,8 @@
         <div class="form-group">
             <button class="btn btn-info btn-block" type="submit">Login</button>
         </div>
+		<div class="text-center">Don't Have Account Yet?
+            <a class="color-blue" href="<?= base_url('auth/registration') ?>">Registration here</a>
+		</div>
     </form>
 </div>
