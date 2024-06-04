@@ -30,19 +30,19 @@
                             <select class="form-control" name="id_barang" id="id_barang">
                                 <option value="">Pilih ID</option>-->
                                 <!--<?php foreach ($barang as $data) { ?>-->
-                                    <!--<option <?= $data['id_barang'] ? 'selected' : '';  ?> <?= set_select('id_barang', $data['id_barang']) ?> value="<?= $data['id_barang'] ?>"><?= $data['id_barang'] . ' | ' . $data['nama_barang'] ?></option>-->
-									<!--<option value="<?= $data['id_barang'] ?>"<?= $data['id_barang'] == $Request['id_barang'] ? "selected":""?>><?= $data['nama_barang'] ?></option>
+                                    <!--<option <?= $data['id_barang'] ? 'selected' : '';  ?> <?= set_select('id_barang', $data['id_barang']) ?> value="<?= $data['id_barang'] ?>"><?= $data['id_barang'] . ' | ' . $data['nama_barang'] ?></option>
+									<option value="<?= $data['id_barang'] ?>"<?= $data['id_barang'] == $Request['id_barang'] ? "selected":""?>><?= $data['nama_barang'] ?></option>
 								<?php } ?>
                             </select>
                         </div>
                     </div>-->
 					
-					<div class="col-md-6">
+					<!--<div class="col-md-6">
                         <div class="mb-3">
                             <label for="barang_request" class="form-label">Barang Request</label>
                             <input type="text" class="form-control" name="barang_request" id="barang_request" placeholder="Masukkan barang request..." value="<?= $Request['barang_request'] ?>">
                         </div>
-                    </div>
+                    </div>-->
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="jumlah" class="form-label">Jumlah</label>

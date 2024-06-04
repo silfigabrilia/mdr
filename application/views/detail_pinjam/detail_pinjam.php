@@ -17,6 +17,7 @@
 						<th>Serial Code</th>
 						<th>Item Description</th>
 						<th>Quantity</th>
+						<th>Lokasi</th>
                         <th>Keterangan</th>
                         <th>Aksi</th>
                     </tr>
@@ -31,6 +32,7 @@
 							<td><?php echo $dp->serial_code ?></td>
 							<td><?php echo $dp->item_description ?></td>
 							<td><?php echo $dp->qtty ?></td>
+							<td><?php echo $dp->lokasi ?></td>
 							<td><?php echo $dp->keterangan ?></td>
 							
                             <td>

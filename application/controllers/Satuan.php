@@ -21,7 +21,9 @@ class Satuan extends CI_Controller
     public function index()
     {
         $data['title'] = 'Satuan';
-        $data['Satuan'] = $this->m_satuan->tampil_satuan()->result();
+        //$data['Satuan'] = $this->m_satuan->tampil_satuan()->result();
+		$render=$this->Mmain->qRead("satuan");
+		$data['Satuan'] = $render->result();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -31,7 +33,9 @@ class Satuan extends CI_Controller
     public function tambah()
     {
         $data['title'] = 'Satuan';
-        $data['Satuan'] = $this->m_satuan->tampil_datasatuan()->result();
+        //$data['Satuan'] = $this->m_satuan->tampil_datasatuan()->result();
+		$render=$this->Mmain->qRead("satuan");
+		$data['Satuan'] = $render->result();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);

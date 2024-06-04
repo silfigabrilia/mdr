@@ -22,10 +22,12 @@ class Barang extends CI_Controller
     {
         $data['title'] = 'Barang';
         //$data['Barang'] = $this->m_data->tampil_data('barang')->result();
-		$render=$this->Mmain->qRead("barang a left outer join detail_barang b on a.id_barang = b.id_barang group by a.id_barang "
+		/* $render=$this->Mmain->qRead("barang a left outer join detail_barang b on a.id_barang = b.id_barang group by a.id_barang "
 		,"a.id_barang, a.nama_barang, a.id_jenis, a.id_satuan, 
 		case when sum(b.qtty) is not null 
-		then sum(b.qtty) else 0 end as qtty  ");
+		then sum(b.qtty) else 0 end as qtty  "); */
+		$render=$this->Mmain->qRead("barang b LEFT OUTER JOIN detail_barang d ON d.id_barang =b.id_barang GROUP BY b.id_barang",
+									"b.id_barang, b.nama_barang, SUM(d.qtty) as stok, b.id_jenis, b.id_satuan ");
 		$data['Barang'] = $render->result();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);

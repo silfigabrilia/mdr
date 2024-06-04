@@ -19,7 +19,7 @@
                         <input type="hidden" name="id_replace" id="id_replace" value="<?= $Replace['id_replace'] ?>">
                     </div>
                 </div>
-                    <div class="col-md-6">
+                   <!-- <div class="col-md-6">
                     <div class="mb-3">
                         <label for="jumlah" class="form-label">Jumlah</label>
                         <input type="text" class="form-control" name="jumlah" id="jumlah" placeholder="Masukkan Jumlah..."value="<?= $Replace['jumlah'] ?>">
@@ -67,7 +67,7 @@
                         <label for="qty" class="form-label">Quantity</label>
                         <input type="text" class="form-control" name="qty" id="qty" placeholder="Masukkan Kuantitas Barang..." value="<?= $Replace['qty'] ?>">
                     </div>
-                    </div>
+                    </div>-->
 					 <div class="col-md-6">
 					<div class="mb-3">
 						<label for="status" class="form-label">Status</label>

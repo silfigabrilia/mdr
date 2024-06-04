@@ -30,13 +30,24 @@ class Detail_Replace extends CI_Controller
         $this->load->view('templates/footer');
     }
 	
-public function init($id)
+public function init($id="")
  {
         $data['title'] = 'Detail Replace';
+		$data['id'] = $id;
+		
         //$data['Detail_Barang'] = $this->m_detail_barang->tampil_detail()->result();
-		$render  = $this->Mmain->qRead("detail_ganti det
+		/* $render  = $this->Mmain->qRead("detail_ganti det
         INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang  = '$id' ",
-        "det.id_detail_replace, det.nama_replace, det.tgl_replace, det.id_barang, det.jml_replace, det.qty_replace, det.serial_code, det.status, det.keterangan");
+        "det.id_detail_replace, det.nama_replace, det.tgl_replace, det.id_barang, det.jml_replace, det.qty_replace, det.serial_code, det.lokasi, det.status, det.keterangan"); */
+		/* $render  = $this->Mmain->qRead("barang b
+        INNER JOIN detail_ganti det ON det.id_barang = b.id_barang 
+		LEFT JOIN detail_barang db ON db.id_detail_barang = det.id_detail_barang WHERE det.id_barang  = '$id' ", 
+		"det.id_detail_replace, det.tgl_replace, det.id_barang, det.jml_replace, det.qty_replace, det.serial_code, det.lokasi, det.status, det.keterangan, det.id_detail_barang, db.item_description, det.id_replace");  */
+		
+		$render  = $this->Mmain->qRead("ganti r
+        INNER JOIN detail_ganti det ON det.id_replace = r.id_replace 
+		LEFT JOIN detail_barang db ON db.id_detail_barang = det.id_detail_barang WHERE det.id_replace  = '$id' ", 
+		"det.id_detail_replace, det.tgl_replace, det.id_barang, det.jml_replace, det.qty_replace, det.serial_code, det.lokasi, det.status, det.keterangan, det.id_detail_barang, db.item_description, det.id_replace"); 
         $data['Detail_Replace'] = $render->result();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
@@ -45,14 +56,24 @@ public function init($id)
         $this->load->view('templates/footer');
     }
     
-	public function tambah_data_detail()
+	public function tambah_data_detail($id)
 	 {
         $data['title'] = 'Detail Replace';
+		
         //$data['Detail_Replace'] = $this->M_detail_replace->tampil_data_detail()->result();
-		$render  = $this->Mmain->qRead("detail_ganti det
+		/* $render  = $this->Mmain->qRead("detail_ganti det
         INNER JOIN barang b ON det.id_barang = b.id_barang WHERE det.id_barang",
-        "det.id_detail_replace, det.nama_replace, det.tgl_replace, det.id_barang, det.jml_replace, det.qty_replace, det.serial_code, det.status, det.keterangan");
+        "det.id_detail_replace, det.nama_replace, det.tgl_replace, det.id_barang, det.jml_replace, det.qty_replace, det.serial_code, det.lokasi, det.status, det.keterangan"); */
+		/* $render  = $this->Mmain->qRead("barang b
+        INNER JOIN detail_ganti det ON det.id_barang = b.id_barang 
+		LEFT JOIN detail_barang db ON db.id_detail_barang = det.id_detail_barang WHERE det.id_barang", 
+		"det.id_detail_replace, det.tgl_replace, det.id_barang, det.jml_replace, det.qty_replace, det.serial_code, det.lokasi, det.status, det.keterangan, det.id_detail_barang, db.item_description, det.id_replace"); */
+		$render  = $this->Mmain->qRead("ganti r
+        INNER JOIN detail_ganti det ON det.id_replace = r.id_replace 
+		LEFT JOIN detail_barang db ON db.id_detail_barang = det.id_detail_barang WHERE det.id_replace  = '$id' ", 
+		"det.id_detail_replace, det.tgl_replace, det.id_barang, det.jml_replace, det.qty_replace, det.serial_code, det.lokasi, det.status, det.keterangan, det.id_detail_barang, db.item_description, det.id_replace"); 
         $data['Detail_Replace'] = $render->result();
+		$data['id'] = $id;
 		$data['barang'] = $this->M_detail_replace->getBarang();
 		#$data['detail_barang'] = $this->m_detail_req->getseri();
         $this->load->view('templates/header', $data);
@@ -70,28 +91,41 @@ public function init($id)
             redirect('dashboard');
         }
         $id = $this->Mmain->autoId("detail_ganti","id_detail_replace","DRT","DRT"."001","001");
-        $nama_replace = $this->input->post('nama_replace');
-        $date = $this->input->post('tgl_replace');
+		
+        $id_replace = $this->input->post('id_replace');
+		//$nama_replace = $this->input->post('nama_replace');
+        $tgl_replace = $this->input->post('tgl_replace');
         $id_barang = $this->input->post('id_barang');
         $jml_replace = $this->input->post('jml_replace');
         $qty_replace = $this->input->post('qty_replace');
         $serial_code = $this->input->post('serial_code');
-        $status = $this->input->post('status');
+		$item_description 	= $this->input->post('item_description');
+        $lokasi = $this->input->post('lokasi');
+		$status = $this->input->post('status');
         $keterangan = $this->input->post('keterangan');
 
+		$detail_barang_data = $this->Mmain->qRead("detail_barang where serial_code = '$serial_code' ", "id_detail_barang");
+		
+		if ($detail_barang_data->num_rows()>0 ) {
+        $idDetailBarang = $detail_barang_data->row()->id_detail_barang;
+		
         $this->Mmain->qIns("detail_ganti", array(
             $id,
-            $nama_replace,
-            $date,
+            $id_replace,
+            $tgl_replace,
             $id_barang,
             $jml_replace,
             $qty_replace,
             $serial_code,
+			$idDetailBarang, // ini value hasil dari qRead diatas.
+			$lokasi,
             $status,
-            $keterangan
+            $keterangan,
         ));
+		}
+		
         $this->session->set_flashdata('success', 'Data Detail Replace <strong>Berhasil</strong> Ditambahkan!');
-        redirect("detail_replace/init/".$id_barang);
+        redirect("detail_replace/init/".$id_replace);
     }
 
     public function edit_detail($id)
@@ -116,7 +150,7 @@ public function init($id)
 
     $data = [
         'id_detail_replace' => $this->input->post('id_detail_replace'),
-        'nama_replace' => $this->input->post('nama_replace'),
+        'id_replace' => $this->input->post('id_replace'),
         'tgl_replace' => $this->input->post('tgl_replace'),
         'id_barang' => $this->input->post('id_barang'),
         'jml_replace' => $this->input->post('jml_replace'),
@@ -128,48 +162,19 @@ public function init($id)
 
     // Menggunakan metode qUpdpart untuk mengubah data
     $this->Mmain->qUpdpart('detail_ganti', 'id_detail_replace', $data['id_detail_replace'], 
-        ['nama_replace', 'tgl_replace', 'id_barang', 'jml_replace', 'qty_replace', 'serial_code', 'status', 'keterangan'], 
+        ['tgl_replace', 'id_barang', 'jml_replace', 'qty_replace', 'serial_code', 'lokasi','status', 'keterangan'], 
         [$data['nama_replace'], $data['tgl_replace'], $data['id_barang'], $data['jml_replace'], 
         $data['qty_replace'], $data['serial_code'], $data['status'], $data['keterangan']]);
 
     if ($this->db->affected_rows() > 0) {
         $this->session->set_flashdata('success', 'Jenis Barang <strong>Berhasil</strong> Diubah!');
-        redirect('detail_replace/init/'.$data['id_barang']);
+        redirect("detail_replace/init/".$data['id_replace']);
     } else {
         $this->session->set_flashdata('error', 'Jenis Barang <strong>Gagal</strong> Diubah!');
-        redirect('detail_replace');
+        redirect("detail_replace/init/".$data['id_replace']);
     }
 }
 
-	public function update(){
-        $nama_replace = $this->input->post('nama_barang_request');
-		$date =  $this->input->post('tgl_replace');
-        $id_barang = $this->input->post('id_barang');
-        $jml_replace = $this->input->post('jml_replace');
-        $qty_replace = $this->input->post('qty_replace');
-        $serial_code = $this->input->post('serial_code');
-        $status = $this->input->post('status');
-        $keterangan= $this->input->post('keterangan');
-       
-
-        $data = array(
-        'nama_replace' => $nama_replace,
-        'tgl_replace' => $date,
-        'id_barang' =>$id_barang,
-        'jml_replace' => $jml_replace,
-        'qty_replace' => $qty_replace,
-        'serial_code' => $serial_code,
-        'status' => $status,
-        'keterangan' => $keterangan,
-        );
-        
-        $where = array(
-        'id_detail_replace' => $id_detail_replace
-        );
-        
-        $this->M_detail_replace->update_data($where,$data,'detail_ganti');
-        redirect('detail_replace');
-       }
 
    public function del_replace($id,$idBarang)
 {

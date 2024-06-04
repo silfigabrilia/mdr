@@ -29,7 +29,7 @@
                             <input type="text" class="form-control" name="nama_pemberi" id="nama_pemberi" placeholder="Masukkan Nama Pemberi...">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                   <!-- <div class="col-md-6">
                         <div class="mb-3">
                             <label for="nama_barang" class="form-label">Nama Barang</label>
                             <select class="form-control" name="nama_barang" id="nama_barang">
@@ -37,10 +37,10 @@
                                 <?php foreach ($barang as $data) { ?>
                                     <option value="<?= $data['nama_barang'] ?>"><?= $data['nama_barang'] ?></option>
                                 <?php } ?>
-                                <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
+                                <!-- tambahkan opsi barang lainnya sesuai kebutuhan 
                             </select>
                         </div>
-                    </div>
+                    </div>-->
 
                     <div class="col-md-6">
                         <div class="mb-3">

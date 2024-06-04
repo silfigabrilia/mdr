@@ -56,7 +56,7 @@ class Request extends CI_Controller
 
         $nama = $this->input->post('nama');
         $tgl_request = $this->input->post('tgl_request');
-        $barang_request = $this->input->post('barang_request');
+        //$barang_request = $this->input->post('barang_request');
         $jumlah = $this->input->post('jumlah');
         $keterangan = $this->input->post('keterangan');
 		$status = $this->input->post('status');
@@ -65,7 +65,7 @@ class Request extends CI_Controller
             $id,
             $nama,
             $tgl_request,
-            $barang_request,
+            //$barang_request,
             $jumlah,
             $keterangan,
 			$status
@@ -103,7 +103,7 @@ class Request extends CI_Controller
 			'id_request' => $this->input->post('id_request'),
             'nama' => $this->input->post('nama'),
             'tgl_request' => $this->input->post('tgl_request'),
-            'barang_request' => $this->input->post('barang_request'),
+            //'barang_request' => $this->input->post('barang_request'),
             'jumlah' => $this->input->post('jumlah'),
             'keterangan' => $this->input->post('keterangan'),
 			'status' => $this->input->post('status'),
@@ -122,30 +122,6 @@ class Request extends CI_Controller
 		// Redirect ke halaman detail_request
 		redirect('request');
 	}
-
-    /* public function update(){
-        $id_request = $this->input->post('id_request');
-        $nama = $this->input->post('nama');
-        $tgl_request = $this->input->post('tgl_request');
-        $id_barang = $this->input->post('barang');
-        $jumlah = $this->input->post('jumlah');
-        $keterangan = $this->input->post('keterangan');
-
-        $data = array(
-        'nama' => $nama,
-        'tgl_request' => $tgl_frequest,
-        'id_barang' => $id_barang,
-        'jumlah' => $jumlah,
-        'keterangan' => $keterangan,
-        );
-        
-        $where = array(
-        'id_request' => $id_request
-        );
-        
-        $this->m_data->update_data_request($where,$data,'request');
-        redirect('request');
-       } */
 
     public function hapus_data($id)
        {

@@ -49,7 +49,7 @@
                         <!-- <div class="row"> -->
                             <div class="row float-right">
                                 <div class="col-md-12">
-                                    <a href="<?= base_url('detail_barang') ?>" class="btn btn-danger" id="barang" style="cursor: pointer;"><i class="ti ti-reload"></i> Kembali</a>
+                                    
                                     <button type="submit" formaction="<?= base_url('Detail_Barang/proses_ubah/'.$Detail_Barang['id_detail_barang']) ?>" class="btn btn-success" id="btn-save-mtact" style="cursor: pointer;"><i class="ti ti-save"></i> Simpan</button>
                                 </div>
                             </div>

@@ -1,4 +1,4 @@
-<?php include 'Koneksi.php' ?>
+
 <div class="page-heading">
     <h1 class="page-title"><?= $title ?></h1>
 </div>
@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label for="nama" class="form-label">Nama Barang Replace</label>
+                        <label for="nama" class="form-label">Nama</label>
                         <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama...">
                     </div>
                 </div>
@@ -24,34 +24,18 @@
                         <input type="date" class="form-control" name="tgl_replace" id="tgl_replace" value="<?= date('Y-m-d')?>">
                     </div>
 				</div>
-					<div class="col-md-6">
-                        <div class="mb-3">
-                            <label  class="form-label">ID Barang</label>
-                        <div class="input-group">
-                            <select class="form-control" name="id_barang" id="getIdBarang" required>
-                                <option value="" >Pilih Barang</option>
-                                <?php 
-								//foreach ($barang as $data) { 
-								$itembarang = mysqli_query($koneksi,"select * from barang");
-								while($b = mysqli_fetch_array($itembarang)){
-								?>
-                                    <option value="<?= $b['id_barang'] ?>"><?= $b['nama_barang'] ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-				 <div class="col-md-6">
+					
+				<!-- <div class="col-md-6">
                         <div class="mb-3">
                             <label for="serial_code" class="form-label">Nomor Seri</label>
                             <select class="form-control" name="serial_code" id="showSerialCode">
                                 <option value="">Pilih Nomor Seri</option>
                                 
-                                <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
+                                <!-- tambahkan opsi barang lainnya sesuai kebutuhan
                             </select>
                         </div>
-                    </div>
-                    <div class="col-md-6">
+                    </div>-->
+                   <!-- <div class="col-md-6">
                     <div class="mb-3">
                         <label for="jumlah" class="form-label">Jumlah Barang Replace</label>
                         <input type="text" class="form-control" name="jumlah" id="jumlah" placeholder="Masukkan Jumlah Barang...">
@@ -62,7 +46,7 @@
                         <label for="qty" class="form-label">Quantity</label>
                         <input type="text" class="form-control" name="qty" id="qty" placeholder="Masukkan Kuantitas Barang...">
                     </div>
-                    </div>
+                    </div>-->
 					 <div class="col-md-6">
                         <div class="mb-3">
                             <label for="status" class="form-label">Status</label>
@@ -74,19 +58,19 @@
                                 <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
                             </select>
                         </div>
-                    </div>
-                <div class="col-md-6">
+       </div>
+               <div class="col-md-6">
                     <div class="mb-3">
-                        <label for="keterangan" class="form-label">keterangan</label>
-                        <input type="text" class="form-control" name="keterangan" id="keterangan" min="1">
+                        <label for="keterangan" class="form-label">Keterangan</label>
+                        <input type="text" class="form-control" name="keterangan" id="nama" placeholder="Masukkan Keterangan...">
                     </div>
-                    </div>
+                </div>
                 </div>
                     </div>
                 </div>
                         <div class="row float-right">
                             <div class="col-md-12">
-                                <a href="<?= base_url('Replace') ?>" class="btn btn-danger" id="deletereplace" style="cursor: pointer;"><i class="ti ti-reload"></i> Kembali</a>
+                                
                                 <button type="submit" formaction="<?=base_url('Replace/proses_tambah_replace')?>" class="btn btn-success" id="simpanreplace" style="cursor: pointer;"><i class="ti ti-save"></i> Simpan</button>
                             </div>
                             </div>

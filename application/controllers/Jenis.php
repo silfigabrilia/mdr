@@ -21,6 +21,8 @@ class Jenis extends CI_Controller
     {
         $data['title'] = 'Jenis';
         $data['jenis'] = $this->m_jenis->tampil_jenis()->result();
+		//$render=$this->Mmain->qRead("jenis");
+		//$data['Jenis'] = $render->result();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -31,7 +33,9 @@ class Jenis extends CI_Controller
     public function tambah_jenis()
     {
         $data['title'] = 'Jenis';
-        $data['Jenis'] = $this->m_jenis->tampil_datajenis()->result();
+        //$data['Jenis'] = $this->m_jenis->tampil_datajenis()->result();
+		$render=$this->Mmain->qRead("jenis");
+		$data['Jenis'] = $render->result();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);

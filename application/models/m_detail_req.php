@@ -69,13 +69,13 @@ class M_detail_req extends CI_Model{
 
     public function ubah_request($data)
     {
-        $this->db->set('nama_barang_request', $data['nama_barang_request']);
+        //$this->db->set('nama_barang_request', $data['nama_barang_request']);
         $this->db->set('jumlah_request', $data['jumlah_request']);
         $this->db->set('keterangan', $data['keterangan']);
         $this->db->set('id_barang', $data['id_barang']);
         $this->db->set('serial_code', $data['serial_code']);
         $this->db->set('jumlah', $data['jumlah']);
-        $this->db->set('tanggal_waktu', $data['tanggal_waktu']);
+        //$this->db->set('tanggal_waktu', $data['tanggal_waktu']);
         $this->db->set('status', $data['status']);
         $this->db->where('id_detail_request', $data['id_detail_request']);
 

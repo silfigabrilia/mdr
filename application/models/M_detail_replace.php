@@ -58,6 +58,7 @@ class M_detail_replace extends CI_Model
     function tambah_data_detail($data){
         return $this->db->insert($this->_table->$data);
         }
+		
         function edit_detail($id)
         {
             $query = $this->db->query("SELECT * FROM detail_ganti WHERE id_detail_replace = '$id'");

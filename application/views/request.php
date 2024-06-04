@@ -16,7 +16,6 @@
                     <th>ID Request</th>
                     <th>Nama</th>
                     <th>Tanggal</th>
-                    <th>Barang Request</th>
                     <th>Jumlah</th>
                     <th>Keterangan</th>
 					<th>Status</th>
@@ -31,7 +30,7 @@
                         <td><?php echo $r->id_request ?></td>
                         <td><?php echo $r->nama?></td>
                         <td><?php echo $r->tgl_request ?></td>
-                        <td><?php echo $r->barang_request ?></td>
+                        <!--<td><?php echo $r->barang_request ?></td>-->
                         <td><?php echo $r->jumlah ?></td>
                         <td><?php echo $r->keterangan ?></td>
 						<td><?php echo $r->status ?></td>

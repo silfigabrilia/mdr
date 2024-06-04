@@ -15,13 +15,13 @@
                     <th>No</th>
                     <th>ID Detail Request</th>
 					<th>ID Request</th>
-                    <th>Nama Barang Request</th>
                     <th>Jumlah Request</th>
                     <th>Keterangan</th>
                     <th>ID Barang</th>
                     <th>Serial Code</th>
-                    <th>Jumlah</th>
-                    <th>Tanggal Waktu</th>
+					<th>Item Description</th>
+                    <th>Lokasi</th>
+					<th>Jumlah</th>
                     <th>Status</th>
                     <th>Aksi</th>
                 </tr>
@@ -33,13 +33,15 @@
                         <td><?php echo $no++ ?></td>
                         <td><?php echo $dr->id_detail_request ?></td>
 						<td><?php echo $dr->id_request ?></td>
-                        <td><?php echo $dr->barang_request?></td>
+                        <!--<td><?php echo $dr->barang_request?></td>-->
                         <td><?php echo $dr->jumlah_request ?></td>
                         <td><?php echo $dr->keterangan?></td>
                         <td><?php echo $dr->id_barang ?></td>
                         <td><?php echo $dr->serial_code ?></td>
+						<td><?php echo $dr->item_description ?></td>
+						<td><?php echo $dr->lokasi ?></td>
                         <td><?php echo $dr->jumlah ?></td>
-                        <td><?php echo $dr->tanggal_waktu ?></td>
+                        <!--<td><?php echo $dr->tanggal_waktu ?></td>-->
                         <td><?php echo $dr->status ?></td>
                         <td>
                         

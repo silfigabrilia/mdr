@@ -18,14 +18,8 @@
                             <input type="text" class="form-control" name="id_request" id="id_request" placeholder="ID Request..." value="<?= $Detail_Request['id_request'] ?>" readonly>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="barang_request" class="form-label">Nama Barang Request</label>
-                            <input type="text" class="form-control" name="barang_request" id="barang_request" placeholder="Masukkan nama barang..." value="<?= $Detail_Request['barang_request'] ?>"> 
-                            <input type="hidden" name="id_detail_request" id="id_detail_request" value="<?= $Detail_Request['id_detail_request'] ?>">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
+                    
+					<div class="col-md-6">
                         <div class="mb-3">
                             <label for="jumlah_request" class="form-label">Jumlah Request</label>
                             <input type="number" class="form-control" name="jumlah_request" id="jumlah_request" min="1" value="<?= $Detail_Request['jumlah_request'] ?>">
@@ -68,18 +62,19 @@
                             </select>
                         </div>
                     </div>
+					<div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="lokasi" class="form-label">Lokasi</label>
+                            <input type="text" class="form-control" name="lokasi" id="lokasi" min="1" value="<?= $Detail_Request['lokasi'] ?>">
+                        </div>
+                    </div>
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="jumlah" class="form-label">Jumlah</label>
                             <input type="number" class="form-control" name="jumlah" id="jumlah" min="1" value="<?= $Detail_Request['jumlah'] ?>">
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="tanggal_waktu" class="form-label">Tanggal Waktu</label>
-                            <input type="datetime-local" class="form-control" name="tanggal_waktu" id="tanggal_waktu" value="<?= $Detail_Request['tanggal_waktu'] ?>">
-                        </div>
-                    </div>
+                    
                     <div class="col-md-6">
 					<div class="mb-3">
 						<label for="status" class="form-label">Status</label>
@@ -98,7 +93,6 @@
                         <!-- <div class="row"> -->
                             <div class="row float-right">
                                 <div class="col-md-12">
-                                    <a href="<?= base_url('detail_request')?>" class="btn btn-danger" id="barang" style="cursor: pointer;"><i class="ti ti-reload"></i> Kembali</a>
                                     <button type="submit" formaction="<?= base_url('Detail_Request/proses_ubah') ?>" class="btn btn-success" id="btn-save-mtact" style="cursor: pointer;"><i class="ti ti-save"></i> Simpan</button>
                                 </div>
                             </div>

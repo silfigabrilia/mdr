@@ -54,6 +54,12 @@
                         <input type="text" class="form-control" name="qtty" id="qtty" placeholder="Masukkan Kuantitas Quantity..." value="<?= $Detail_pinjam['qtty'] ?>">
                     </div>
                     </div>
+					<div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="lokasi" class="form-label">lokasi</label>
+                        <input type="text" class="form-control" name="lokasi" id="loksai" placeholder="Masukkan lokasi..." value="<?= $Detail_pinjam['lokasi'] ?>">
+                    </div>
+					</div>
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="keterangan" class="form-label">Keterangan</label>

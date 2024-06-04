@@ -12,16 +12,22 @@
         <div class="ibox-body">
             <form action="<?= base_url('Replace/proses_tambah_detail')?>" method="POST">
             <div class="row">
-                <div class="col-md-6">
+				<div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="id_replace" class="form-label">ID Replace</label>
+                            <input type="text" class="form-control" name="id_replace" id="id_replace" placeholder="ID Replace..." value="<?= $id ?>" readonly> 
+                        </div>
+                    </div>
+                <!--<div class="col-md-6">
                     <div class="mb-3">
                         <label for="nama_replace" class="form-label">Nama Barang Replace</label>
                         <input type="text" class="form-control" name="nama_replace" id="nama" placeholder="Masukkan Nama Barang Replace...">
                     </div>
-                </div>
+                </div>-->
                     <div class="col-md-6">
                     <div class="mb-3">
                         <label for="tgl_replace" class="form-label">Tanggal Replace</label>
-                        <input type='date' class="form-control" name="tgl_replace" id="tgl_replace" value="<?= date('Y-m-d')?>" placeholder="Masukkan Jumlah Barang...">
+                        <input type="date" class="form-control" name="tgl_replace" id="tgl_replace" value="<?= date('Y-m-d')?>">
                     </div>
                     </div>
                     <div class="col-md-6">
@@ -62,6 +68,12 @@
                         <input type="text" class="form-control" name="qty_replace" id="qty_replace" placeholder="Masukkan Kuantitas Barang...">
                     </div>
                     </div>
+                    <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="lokasi" class="form-label">Lokasi</label>
+                        <input type="text" class="form-control" name="lokasi" id="lokasi" placeholder="Masukkan Kuantitas Barang...">
+                    </div>
+                    </div>
           <div class="col-md-6">
                         <div class="mb-3">
                             <label for="status" class="form-label">Status</label>
@@ -85,7 +97,7 @@
                 </div>
                         <div class="row float-right">
                             <div class="col-md-12">
-                                <a href="<?= base_url('Detail_Replace') ?>" class="btn btn-danger" id="deletereplace" style="cursor: pointer;"><i class="ti ti-reload"></i> Kembali</a>
+                                
                                 <button type="submit" formaction="<?=base_url('Detail_Replace/proses_tambah_detail')?>" class="btn btn-success" id="simpanreplace" style="cursor: pointer;"><i class="ti ti-save"></i> Simpan</button>
                             </div>
                             </div>

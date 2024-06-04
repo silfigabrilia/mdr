@@ -48,7 +48,7 @@ class Detail_pinjam extends CI_Controller
 		INNER JOIN detail_pinjam dp ON p.id_pinjam = dp.id_pinjam 
 		INNER JOIN detail_barang bd ON dp.id_detail_barang = bd.id_detail_barang
 		INNER JOIN barang b ON b.id_barang = bd.id_barang WHERE p.id_pinjam = '$id' ",
-		"dp.qtty, dp.keterangan, b.nama_barang, bd.serial_code, bd.item_description, dp.id_detail_pinjam, p.id_pinjam, dp.id_detail_barang"); 
+		"dp.qtty, dp.keterangan, b.nama_barang, bd.serial_code, bd.item_description, dp.lokasi,  dp.id_detail_pinjam, p.id_pinjam, dp.id_detail_barang"); 
 		 
 		/* $render = $this->Mmain->qRead("detail_pinjam dpm INNER JOIN pinjam p ON dpm.id_pinjam = p.id_pinjam INNER JOIN detail_barang b ON dpm.id_detail_barang=b.id_detail_barang WHERE dpm.id_pinjam = '$id'",
 		"dpm.id_detail_pinjam, dpm.id_pinjam, dpm.id_detail_barang,
@@ -78,10 +78,10 @@ class Detail_pinjam extends CI_Controller
 		INNER JOIN detail_pinjam dp ON p.id_pinjam = dp.id_pinjam 
 		INNER JOIN detail_barang bd ON dp.id_detail_barang = bd.id_detail_barang
 		INNER JOIN barang b ON b.id_barang = bd.id_barang WHERE p.id_pinjam = '$id' ",
-		"dp.qtty, dp.keterangan, b.nama_barang, bd.serial_code, bd.item_description, dp.id_detail_barang"); 
+		"dp.qtty, dp.keterangan, b.nama_barang, bd.serial_code, dp.lokasi, bd.item_description, dp.id_detail_barang"); 
 		$data['id'] = $id;
 		/* var_dump ($id_pinjam,$id_detail_barang,$id_barang,$serial_code,$item_description,$qtty,$keterangan);
-die; */
+		die; */
 		$data['Detail_pinjam'] = $render->result();
 		 // Mengambil data dari tabel detail_barang
 		//$data['detail_barang'] = $this->M_detail_pinjam->getDetailBarang();
@@ -109,10 +109,11 @@ die; */
 		$serial_code 		= $this->input->post('serial_code');
 		$item_description 	= $this->input->post('item_description');
 		$qtty 				= $this->input->post('qtty');
+		$lokasi 			= $this->input->post('lokasi');
         $keterangan 		= $this->input->post('keterangan');
 		
-/* var_dump ($id_pinjam,$id_detail_barang,$id_barang,$serial_code,$item_description,$qtty,$keterangan);
-die; */
+	/* var_dump ($id_pinjam,$id_detail_barang,$id_barang,$serial_code,$item_description,$qtty,$keterangan);
+	die; */
 		
 		$detail_barang_data = $this->Mmain->qRead("detail_barang where serial_code = '$serial_code' ", "id_detail_barang");
 		
@@ -124,6 +125,7 @@ die; */
             $id_pinjam,
 			$idDetailBarang, // ini value hasil dari qRead diatas.
 			$qtty,
+			$lokasi,
             $keterangan,
         )); 
         
@@ -181,10 +183,10 @@ die; */
 			$this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Diubah!');
 			
 			//echo json_encode($tbColVal);
-			redirect('pinjam'); 
+			redirect('detail_pinjam'); 
 		} else {
 			$this->session->set_flashdata('error', 'Serial code tidak ditemukan!');
-			redirect('pinjam');
+			redirect('detail_pinjam');
 		}
 	}
 

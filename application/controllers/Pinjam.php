@@ -59,7 +59,7 @@ class Pinjam extends CI_Controller
             'nama_peminjam' => $this->input->post('nama_peminjam'),
             'nama_penerima' => $this->input->post('nama_penerima'),
             'nama_pemberi' => $this->input->post('nama_pemberi'),
-            'nama_barang' => $this->input->post('nama_barang'),
+            /* 'nama_barang' => $this->input->post('nama_barang'), */
             'tgl_pinjam' => $this->input->post('tgl_pinjam'),
             'tgl_kembali' => $this->input->post('tgl_kembali'),
             'jam_pinjam' => $this->input->post('jam_pinjam'),
@@ -88,7 +88,7 @@ class Pinjam extends CI_Controller
             $nama_peminjam,
             $nama_penerima,
             $nama_pemberi,
-            $nama_barang,
+            /* $nama_barang, */
             $tgl_pinjam,
             $tgl_kembali,
             $jam_pinjam,
@@ -124,7 +124,7 @@ class Pinjam extends CI_Controller
         'nama_peminjam' => $this->input->post('nama_peminjam'),
         'nama_penerima' => $this->input->post('nama_penerima'),
         'nama_pemberi' => $this->input->post('nama_pemberi'),
-        'nama_barang' => $this->input->post('nama_barang'),
+        /* 'nama_barang' => $this->input->post('nama_barang'), */
         'tgl_pinjam' => $this->input->post('tgl_pinjam'),
         'tgl_kembali' => $this->input->post('tgl_kembali'),
         'jam_pinjam' => $this->input->post('jam_pinjam'),
@@ -136,7 +136,7 @@ class Pinjam extends CI_Controller
     $this->load->model('Mmain');
 
     // Menggunakan metode qUpdpart untuk mengubah data
-    $this->Mmain->qUpdpart('pinjam', 'id_pinjam', $data['id_pinjam'], ['nama_peminjam', 'nama_penerima', 'nama_pemberi', 'nama_barang', 'tgl_pinjam', 'tgl_kembali', 'jam_pinjam', 'jam_kembali', 'keterangan'], [$data['nama_peminjam'], $data['nama_penerima'], $data['nama_pemberi'], $data['nama_barang'], $data['tgl_pinjam'], $data['tgl_kembali'], $data['jam_pinjam'], $data['jam_kembali'], $data['keterangan']]);
+    $this->Mmain->qUpdpart('pinjam', 'id_pinjam', $data['id_pinjam'], ['nama_peminjam', 'nama_penerima', 'nama_pemberi', 'tgl_pinjam', 'tgl_kembali', 'jam_pinjam', 'jam_kembali', 'keterangan'], [$data['nama_peminjam'], $data['nama_penerima'], $data['nama_pemberi'], $data['nama_barang'], $data['tgl_pinjam'], $data['tgl_kembali'], $data['jam_pinjam'], $data['jam_kembali'], $data['keterangan']]);
 
     $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Diubah!');
     

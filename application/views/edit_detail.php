@@ -12,15 +12,20 @@
         <div class="ibox-body">
             <form action="<?= base_url('Detail_Replace/proses_edit_detail')?>" method="POST">
             <div class="row">
-                <div class="col-md-6">
+                <!--<div class="col-md-6">
                     <div class="mb-3">
                         <label for="nama_replace" class="form-label">Nama Barang Replace</label>
                         <input type="text" class="form-control" name="nama_replace" id="nama" placeholder="Masukkan Nama..."
 						value="<?= $Detail_Replace['nama_replace'] ?>">
-                        <input type="hidden" name="id_detail_replace" id="id_detail_replace"
-						value="<?= $Detail_Replace['id_detail_replace'] ?>">
+                      
                     </div>
-                </div>
+                </div>-->
+				  <input type="hidden" name="id_detail_replace" id="id_detail_replace"
+						value="<?= $Detail_Replace['id_detail_replace'] ?>">
+						
+				  <input type="hidden" name="id_replace" id="id_detail_replace"
+						value="<?= $Detail_Replace['id_replace'] ?>">
+						
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="jumlah" class="form-label">Jumlah</label>
@@ -85,7 +90,13 @@
 						</select>
 					</div>
 				</div>
-				
+				<div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="lokasi" class="form-label">Lokasi</label>
+                        <input type="text" class="form-control" name="lokasi" id="keterangan" min="1"value="<?= $Detail_Replace['lokasi'] ?>">
+                    
+                    </div>
+                </div>
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="keterangan" class="form-label">keterangan</label>
@@ -98,7 +109,6 @@
                 </div>
                         <div class="row float-right">
                             <div class="col-md-12">
-                                <a href="<?= base_url('Detail_Replace') ?>" class="btn btn-danger" id="deletereplace" style="cursor: pointer;"><i class="ti ti-reload"></i> Kembali</a>
                                 <button type="submit" class="btn btn-success" id="simpanreplace" style="cursor: pointer;"><i class="ti ti-save"></i> Simpan</button>
                             </div>
                             </div>

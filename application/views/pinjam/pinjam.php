@@ -17,7 +17,6 @@
                         <th>Nama Peminjam</th>
                         <th>Nama Penerima</th>
                         <th>Nama Pemberi</th>
-                        <th>Nama Barang</th>
                         <th>Tanggal Pinjam</th>
                         <th>Tanggal Kembali</th>
                         <th>Jam Pinjam</th>
@@ -35,7 +34,7 @@
                             <td><?php echo $P->nama_peminjam ?></td>
                             <td><?php echo $P->nama_penerima ?></td>
                             <td><?php echo $P->nama_pemberi ?></td>
-                            <td><?php echo $P->nama_barang ?></td>
+                           <!-- <td><?php echo $P->nama_barang ?></td> -->
                             <td><?php echo $P->tgl_pinjam ?></td>
                             <td><?php echo $P->tgl_kembali ?></td>
                             <td><?php echo $P->jam_pinjam ?></td>

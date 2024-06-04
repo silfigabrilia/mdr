@@ -21,7 +21,8 @@ class Replace extends CI_Controller
     public function index()
     {
         $data['title'] = 'Replace';
-        $data['replace'] = $this->m_replace->tampil_replace()->result();
+        $render=$this->Mmain->qRead("ganti");
+		$data['Replace'] = $render->result();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('templates/sidebar', $data);
@@ -32,7 +33,8 @@ class Replace extends CI_Controller
     public function tambah_data_replace()
     {
         $data['title'] = 'Replace';
-        $data['Replace'] = $this->m_replace->tampil_datareplace()->result();
+        $render=$this->Mmain->qRead("ganti");
+		$data['Replace'] = $render->result();
         $data['barang'] = $this->m_replace->getid();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
@@ -46,29 +48,31 @@ class Replace extends CI_Controller
             $this->session->set_flashdata('error', 'Tambah data hanya untuk admin!');
             redirect('dashboard');
         }
-        $id = $this->Mmain->autoId("ganti","id_replace","DRT","DRT"."001","001");
+        $id = $this->Mmain->autoId("ganti","id_replace","R","R"."001","001");
         $nama = $this->input->post('nama');
         $date = $this->input->post('tgl_replace');
-        $id_barang = $this->input->post('id_barang');
+        /* $id_barang = $this->input->post('id_barang');
 		$serial_code = $this->input->post('serial_code');
         $jumlah = $this->input->post('jumlah');
-        $qty = $this->input->post('qty');
+        $qty = $this->input->post('qty'); */
 		$status = $this->input->post('status');
         $keterangan = $this->input->post('keterangan');
+
 
         $this->Mmain->qIns("ganti", array(
             $id,
             $nama,
             $date,
-            $id_barang,
+           /*  $id_barang,
 			$serial_code,
             $jumlah,
-            $qty,
+            $qty, */
 			$status,
             $keterangan
+
         ));
         $this->session->set_flashdata('success', 'Data Replace <strong>Berhasil</strong> Ditambahkan!');
-        redirect('Detail_Replace/tambah_data_detail');
+        redirect('Detail_Replace/tambah_data_detail/'.$id.'');
     }
     
 
@@ -84,36 +88,7 @@ class Replace extends CI_Controller
         $this->load->view('edit_replace', $data);
         $this->load->view('templates/footer');
     }
- 
-    /* public function proses_edit_replace()
-    {
-        if ($this->session->login['role'] == 'admin') {
-            $this->session->set_flashdata('error', 'Ubah data hanya untuk admin!');
-            redirect('dashboard');
-        }
 
-        $data = [
-            'id_replace' => $this->input->post('id_replace'),
-            'nama' => $this->input->post('nama'),
-            'tgl_replace' => $this->input->post('tgl_replace'),
-            'id_barang' => $this->input->post('id_barang'),
-			'serial_code' => $this->input->post('serial_code'),
-            'jumlah' => $this->input->post('jumlah'),
-            'qty' => $this->input->post('qty'),
-			'status' => $this->input->post('status'),
-            'keterangan' => $this->input->post('keterangan'),
-
-        ];
-
-        if ($this->m_replace->edit($data)) {
-            $this->session->set_flashdata('success', 'Jenis Barang <strong>Berhasil</strong> Diubah!');
-            redirect('replace');
-        } else {
-            $this->session->set_flashdata('error', 'Jenis Barang <strong>Gagal</strong> Diubah!');
-            redirect('replace');
-        }
-    } */
-	
 	public function proses_edit_replace()
 	{
 		if ($this->session->login['role'] == 'admin') {
@@ -129,10 +104,10 @@ class Replace extends CI_Controller
             'id_replace' => $this->input->post('id_replace'),
             'nama' => $this->input->post('nama'),
             'tgl_replace' => $this->input->post('tgl_replace'),
-            'id_barang' => $this->input->post('id_barang'),
+/*          'id_barang' => $this->input->post('id_barang'),
 			'serial_code' => $this->input->post('serial_code'),
             'jumlah' => $this->input->post('jumlah'),
-            'qty' => $this->input->post('qty'),
+            'qty' => $this->input->post('qty'), */
 			'status' => $this->input->post('status'),
             'keterangan' => $this->input->post('keterangan'),
 

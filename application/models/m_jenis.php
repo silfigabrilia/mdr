@@ -37,7 +37,7 @@
         public function ubah($data)
         {
             $this->db->set('nama_jenis', $data['nama_jenis']);
-            $this->db->set('nomor_seri', $data['nomor_seri']);
+            //$this->db->set('nomor_seri', $data['nomor_seri']);
             $this->db->where('id_jenis', $data['id_jenis']);
 
             return $this->db->update('jenis');

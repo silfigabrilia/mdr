@@ -29,7 +29,7 @@
                         
                         <td><?php echo $b->nama_barang ?></td>
 						<td><?php echo $b->id_jenis ?></td>
-                        <td><?php echo $b->qtty ?></td>
+                        <td><?php echo $b->stok ?></td>
                         <td><?php echo $b->id_satuan ?></td>
                         
                         <td>
