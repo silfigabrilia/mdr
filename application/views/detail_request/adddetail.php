@@ -20,25 +20,12 @@
                             <input type="text" class="form-control" name="id_request" id="id_request" placeholder="ID Request..." value="<?= $id ?>" readonly> 
                         </div>
                     </div>
-                    <!--<div class="col-md-6">
+					<div class="col-md-6">
                         <div class="mb-3">
-                            <label for="barang_request" class="form-label">Nama Barang Request</label>
-                            <input type="text" class="form-control" name="barang_request" id="barang_request" placeholder="Masukkan nama barang..."> 
-                        </div>
-                    </div>-->
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="jumlah_request" class="form-label">Jumlah Request</label>
-                            <input type="number" class="form-control" name="jumlah_request" id="jumlah_request" min="1">
+                            <label for="lokasi" class="form-label">Lokasi</label>
+                            <input type="text" class="form-control" name="lokasi" id="jumlah" placeholder="Isi Lokasi...">
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="keterangan" class="form-label">Keterangan</label>
-                            <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Masukkan keterangan...">
-                        </div>
-                    </div>
-                    
 					<div class="col-md-6">
                         <div class="mb-3">
                             <label  class="form-label">ID Barang</label>
@@ -65,12 +52,27 @@
                             </select>
                         </div>
                     </div>
+                    <!--<div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="barang_request" class="form-label">Nama Barang Request</label>
+                            <input type="text" class="form-control" name="barang_request" id="barang_request" placeholder="Masukkan nama barang..."> 
+                        </div>
+                    </div>-->
+                    <!--<div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="jumlah_request" class="form-label">Jumlah Request</label>
+                            <input type="number" class="form-control" name="jumlah_request" id="jumlah_request" min="1">
+                        </div>
+                    </div>-->
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="lokasi" class="form-label">Lokasi</label>
-                            <input type="text" class="form-control" name="lokasi" id="jumlah" placeholder="Isi Lokasi...">
+                            <label for="keterangan" class="form-label">Keterangan</label>
+                            <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Masukkan keterangan...">
                         </div>
                     </div>
+                    
+					
+                    
 					<div class="col-md-6">
                         <div class="mb-3">
                             <label for="jumlah" class="form-label">Jumlah</label>

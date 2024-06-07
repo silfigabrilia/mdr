@@ -60,6 +60,33 @@
                         <input type="text" class="form-control" name="lokasi" id="loksai" placeholder="Masukkan lokasi..." value="<?= $Detail_pinjam['lokasi'] ?>">
                     </div>
 					</div>
+					 <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="tgl_kembali" class="form-label">Tanggal Kembali</label>
+                            <input type="date" class="form-control" name="tgl_kembali" id="tgl_kembali" type="text" class="form-control date" placeholder="Tanggal Kembali..." value="<?= $Detail_pinjam['tgl_kembali'] ?>">
+                        </div>
+                    </div>
+					<div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="jam_kembali" class="form-label">Jam Kembali</label>
+                            <input type="time" class="form-control" name="jam_kembali" id="jam_kembali" placeholder="Masukkan Jam Kembali..." value="<?= $Detail_pinjam['jam_kembali'] ?>">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+					<div class="mb-3">
+						<label for="status" class="form-label">Status</label>
+						<select class="form-control" name="status" id="status" placeholder="Pilih Status...">
+							<?php
+							$status_options = ['Dipinjam', 'Finished'];
+							foreach ($status_options as $option) {
+								$selected = ($Detail_Request['status'] == $option) ? 'selected' : '';
+								echo "<option value='$option' $selected>$option</option>";
+							}
+							?>
+						</select>
+					
+				</div>
+				</div>
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="keterangan" class="form-label">Keterangan</label>

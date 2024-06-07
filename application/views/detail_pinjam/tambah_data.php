@@ -59,6 +59,30 @@
                         <input type="text" class="form-control" name="lokasi" id="lokasi" placeholder="Masukkan Lokasi...">
                     </div>
 					</div>
+					 <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="tgl_kembali" class="form-label">Tgl Kembali</label>
+                            <input type="date" class="form-control" name="tgl_kembali" id="tgl_kembali" type="text" class="form-control date" placeholder="Tanggal Kembali...">
+                        </div>
+                    </div>
+					<div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="jam_kembali" class="form-label">Jam Kembali</label>
+                            <input type="time" class="form-control" name="jam_kembali" id="jam_kembali" placeholder="Masukkan Jam Kembali...">
+                        </div>
+                    </div>
+					 <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="status" class="form-label">Status</label>
+                            <select class="form-control" name="status" id="status" placeholder="Pilih Status...">
+                                <option value="">Pilih Status</option>
+                                <option value="Dipinjam">Dipinjam</option>
+                                <option value="Finished">Finished</option>
+                                
+                                <!-- tambahkan opsi barang lainnya sesuai kebutuhan -->
+                            </select>
+                        </div>
+						</div>
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="keterangan" class="form-label">Keterangan</label>

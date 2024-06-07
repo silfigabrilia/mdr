@@ -98,8 +98,6 @@ public function ubah($data)
     return $this->db->update('detail_pinjam');
 }
 
-	
-	
     public function hapus($id)
     {
         $this->db->where('id_pinjam', $id);

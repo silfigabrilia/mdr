@@ -15,23 +15,17 @@
 				<div class="col-md-6">
                         <div class="mb-3">
                             <label for="id_request" class="form-label">ID Request</label>
+                            <input type="hidden" class="form-control" name="id_detail_request" id="id_detail_request" placeholder="ID Request..." value="<?= $Detail_Request['id_detail_request'] ?>" readonly>
                             <input type="text" class="form-control" name="id_request" id="id_request" placeholder="ID Request..." value="<?= $Detail_Request['id_request'] ?>" readonly>
-                        </div>
-                    </div>
-                    
-					<div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="jumlah_request" class="form-label">Jumlah Request</label>
-                            <input type="number" class="form-control" name="jumlah_request" id="jumlah_request" min="1" value="<?= $Detail_Request['jumlah_request'] ?>">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="keterangan" class="form-label">Keterangan</label>
-                            <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Masukkan keterangan..." value="<?= $Detail_Request['keterangan'] ?>">
+                            <label for="lokasi" class="form-label">Lokasi</label>
+                            <input type="text" class="form-control" name="lokasi" id="lokasi" min="1" value="<?= $Detail_Request['lokasi'] ?>">
                         </div>
                     </div>
-                    	<div class="col-md-6">
+					<div class="col-md-6">
                         <div class="mb-3">
                             <label  class="form-label">ID Barang</label>
                         <div class="input-group">
@@ -48,6 +42,19 @@
                         </div>
                     </div>
                 </div>
+					<!--<div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="jumlah_request" class="form-label">Jumlah Request</label>
+                            <input type="number" class="form-control" name="jumlah_request" id="jumlah_request" min="1" value="<?= $Detail_Request['jumlah_request'] ?>">
+                        </div>
+                    </div>-->
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="keterangan" class="form-label">Keterangan</label>
+                            <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Masukkan keterangan..." value="<?= $Detail_Request['keterangan'] ?>">
+                        </div>
+                    </div>
+                    
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="serial_code" class="form-label">Serial Number</label>
@@ -62,12 +69,7 @@
                             </select>
                         </div>
                     </div>
-					<div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="lokasi" class="form-label">Lokasi</label>
-                            <input type="text" class="form-control" name="lokasi" id="lokasi" min="1" value="<?= $Detail_Request['lokasi'] ?>">
-                        </div>
-                    </div>
+					
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="jumlah" class="form-label">Jumlah</label>
@@ -89,7 +91,6 @@
 						</select>
 					</div>
 				</div>
-					
                         <!-- <div class="row"> -->
                             <div class="row float-right">
                                 <div class="col-md-12">
@@ -98,7 +99,6 @@
                             </div>
                         </div>
                     </div>
-                
             </form>
         </div>
     </div>

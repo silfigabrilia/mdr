@@ -22,7 +22,6 @@
 					<th>ID Replace</th>
                     <th>Tanggal Replace</th>
                     <th>ID Barang</th>
-                    <th>Jumlah Replace</th>
                     <th>Quantity</th>
                     <th>No Seri</th>
 					<th>Item_Description</th>
@@ -41,7 +40,6 @@
 						<td><?php echo $d->id_replace ?></td>
                         <td><?php echo $d->tgl_replace ?></td>
                         <td><?php echo $d->id_barang ?></td>
-                        <td><?php echo $d->jml_replace ?></td>
                         <td><?php echo $d->qty_replace ?></td>
                         <td><?php echo $d->serial_code ?></td>
 						<td><?php echo $d->item_description ?></td>

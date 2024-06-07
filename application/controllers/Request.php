@@ -57,7 +57,7 @@ class Request extends CI_Controller
         $nama = $this->input->post('nama');
         $tgl_request = $this->input->post('tgl_request');
         //$barang_request = $this->input->post('barang_request');
-        $jumlah = $this->input->post('jumlah');
+        //$jumlah = $this->input->post('jumlah');
         $keterangan = $this->input->post('keterangan');
 		$status = $this->input->post('status');
         
@@ -66,7 +66,7 @@ class Request extends CI_Controller
             $nama,
             $tgl_request,
             //$barang_request,
-            $jumlah,
+            //$jumlah,
             $keterangan,
 			$status
 
@@ -104,7 +104,7 @@ class Request extends CI_Controller
             'nama' => $this->input->post('nama'),
             'tgl_request' => $this->input->post('tgl_request'),
             //'barang_request' => $this->input->post('barang_request'),
-            'jumlah' => $this->input->post('jumlah'),
+            //'jumlah' => $this->input->post('jumlah'),
             'keterangan' => $this->input->post('keterangan'),
 			'status' => $this->input->post('status'),
 		];
@@ -126,6 +126,7 @@ class Request extends CI_Controller
     public function hapus_data($id)
        {
            //$result = $this->m_data->hapus_request($id);
+		   $result = $this->Mmain->qDel("detail_request","id_request",$id);
 		   $result = $this->Mmain->qDel("request","id_request",$id);
    
            if ($result) {

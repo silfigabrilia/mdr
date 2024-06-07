@@ -17,8 +17,6 @@ class Detail_request extends CI_Controller
 		
     }
 	}
-
-	var $data="id_barang";
 	
     public function index()
     {
@@ -45,7 +43,7 @@ class Detail_request extends CI_Controller
 		$render  = $this->Mmain->qRead("request r 
         INNER JOIN detail_request det ON det.id_request = r.id_request 
 		LEFT JOIN detail_barang dbr ON dbr.id_detail_barang = det.id_detail_barang WHERE det.id_request  = '$id' ",
-        "det.id_detail_request, det.id_request, det.jumlah_request, det.keterangan, det.id_barang, det.serial_code, det.lokasi, det.jumlah, det.status, det.id_detail_barang, dbr.item_description"); 
+        "det.id_detail_request, det.id_request, det.keterangan, det.id_barang, det.serial_code, det.lokasi, det.jumlah, det.status, det.id_detail_barang, dbr.item_description"); 
 		
         $data['Detail_Request'] = $render->result();
         $this->load->view('templates/header', $data);
@@ -64,7 +62,7 @@ class Detail_request extends CI_Controller
 		$render  = $this->Mmain->qRead("request r 
         INNER JOIN detail_request det ON det.id_request = r.id_request 
 		LEFT JOIN detail_barang dbr ON dbr.id_detail_barang = det.id_detail_barang WHERE det.id_request  = '$id' ",
-        "det.id_detail_request, det.id_request, det.jumlah_request, det.keterangan, det.id_barang, det.serial_code, det.lokasi, det.jumlah, det.status, det.id_detail_barang, dbr.item_description");
+        "det.id_detail_request, det.id_request, det.keterangan, det.id_barang, det.serial_code, det.lokasi, det.jumlah, det.status, det.id_detail_barang, dbr.item_description");
         $data['Detail_Request'] = $render->result();
 		$data['id'] = $id;
 		//$data['Detail_Request'] = $this->m_detail_req->tampil_datarequest()->result();
@@ -88,7 +86,7 @@ class Detail_request extends CI_Controller
 		$id_request = $this->input->post('id_request');
         //$barang_request = $this->input->post('barang_request');
 		$id_detail_barang = $this->input->post('id_detail_barang');
-        $jumlah_request = $this->input->post('jumlah_request');
+        //$jumlah_request = $this->input->post('jumlah_request');
         $keterangan = $this->input->post('keterangan');
         $id_barang = $this->input->post('id_barang');
         $serial_code = $this->input->post('serial_code');
@@ -123,7 +121,7 @@ class Detail_request extends CI_Controller
 			$id_request,
             //$barang_request,
 			$idDetailBarang, // ini value hasil dari qRead diatas.
-            $jumlah_request,
+            //$jumlah_request,
             $keterangan,
             $id_barang,
             $serial_code,
@@ -166,35 +164,86 @@ class Detail_request extends CI_Controller
 
 		// Mendapatkan ID dari inputan POST
 		$id = $this->input->post('id_detail_request');
-
+		$serial_code = $this->input->post('serial_code');
+		
+		$detail_barang_data = $this->Mmain->qRead("detail_barang where serial_code = '$serial_code' ", "id_detail_barang");
+		
+		if ($detail_barang_data->num_rows() > 0) {
+			//$id_request = $this->input->post('id_request');
+			$idDetailBarang = $detail_barang_data->row()->id_detail_barang;
+			//$jumlah_request = $this->input->post('jumlah_request');
+			$keterangan = $this->input->post('keterangan');
+			$id_barang = $this->input->post('id_barang');
+			$serial_code = $this->input->post('serial_code');
+			$lokasi = $this->input->post('lokasi');
+			$jumlah = $this->input->post('jumlah');
+			$status = $this->input->post('status');
+		
+		if ($status == 'Finished') {
+		$renQty = $this->Mmain->qRead("detail_barang where serial_code = '".$serial_code."' ","qtty, id_detail_barang");
+		
+		 if ($renQty->num_rows() > 0) {
+            foreach ($renQty->result() as $row) {
+                $qty = $row->qtty;
+                $idDetailBarang = $row->id_detail_barang;
+            }
+        }		
+		
+		$valStok = $qty - $jumlah;
+		
+		$this->Mmain->qUpdpart("detail_barang", "id_detail_barang", $idDetailBarang, Array("qtty"), Array($valStok) );
+		}
+		
+		if ($status == 'Rejected') {
+			$renQty = $this->Mmain->qRead("detail_barang where serial_code = '".$serial_code."' ","qtty, id_detail_barang");
+			
+			 if ($renQty->num_rows() > 0) {
+				foreach ($renQty->result() as $row) {
+					$qty = $row->qtty;
+					$idDetailBarang = $row->id_detail_barang;
+				}
+			}		
+			
+			$valStok = $qty + $jumlah;
+			
+			$this->Mmain->qUpdpart("detail_barang", "id_detail_barang", $idDetailBarang, Array("qtty"), Array($valStok) );
+			}  
+		
 		// Data untuk diubah
 		$data = [
-			'id_detail_request' => $id,
+			//'id_detail_request' => $id,
 			'id_request' => $this->input->post('id_request'),
-			//'barang_request' => $this->input->post('barang_request'),
-			'jumlah_request' => $this->input->post('jumlah_request'),
+			'id_detail_barang' => $idDetailBarang, 
+			//'jumlah_request' => $this->input->post('jumlah_request'),
 			'keterangan' => $this->input->post('keterangan'),
 			'id_barang' => $this->input->post('id_barang'),
 			'serial_code' => $this->input->post('serial_code'),
 			'lokasi' => $this->input->post('lokasi'),
 			'jumlah' => $this->input->post('jumlah'),
-			//'tanggal_waktu' => $this->input->post('tanggal_waktu'),
 			'status' => $this->input->post('status'),
 		];
 
 		// Memuat database dan model
 		$this->load->database();
 		$this->load->model('Mmain');
-
+		//echo $this->input->post('jumlah_request');
 		// Menggunakan metode qUpdpart untuk mengubah data
-		$this->Mmain->qUpdpart("detail_request", 'id_detail_request', $id, array_keys($data), array_values($data));
-
+			$tbColUpd = Array("id_detail_barang","keterangan","id_barang","serial_code","lokasi","jumlah","status");
+			$tbColVal = Array($idDetailBarang,$keterangan,$id_barang,$serial_code,$lokasi,$jumlah,$status);
+			$this->Mmain->qUpdpart("detail_request", 'id_detail_request', $id, $tbColUpd, $tbColVal); // Menambahkan argumen terakhir
+		//echo $id;
 		// Set flash data untuk notifikasi keberhasilan
 		$this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Diubah!');
 
 		// Redirect ke halaman detail_request
 		redirect("detail_request/init/".$data['id_request']);
+		} else {
+			$this->session->set_flashdata('error', 'Serial code tidak ditemukan!');
+			redirect("detail_request/init/".$data['id_request']);
+		}
 	}
+	
+	
 
     public function hapus_data($id,$idRequest)
        {

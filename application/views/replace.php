@@ -21,7 +21,7 @@
                 <tr>
                     <th>No</th>
                     <th>ID Replace</th>
-                    <th>Nama Barang Replace</th>
+                    <th>PIC</th>
                     <th>Tanggal Replace</th>
 					<th>Status</th>
                     <th>Keterangan</th>

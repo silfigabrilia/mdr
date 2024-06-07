@@ -58,12 +58,6 @@
                     </div>
                     <div class="col-md-6">
                     <div class="mb-3">
-                        <label for="tgl_replace" class="form-label">Jumlah Barang Replace</label>
-                        <input type="text" class="form-control" name="jml_replace" id="jml_replace" placeholder="Masukkan Jumlah Barang...">
-                    </div>
-                    </div>
-                    <div class="col-md-6">
-                    <div class="mb-3">
                         <label for="qty_replace" class="form-label">Quantity</label>
                         <input type="text" class="form-control" name="qty_replace" id="qty_replace" placeholder="Masukkan Kuantitas Barang...">
                     </div>

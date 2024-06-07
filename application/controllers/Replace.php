@@ -130,7 +130,9 @@ class Replace extends CI_Controller
 
     public function hapus_replace($id)
     {
-        $result = $this->m_replace->hapus_replace($id);
+		$result = $this->Mmain->qDel("detail_ganti", "id_replace", $id);
+        $result = $this->Mmain->qDel("ganti", "id_replace", $id);
+        
 
         if ($result) {
             $this->session->set_flashdata('success', 'Jenis Barang <strong>Berhasil</strong> Dihapus!');

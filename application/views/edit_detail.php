@@ -26,13 +26,7 @@
 				  <input type="hidden" name="id_replace" id="id_detail_replace"
 						value="<?= $Detail_Replace['id_replace'] ?>">
 						
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <label for="jumlah" class="form-label">Jumlah</label>
-                        <input type="text" class="form-control" name="jml_replace" id="jml_replace" placeholder="Masukkan Jumlah..."value="<?= $Detail_Replace['jml_replace'] ?>">
-                    </div>
-                </div>
-				<div class="col-md-6">
+						<div class="col-md-6">
                         <div class="mb-3">
                             <label  class="form-label">ID Barang</label>
                         <div class="input-group">
@@ -49,12 +43,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <label for="tgl_replace" class="form-label">Tanggal Replace</label>
-                        <input type="date" class="form-control" name="tgl_replace" id="tgl_replace"value="<?= $Detail_Replace['tgl_replace'] ?>">
-                    </div>
-                    </div>
 					<div class="col-md-6">
 					<div class="mb-3">
 						<label for="serial_code" class="form-label">Nomor Seri</label>
@@ -68,14 +56,19 @@
 						</select>
 					</div>
 				</div>
-				
-					 <div class="col-md-6">
+				<div class="col-md-6">
                     <div class="mb-3">
                         <label for="qty_replace" class="form-label">Quantity</label>
-                        <input type="text" class="form-control" name="qty_replace" id="qty_replace" min="1"value="<?= $Detail_Replace['qty_replace'] ?>">
-                    
+                        <input type="text" class="form-control" name="qty_replace" id="qty_replace" placeholder="Masukkan Jumlah..."value="<?= $Detail_Replace['qty_replace'] ?>">
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="tgl_replace" class="form-label">Tanggal Replace</label>
+                        <input type="date" class="form-control" name="tgl_replace" id="tgl_replace"value="<?= $Detail_Replace['tgl_replace'] ?>">
+                    </div>
+                    </div>
+	
 				<div class="col-md-6">
 					<div class="mb-3">
 						<label for="status" class="form-label">Status</label>

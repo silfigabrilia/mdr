@@ -91,6 +91,7 @@ class Detail_barang extends CI_Controller
         $qtty = $this->input->post('qtty');
 		$keterangan = $this->input->post('keterangan');
         
+		
         $this->Mmain->qIns("detail_barang", array(
             $id,
             $id_barang,

@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label for="nama" class="form-label">Nama</label>
+                        <label for="nama" class="form-label">PIC</label>
                         <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama..."value="<?= $Replace['nama'] ?>">
                         <input type="hidden" name="id_replace" id="id_replace" value="<?= $Replace['id_replace'] ?>">
                     </div>

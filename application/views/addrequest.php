@@ -13,14 +13,14 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="nama" class="form-label">Nama</label>
+                            <label for="nama" class="form-label">PIC</label>
                             <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan nama..."> 
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="tgl_request" class="form-label">Tanggal</label>
-                            <input type="datetime-local" class="form-control" name="tgl_request" id="tgl_request" min="1">
+                            <input type="datetime-local" class="form-control" name="tgl_request" id="tgl_request" >
                         </div>
                     </div>
                   
@@ -42,13 +42,13 @@
                             <label for="barang_request" class="form-label">Barang Request</label>
                             <input type="text" class="form-control" name="barang_request" id="barang_request" placeholder="Masukkan nama barang request...">
                         </div>
-                    </div>-->
+                    </div>
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="jumlah" class="form-label">Jumlah</label>
                             <input type="number" class="form-control" name="jumlah" id="jumlah" min="1">
                         </div>
-                    </div>
+                    </div>-->
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="keterangan" class="form-label">Keterangan</label>

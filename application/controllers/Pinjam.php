@@ -61,9 +61,7 @@ class Pinjam extends CI_Controller
             'nama_pemberi' => $this->input->post('nama_pemberi'),
             /* 'nama_barang' => $this->input->post('nama_barang'), */
             'tgl_pinjam' => $this->input->post('tgl_pinjam'),
-            'tgl_kembali' => $this->input->post('tgl_kembali'),
             'jam_pinjam' => $this->input->post('jam_pinjam'),
-            'jam_kembali' => $this->input->post('jam_kembali'),
             'keterangan' => $this->input->post('keterangan'),
 
         ];
@@ -71,11 +69,9 @@ class Pinjam extends CI_Controller
         $nama_peminjam = $this->input->post('nama_peminjam');
         $nama_penerima = $this->input->post('nama_penerima');
         $nama_pemberi = $this->input->post('nama_pemberi');
-        $nama_barang = $this->input->post('nama_barang');
+        //$nama_barang = $this->input->post('nama_barang');
         $tgl_pinjam = $this->input->post('tgl_pinjam');
-        $tgl_kembali = $this->input->post('tgl_kembali');
         $jam_pinjam = $this->input->post('jam_pinjam');
-        $jam_kembali = $this->input->post('jam_kembali');
         $keterangan = $this->input->post('keterangan');
 
         // var_dump($nama_peminjam, $nama_penerima, $nama_pemberi,);
@@ -90,9 +86,7 @@ class Pinjam extends CI_Controller
             $nama_pemberi,
             /* $nama_barang, */
             $tgl_pinjam,
-            $tgl_kembali,
             $jam_pinjam,
-            $jam_kembali,
             $keterangan
 
         ));
@@ -126,9 +120,7 @@ class Pinjam extends CI_Controller
         'nama_pemberi' => $this->input->post('nama_pemberi'),
         /* 'nama_barang' => $this->input->post('nama_barang'), */
         'tgl_pinjam' => $this->input->post('tgl_pinjam'),
-        'tgl_kembali' => $this->input->post('tgl_kembali'),
         'jam_pinjam' => $this->input->post('jam_pinjam'),
-        'jam_kembali' => $this->input->post('jam_kembali'),
         'keterangan' => $this->input->post('keterangan'),
     ];
 
@@ -136,7 +128,7 @@ class Pinjam extends CI_Controller
     $this->load->model('Mmain');
 
     // Menggunakan metode qUpdpart untuk mengubah data
-    $this->Mmain->qUpdpart('pinjam', 'id_pinjam', $data['id_pinjam'], ['nama_peminjam', 'nama_penerima', 'nama_pemberi', 'tgl_pinjam', 'tgl_kembali', 'jam_pinjam', 'jam_kembali', 'keterangan'], [$data['nama_peminjam'], $data['nama_penerima'], $data['nama_pemberi'], $data['nama_barang'], $data['tgl_pinjam'], $data['tgl_kembali'], $data['jam_pinjam'], $data['jam_kembali'], $data['keterangan']]);
+    $this->Mmain->qUpdpart('pinjam', 'id_pinjam', $data['id_pinjam'], ['nama_peminjam', 'nama_penerima', 'nama_pemberi', 'tgl_pinjam', 'jam_pinjam', 'keterangan'], [$data['nama_peminjam'], $data['nama_penerima'], $data['nama_pemberi'], $data['tgl_pinjam'], $data['jam_pinjam'],  $data['keterangan']]);
 
     $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Diubah!');
     
@@ -145,7 +137,10 @@ class Pinjam extends CI_Controller
 
     public function hapus_data($id)
     {
+		
+        $result = $this->Mmain->qDel("detail_pinjam", "id_pinjam", $id);
         $result = $this->Mmain->qDel("pinjam", "id_pinjam", $id);
+		
 
         if ($result) {
             $this->session->set_flashdata('success', 'Data Barang <strong>Berhasil</strong> Dihapus!');

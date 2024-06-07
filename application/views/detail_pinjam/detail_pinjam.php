@@ -18,6 +18,9 @@
 						<th>Item Description</th>
 						<th>Quantity</th>
 						<th>Lokasi</th>
+						<th>Tanggal Kembali</th>
+						<th>Jam Kembali</th>
+						<th>Status</th>	
                         <th>Keterangan</th>
                         <th>Aksi</th>
                     </tr>
@@ -33,6 +36,9 @@
 							<td><?php echo $dp->item_description ?></td>
 							<td><?php echo $dp->qtty ?></td>
 							<td><?php echo $dp->lokasi ?></td>
+							<td><?php echo $dp->tgl_kembali ?></td>
+							<td><?php echo $dp->jam_kembali ?></td>
+							<td><?php echo $dp->status ?></td>
 							<td><?php echo $dp->keterangan ?></td>
 							
                             <td>

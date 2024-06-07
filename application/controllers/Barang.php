@@ -139,6 +139,7 @@ class Barang extends CI_Controller
        public function hapus_data($id)
        {
            //$result = $this->m_data->hapus($id);
+		   $result = $this->Mmain->qDel("detail_barang","id_barang",$id);
 		   $result = $this->Mmain->qDel("barang","id_barang",$id);
    
            if ($result) {

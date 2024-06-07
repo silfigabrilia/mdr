@@ -14,13 +14,11 @@
                     <tr>
                         <th>No</th>
                         <th>ID Pinjam</th>
-                        <th>Nama Peminjam</th>
+                        <th>PIC</th>
                         <th>Nama Penerima</th>
                         <th>Nama Pemberi</th>
                         <th>Tanggal Pinjam</th>
-                        <th>Tanggal Kembali</th>
                         <th>Jam Pinjam</th>
-                        <th>Jam Kembali</th>
                         <th>Keterangan</th>
                         <th>Aksi</th>
                     </tr>
@@ -36,10 +34,7 @@
                             <td><?php echo $P->nama_pemberi ?></td>
                            <!-- <td><?php echo $P->nama_barang ?></td> -->
                             <td><?php echo $P->tgl_pinjam ?></td>
-                            <td><?php echo $P->tgl_kembali ?></td>
-                            <td><?php echo $P->jam_pinjam ?></td>
-                            <td><?php echo $P->jam_kembali ?></td>
-                            <td><?php echo $P->keterangan ?></td>
+                            <td><?php echo $P->jam_pinjam ?></td>                            <td><?php echo $P->keterangan ?></td>
                             <td>
                                 <a href="<?= base_url('detail_pinjam/init/') . $P->id_pinjam ?>" class="btn btn-warning" title="Detail Pinjam"><i class="fa fa-edit"></i></a>
                                 <a href="<?= base_url('pinjam/edit_data/') . $P->id_pinjam ?>" class="btn btn-warning" title="Edit pinjam"><i class="ti ti-pencil"></i></a>

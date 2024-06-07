@@ -51,20 +51,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="tgl_kembali" class="form-label">Tgl Kembali</label>
-                            <input type="date" class="form-control" name="tgl_kembali" id="tgl_kembali" type="text" class="form-control date" placeholder="Tanggal Kembali..." value="<?= $Pinjam['tgl_kembali'] ?>">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
                             <label for="jam_pinjam" class="form-label">Jam Pinjam</label>
                             <input type="time" class="form-control" name="jam_pinjam" id="jam_pinjam" placeholder="Masukkan Jam Pinjam..." value="<?= $Pinjam['jam_pinjam'] ?>">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="jam_kembali" class="form-label">Jam Kembali</label>
-                            <input type="time" class="form-control" name="jam_kembali" id="jam_kembali" placeholder="Masukkan Jam Kembali..." value="<?= $Pinjam['jam_kembali'] ?>">
                         </div>
                     </div>
                     <div class="col-md-6">
