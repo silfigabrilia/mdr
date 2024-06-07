@@ -82,7 +82,7 @@ class Detail_barang extends CI_Controller
             $this->session->set_flashdata('error', 'Tambah data hanya untuk admin!');
             redirect('dashboard');
         }
-        $id = $this->Mmain->autoId("detail_barang","id_detail_barang","DB","DB"."001","001");
+        //$id = $this->Mmain->autoId("detail_barang","id_detail_barang","DB","DB"."001","001");
 
         $id_barang = $this->input->post('id_barang');
 		$item_description = $this->input->post('item_description');
@@ -90,7 +90,17 @@ class Detail_barang extends CI_Controller
         $lokasi = $this->input->post('lokasi');
         $qtty = $this->input->post('qtty');
 		$keterangan = $this->input->post('keterangan');
-        
+		
+			// Check for duplicate serial code
+		$existing = $this->Mmain->qRead("detail_barang where serial_code = '".$serial_code."' ", "serial_code");
+		//dd($existing);
+		if ($existing->num_rows() > 0) {
+			// If a duplicate serial code is found
+			$this->session->set_flashdata('error', 'Serial code already exists!');
+			redirect('detail_barang/tambah/' . $id_barang);
+		} else {
+        // If no duplicate serial code is found, proceed with the insertion
+        $id = $this->Mmain->autoId("detail_barang", "id_detail_barang", "DB", "DB001", "001");
 		
         $this->Mmain->qIns("detail_barang", array(
             $id,
@@ -104,7 +114,9 @@ class Detail_barang extends CI_Controller
 
         $this->session->set_flashdata('success', 'Data <strong>Berhasil</strong> Ditambahkan!');
         redirect("detail_barang/init/".$id_barang);
+		}
     }
+
 
     public function edit($id){
         $data['title'] = 'Detail Barang';
