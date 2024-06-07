@@ -90,8 +90,8 @@ class Detail_barang extends CI_Controller
         $lokasi = $this->input->post('lokasi');
         $qtty = $this->input->post('qtty');
 		$keterangan = $this->input->post('keterangan');
-		
-			// Check for duplicate serial code
+	
+		// Check for duplicate serial code
 		$existing = $this->Mmain->qRead("detail_barang where serial_code = '".$serial_code."' ", "serial_code");
 		//dd($existing);
 		if ($existing->num_rows() > 0) {
